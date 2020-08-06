@@ -23,7 +23,9 @@
 
     # always loaded
     'data': [
-        'views/sale/sale.xml'
+        'views/sale/sale.xml',
+        #WIZARDS
+        'wizard/sale_details.xml',
     ],  
      'qweb': [
         
