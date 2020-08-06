@@ -13,6 +13,9 @@
                         <attribute name="invisible">0</attribute>
                         <attribute name="required">0</attribute>
                     </xpath>
+                    <xpath expr="//field[@name='currency_id']" position="attributes">
+                        <attribute name="required">0</attribute>
+                    </xpath>
                 </field>
         </record>
     </data>
