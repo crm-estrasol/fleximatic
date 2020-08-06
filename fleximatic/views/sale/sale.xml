@@ -9,6 +9,9 @@
                     <xpath expr="//tree//field[@name='name']" position="after">
                         <field name="pricelist_id"/>
                     </xpath>
+                    <xpath expr="//field[@name='payment_term_id']" position="after">       
+                      <button name="show_pricelistAvaible" string="Pricelist" type="object" class="btn-primary" attrs="{'invisible': ['|',('state', '=', 'done'),'|',('state', '=', 'cancel'),('state', '=', 'sale')]}"/>   
+                    </xpath>
                 </field>
         </record>
     </data>
