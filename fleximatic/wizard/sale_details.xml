@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="view_sale_pricelist_wizard" model="ir.ui.view">
+        <field name="name">sale.discount.wizard.form</field>
+        <field name="model">fleximatic.sale.pricelist.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Descuento">
+              <group>
+                     
+                        <group>                       
+                                <field name="sale" readonly="1"  /> 
+                                <field name="product_id" options="{'no_create_edit': True,'no_create': True}"  />
+                                 <field name="pricelist_id" options="{'no_create_edit': True,'no_create': True}"  />    
+                                 <field name="pricelist_avaible" readonly="1"  />    
+                                
+                        </group>
+                       
+                </group>
+                <!--
+                <footer>
+                    <button name="generate_report" string="Aplicar descuento" type="object" class="btn-primary"/>
+
+                </footer>
+                -->
+            </form>
+        </field>
+    </record>
+   
+</odoo>
