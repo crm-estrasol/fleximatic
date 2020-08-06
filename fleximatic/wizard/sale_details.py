@@ -34,24 +34,12 @@ class ItemPricelist(models.TransientModel):
             
             prod.discount = self.discount  if all(goal if goal else False)  else prod.discount
         return self.sale
-   
+   """
        
     @api.onchange('sale')
     def on_change_sale(self):
-        sistemas = [item.project.id for item in self.sale.order_line if item.product_id and item.project  ]
-        marcas = [item.product_id.brand.id for item in self.sale.order_line if item.product_id and item.product_id.brand  ]
-        ubicaciones = [ item.ubication.id for item in self.sale.order_line if item.product_id and item.ubication  ]
-        sellers = []
-        for item in self.sale.order_line: 
-            if item.product_id:
-                for seller in item.product_id.seller_ids:
-                    sellers.append(seller.name.id) 
-        sellers = list(set(sellers))
         return {
-            'domain': { 'projects': [('id', 'in', sistemas)], 
-                        'ubications': [('id', 'in', ubicaciones)],
-                        'brand': [('id', 'in', marcas)],
-                        'partner': [('id', 'in', sellers)],
+            'domain': { 'product_id': [('id', 'in', [item.product_id.id for item in self.sale.order_line] )] , 
                       }                     
         }
-    """
+  
