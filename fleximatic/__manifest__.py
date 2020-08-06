@@ -23,7 +23,7 @@
 
     # always loaded
     'data': [
-        
+        'views/sale/sale.xml'
     ],  
      'qweb': [
         
