@@ -41,13 +41,13 @@ class FleximaticSaleOrder(models.Model):
                 'name': ('Descuento'),
                 'view_type': 'form',
                 'view_mode': 'form',
-                'res_model': 'tomcat.sale.discount.wizard',
+                'res_model': 'fleximatic.sale.pricelist.wizard',
                 'views':  [(view_id,'form')],
                 'type': 'ir.actions.act_window',
                 'target': 'new',
                 'context':{'default_sale':self.id},
                 'domain': {'product_id': [('partner_id', 'in', [item.product_id.id for item in self.order_line] )]},
                 #'domain': [('product_id', 'in', )]   
-                
+
                 }
         return view 
