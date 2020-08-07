@@ -42,11 +42,11 @@
                             </page>
                             <page name="pricelist_config" string="Configuration">
                                 <group>
-                                    <group name="pricelist_availability" string="Availability">
-                                        <field name="country_group_ids" widget="many2many_tags"/>
+                                    <group name="pricelist_availability" readonly="1" string="Availability">
+                                        <field name="country_group_ids" readonly="1" widget="many2many_tags"/>
                                     </group>
-                                    <group name="pricelist_discounts" groups="product.group_discount_per_so_line" string="Discounts">
-                                        <field name="discount_policy" widget="radio"/>
+                                    <group name="pricelist_discounts" readonly="1" groups="product.group_discount_per_so_line" string="Discounts">
+                                        <field name="discount_policy" readonly="1" widget="radio"/>
                                     </group>
                                 </group>
                             </page>
