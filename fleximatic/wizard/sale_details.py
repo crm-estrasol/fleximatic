@@ -44,11 +44,10 @@ class ItemPricelist(models.TransientModel):
             self.pricelist_avaible = False 
             self.pricelist_id = False 
             return {
-                'domain': { 'product_id': [('id', 'in', [-1] ,
+                'domain': { 'product_id': [('id', 'in', [-1] )],
                             'pricelist_id': [('id', 'in', [-1]  )] , 
                         }                     
                 }
-
         self.pricelist_id = False
         pricelist_avaible = self.env['product.pricelist.item'].search( [
              '&',
