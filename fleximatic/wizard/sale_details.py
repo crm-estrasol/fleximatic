@@ -38,8 +38,12 @@ class ItemPricelist(models.TransientModel):
        
     @api.onchange('sale','product_id','pricelist_id')
     def on_change_sale(self):
-        pricelist_avaible = self.env['product.pricelist.item'].search( [] )
-        self.pricelist_avaible = [ (6, 0, pricelist_avaible.ids ) ] 
+        pricelist_avaible = self.env['product.pricelist.item'].search( [('product_tmpl_id','=',self.product_id.id)] )
+        if pricelist_avaible:
+            self.pricelist_avaible = [ (6, 0, pricelist_avaible.ids ) ]
+        else:
+             self.pricelist_avaible = False 
+        #setattr(self, 'pricelist_avaible', [(6, 0, pricelist_avaible.ids ) ])  
         return {
             'domain': { 'product_id': [('id', 'in', [item.product_id.id for item in self.sale.order_line] )] , 
                       }                     
