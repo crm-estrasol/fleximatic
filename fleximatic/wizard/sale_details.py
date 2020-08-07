@@ -40,7 +40,7 @@ class ItemPricelist(models.TransientModel):
         return view 
     @api.onchange('sale','product_id')
     def on_change_sale(self):
-        if self.product_id:
+        if self.product_id == False:
             self.pricelist_avaible = False 
             self.pricelist_id = False 
             setattr(self, 'pricelist_id', False )
