@@ -35,7 +35,15 @@ class ItemPricelist(models.TransientModel):
             prod.discount = self.discount  if all(goal if goal else False)  else prod.discount
         return self.sale
    """
-       
+    def apply(self):
+        products = self.sale.order_line.filtered(lambda x: x.product_id == self.product_id.id)
+        for prod in products:
+            prod.pricelist_id = self.pricelist_id.id
+        return self.sale
+    def apply_next(self):
+        products = self.sale.order_line.filtered(lambda x: x.product_id == self.product_id.id)
+        for prod in products:
+            prod.pricelist_id = self.pricelist_id.id
     @api.onchange('sale','product_id')
     def on_change_sale(self):
         self.pricelist_id = False

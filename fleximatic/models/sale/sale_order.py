@@ -46,8 +46,6 @@ class FleximaticSaleOrder(models.Model):
                 'type': 'ir.actions.act_window',
                 'target': 'new',
                 'context':{'default_sale':self.id,'default_date_order':self.date_order},
-                #'domain': {'product_id': [('partner_id', 'in', [item.product_id.id for item in self.order_line] )]},
-                #'domain': [('product_id', 'in', )]   
 
                 }
         return view 
