@@ -42,6 +42,13 @@ class ItemPricelist(models.TransientModel):
     def on_change_sale(self):
         if self.product_id == False:
             self.pricelist_avaible = False 
+            self.pricelist_id = False 
+            return {
+                'domain': { 'product_id': [('id', 'in', [-1] ,
+                            'pricelist_id': [('id', 'in', [-1]  )] , 
+                        }                     
+                }
+
         self.pricelist_id = False
         pricelist_avaible = self.env['product.pricelist.item'].search( [
              '&',
@@ -60,6 +67,7 @@ class ItemPricelist(models.TransientModel):
         pricelist_domain = [item.pricelist_id.id for item in pricelist_avaible]   
         self.pricelist_id = pricelist_domain[0] if pricelist_domain else False
         #setattr(self, 'pricelist_avaible', [(6, 0, pricelist_avaible.ids ) ])  
+        
         return {
             'domain': { 'product_id': [('id', 'in', [item.product_id.id for item in self.sale.order_line] )] ,
                         'pricelist_id': [('id', 'in', pricelist_domain  )] , 
