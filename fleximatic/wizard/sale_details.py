@@ -40,6 +40,8 @@ class ItemPricelist(models.TransientModel):
         return view 
     @api.onchange('sale','product_id')
     def on_change_sale(self):
+        if self.product_id == False:
+            self.pricelist_avaible = False 
         self.pricelist_id = False
         pricelist_avaible = self.env['product.pricelist.item'].search( [
              '&',
@@ -50,7 +52,7 @@ class ItemPricelist(models.TransientModel):
              '|', ('date_start', '<=', self.date_order ), ('date_start', '=', False),
              '|', ('date_end', '>=', self.date_order ), ('date_end', '=', False)  
             ] )
-        self.pricelist_id = str(pricelist_avaible.ids)
+       
         if pricelist_avaible:
             self.pricelist_avaible = [ (6, 0, pricelist_avaible.ids ) ]
         else:
