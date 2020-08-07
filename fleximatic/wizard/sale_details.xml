@@ -13,9 +13,14 @@
                                  <field name="date_order" readonly="1"  /> 
                                 <field name="product_id" options="{'no_create_edit': True,'no_create': True}"  />
                                  <field name="pricelist_id" options="{'no_create_edit': True,'no_create': True}"  />    
-                                 <field name="pricelist_avaible" readonly="1"  />    
+                                 
                                 
                         </group>
+                        <div class="row">
+                            <div class="col-12">
+                                <field name="pricelist_avaible" readonly="1"  />  
+                            </div>
+                        </div>
                        
                 </group>
             
