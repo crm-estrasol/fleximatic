@@ -18,7 +18,7 @@ class ItemPricelist(models.TransientModel):
   
     def generate_apply(self):
         products = self.sale.order_line.filtered(lambda x: x.product_id == self.product_id.id)
-        _logger.info(str(products))
+        products[0].price_subtotal="aaaaa"
         for prod in products:
             prod.pricelist_id = self.pricelist_id
         return self.sale
