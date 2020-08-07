@@ -41,9 +41,9 @@ class ItemPricelist(models.TransientModel):
     @api.onchange('sale','product_id')
     def on_change_sale(self):
         self.update({
-            'default_pricelist_id': False,
-            'default_product_id': False,
-            'default_pricelist_avaible': [(5)] ,
+            'pricelist_id': False,
+            'product_id': False,
+            'pricelist_avaible': [(5)] ,
         })
         if self.product_id == False:
             self.pricelist_avaible = [(5)] 
