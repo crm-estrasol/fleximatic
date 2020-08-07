@@ -25,6 +25,7 @@
     'data': [
         'views/sale/sale.xml',
         'views/pricelist/pricelist.xml',
+        'views/product/product.xml',
     ],  
      'qweb': [
         
