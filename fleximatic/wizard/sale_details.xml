@@ -20,8 +20,8 @@
                 </group>
             
                 <footer>
-                    <button name="apply_next" string="Apply and next" type="object" class="btn-primary"/>
-                    <button name="apply" string="Apply" type="object" class="btn-primary"/>
+                    <button name="generate_apply_next" string="Apply and next" type="object" class="btn-primary"/>
+                    <button name="generate_apply" string="Apply" type="object" class="btn-primary"/>
                     
                 </footer>
             
