@@ -14,7 +14,7 @@ class ItemPricelist(models.TransientModel):
     sale = fields.Many2one('sale.order', string='Venta')
     pricelist_id =   fields.Many2one('product.pricelist', string='Pricelist')
     pricelist_avaible =  fields.Many2many(comodel_name='product.pricelist.item', relation='table_many_pricelist_item', column1='product_id', column2='',string="Tarifas disponibles")
-    #create_date =  fields.Many2many(comodel_name='res.partner', relation='table_many_partner', column1='partner_id', column2='',string="Proveedor")
+    date_order =  fields.Datetime(string='Date', readonly=True, default=fields.Datetime.now)
     
     """
     def generate_report(self):    
@@ -39,7 +39,7 @@ class ItemPricelist(models.TransientModel):
     @api.onchange('sale','product_id')
     def on_change_sale(self):
         self.pricelist_id = False
-        pricelist_avaible = self.env['product.pricelist.item'].search( [('product_tmpl_id','=',self.product_id.id)] )
+        pricelist_avaible = self.env['product.pricelist.item'].search( [('product_tmpl_id','=',self.product_id.id),('date_start','>=',self.date_order), ('date_end','<=',self.date_order)] )
         if pricelist_avaible:
             self.pricelist_avaible = [ (6, 0, pricelist_avaible.ids ) ]
         else:
