@@ -17,13 +17,12 @@ class ItemPricelist(models.TransientModel):
     date_order =  fields.Datetime(string='Date', readonly=True, default=fields.Datetime.now)
   
     def generate_apply(self):
-        products = self.sale.order_line.filtered(lambda x: x.product_id == self.product_id.id)
-        products[0].price_subtotal=str(products[0].product_id.name)
+        products = self.sale.order_line.filtered(lambda x: x.product_id.id == self.product_id.id)
         for prod in products:
             prod.pricelist_id = self.pricelist_id
         return self.sale
     def generate_apply_next(self):
-        products = self.sale.order_line.filtered(lambda x: x.product_id == self.product_id.id)
+        products = self.sale.order_line.filtered(lambda x: x.product_id.id == self.product_id.id)
         for prod in products:
             prod.pricelist_id = self.pricelist_id
     @api.onchange('sale','product_id')
