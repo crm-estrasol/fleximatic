@@ -46,8 +46,8 @@ class ItemPricelist(models.TransientModel):
             setattr(self, 'pricelist_id', False )
             setattr(self, 'pricelist_avaible', [(5)] )
             return {
-                'domain': { 'product_id': [('id', 'in', [-1] )],
-                            'pricelist_id': [('id', 'in', [-1] )] , 
+                'domain': { 'product_id': [('id', 'in', [1] )],
+                            'pricelist_id': [('id', 'in', [1] )] , 
                         }                     
                 }
         self.pricelist_id = False
