@@ -1,23 +1,26 @@
-<record id="product_pricelist_view_readoonly" model="ir.ui.view">
-            <field name="name">product.pricelist.form</field>
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_pricelist_view_readonly" model="ir.ui.view">
+            <field name="name">product.pricelist.form.readonly</field>
             <field name="model">product.pricelist</field>
             <field name="arch" type="xml">
                 <form string="Products Price List">
                     <sheet>
-                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}" readonly="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                         <div class="oe_title">
-                            <h1><field name="name" placeholder="e.g. USD Retailers" readonly="1" /></h1>
+                            <h1><field name="name" placeholder="e.g. USD Retailers"/></h1>
                         </div>
                         <group>
                           <group name="pricelist_settings">
-                              <field name="currency_id" groups="base.group_multi_currency" readonly="1"/>
-                              <field name="active" invisible="1" readonly="1"/>
-                              <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" readonly="1"/>
+                              <field name="currency_id" groups="base.group_multi_currency"/>
+                              <field name="active" invisible="1"/>
+                              <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
                           </group>
                         </group>
                         <notebook>
                             <page name="pricelist_rules" string="Price Rules">
-                              <field name="item_ids" nolabel="1" context="{'default_base':'list_price'}" readonly="1">
+                              <field name="item_ids" nolabel="1" context="{'default_base':'list_price'}">
                                   <tree string="Pricelist Items" editable="bottom">
                                       <field name="product_tmpl_id" string="Products" required="1"/>
                                       <field name="product_id" string="Variants"
@@ -40,10 +43,10 @@
                             <page name="pricelist_config" string="Configuration">
                                 <group>
                                     <group name="pricelist_availability" string="Availability">
-                                        <field name="country_group_ids" widget="many2many_tags" readonly="1"/>
+                                        <field name="country_group_ids" widget="many2many_tags"/>
                                     </group>
                                     <group name="pricelist_discounts" groups="product.group_discount_per_so_line" string="Discounts">
-                                        <field name="discount_policy" widget="radio" readonly="1"/>
+                                        <field name="discount_policy" widget="radio"/>
                                     </group>
                                 </group>
                             </page>
@@ -52,3 +55,6 @@
                 </form>
             </field>
         </record>
+    f
+    </data>
+</odoo>
