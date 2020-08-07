@@ -15,7 +15,8 @@ class fleximaticsale(models.Model):
         for sale in self:
             if sale.order_line:
                 for line in sale.order_line:
-                    puntos += line.price_subtotal *(1/100)
+                    if line.product_id.vender_puntos == True:
+                        puntos += line.price_subtotal *(line.product_id.puntos_genera/100)
             if puntos > 0:
                 sale.points = puntos
                         
