@@ -12,7 +12,7 @@ class ItemPricelist(models.TransientModel):
     _description = 'Descuentos '
     product_id =  fields.Many2one('product.template', string='Products')
     sale = fields.Many2one('sale.order', string='Venta')
-    pricelist_id =   fields.Many2one('product.pricelist', string='Products')
+    pricelist_id =   fields.Many2one('product.pricelist', string='Pricelist')
     pricelist_avaible =  fields.Many2many(comodel_name='product.pricelist.item', relation='table_many_pricelist_item', column1='product_id', column2='',string="Tarifas disponibles")
     #create_date =  fields.Many2many(comodel_name='res.partner', relation='table_many_partner', column1='partner_id', column2='',string="Proveedor")
     
@@ -36,16 +36,20 @@ class ItemPricelist(models.TransientModel):
         return self.sale
    """
        
-    @api.onchange('sale','product_id','pricelist_id')
+    @api.onchange('sale','product_id')
     def on_change_sale(self):
+        self.pricelist_id = False
         pricelist_avaible = self.env['product.pricelist.item'].search( [('product_tmpl_id','=',self.product_id.id)] )
         if pricelist_avaible:
             self.pricelist_avaible = [ (6, 0, pricelist_avaible.ids ) ]
         else:
              self.pricelist_avaible = False 
+        pricelist_domain = [item.pricelist_id.id for item in pricelist_avaible]   
+        self.pricelist_id = pricelist_domain[0] if pricelist_domain else False
         #setattr(self, 'pricelist_avaible', [(6, 0, pricelist_avaible.ids ) ])  
         return {
-            'domain': { 'product_id': [('id', 'in', [item.product_id.id for item in self.sale.order_line] )] , 
+            'domain': { 'product_id': [('id', 'in', [item.product_id.id for item in self.sale.order_line] )] ,
+                        'pricelist_id': [('id', 'in', pricelist_domain  )] , 
                       }                     
         }
   
