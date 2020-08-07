@@ -41,8 +41,8 @@ class ItemPricelist(models.TransientModel):
         self.pricelist_id = False
         pricelist_avaible = self.env['product.pricelist.item'].search( [
             ('product_tmpl_id','=',self.product_id.id),
-            '|',('date_start','>=',self.date_order),('date_start','=',False),
-            '|' ,('date_end','<=',self.date_order),('date_end','=',False)  
+            ['|', ('date_start', '<=', self.date_order ), ('date_start', '=', False)],
+            ['|', ('date_end', '<=', self.date_order ), ('date_end', '=', False)]  
             ] )
         if pricelist_avaible:
             self.pricelist_avaible = [ (6, 0, pricelist_avaible.ids ) ]
