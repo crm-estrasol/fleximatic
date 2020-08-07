@@ -45,7 +45,7 @@ class FleximaticSaleOrder(models.Model):
                 'views':  [(view_id,'form')],
                 'type': 'ir.actions.act_window',
                 'target': 'new',
-                'context':{'default_sale':self.id,'default_date_order':self.date_order},
+                'context':{'default_sale':self.id,'default_date_order':self.date_order,'default_product_id':self.sale_order[0].product_id.id},
 
                 }
         return view 

@@ -41,8 +41,6 @@ class ItemPricelist(models.TransientModel):
     @api.onchange('sale','product_id')
     def on_change_sale(self):
         self.pricelist_id = False
-        if self.product_id == False:
-            self.product_id = self.sale.sale_order[0].product_id
         pricelist_avaible = self.env['product.pricelist.item'].search( [
              '&','|',('product_id','=',self.product_id.product_tmpl_id.id), ('product_tmpl_id','=',self.product_id.id),
              '|',('applied_on','=','1_product'),('applied_on','=','0_product_variant'),
