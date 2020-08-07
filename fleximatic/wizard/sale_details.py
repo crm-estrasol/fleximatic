@@ -40,7 +40,7 @@ class ItemPricelist(models.TransientModel):
         return view 
     @api.onchange('sale','product_id')
     def on_change_sale(self):
-        context.update({
+        self.update({
             'default_pricelist_id': False,
             'default_product_id': False,
             'default_pricelist_avaible': [(5)] ,
