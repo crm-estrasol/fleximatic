@@ -7,9 +7,10 @@
                 <field name="inherit_id" ref="sale.view_order_form"/>
                 <field name="arch" type="xml">
                     <xpath expr="//tree//field[@name='name']" position="after">
-                        <field name="pricelist_id" options="{'no_create_edit': True}" 
-                        context="{'form_view_ref':'fleximatic.product_pricelist_view_readonly'}"
-                        />
+                        <field name="pricelist_id" options="{'no_create_edit': True}" context="{'form_view_ref':'fleximatic.product_pricelist_view_readonly'}"/>
+                    </xpath>
+                    <xpath expr="//tree//field[@name='price_unit']" position="attributes">
+                        <attribute name="required">1</attribute>
                     </xpath>
                     <xpath expr="//field[@name='pricelist_id']" position="attributes">
                         <attribute name="invisible">1</attribute>
