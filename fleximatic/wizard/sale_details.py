@@ -10,7 +10,7 @@ _logger = logging.getLogger(__name__)
 class ItemPricelist(models.TransientModel):
     _name = 'fleximatic.sale.pricelist.wizard'
     _description = 'Descuentos '
-    product_id =  fields.Many2one('product.template', string='Products')
+    product_id =  fields.Many2one('product.product', string='Products')
     sale = fields.Many2one('sale.order', string='Venta')
     pricelist_id =   fields.Many2one('product.pricelist', string='Pricelist')
     pricelist_avaible =  fields.Many2many(comodel_name='product.pricelist.item', relation='table_many_pricelist_item', column1='product_id', column2='',string="Tarifas disponibles")
