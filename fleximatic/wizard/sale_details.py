@@ -25,6 +25,19 @@ class ItemPricelist(models.TransientModel):
         products = self.sale.order_line.filtered(lambda x: x.product_id.id == self.product_id.id)
         for prod in products:
             prod.pricelist_id = self.pricelist_id
+        view_id = self.env.ref('fleximatic.view_sale_pricelist_wizard').id
+        view = {
+                'name': ('Descuento'),
+                'view_type': 'form',
+                'view_mode': 'form',
+                'res_model': 'fleximatic.sale.pricelist.wizard',
+                'views':  [(view_id,'form')],
+                'type': 'ir.actions.act_window',
+                'target': 'new',
+                'context':{'default_sale':self.sale.id,'default_date_order':self.date_order},
+
+                }
+        return view 
     @api.onchange('sale','product_id')
     def on_change_sale(self):
         self.pricelist_id = False
