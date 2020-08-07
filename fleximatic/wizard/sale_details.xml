@@ -16,13 +16,17 @@
                                  
                                 
                         </group>
-                        <div class="row">
-                            <div class="col-12">
-                                <field name="pricelist_avaible" readonly="1"  />  
-                            </div>
-                        </div>
+                    
+                        
                        
                 </group>
+                  <group>
+                        <div class="row">
+                                    <div class="col-12">
+                                        <field name="pricelist_avaible" readonly="1"  />  
+                                    </div>
+                        </div>
+                  </group>
             
                 <footer>
                     <button name="generate_apply_next" string="Apply and next" type="object" class="btn-primary"/>
