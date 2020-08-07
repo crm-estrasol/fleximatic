@@ -23,16 +23,17 @@
                   <group>
                         <div class="row">
                                     <div class="col-12">
-                                        <field name="pricelist_avaible" readonly="1"  />  
+                                        <field name="pricelist_avaible" readonly="1"  
+                                        />  
                                     </div>
                         </div>
                   </group>
             
                 <footer>
                     <button name="generate_apply_next" string="Apply and next" type="object" class="btn-primary"
-                    attrs="{'invisible': [ '|' ,('product_id', '=', '') ,('pricelist_id', '=', '')  ]   }"/>
+                    attrs="{'invisible': [ '|' ,('product_id', '=', False) ,('pricelist_id', '=', False)  ]   }"/>
                     <button name="generate_apply" string="Apply" type="object" class="btn-primary"
-                    attrs="{'invisible': [ '|' ,('product_id', '=', '') ,('pricelist_id', '=', '')  ]   }"
+                    attrs="{'invisible': [ '|' ,('product_id', '=', False) ,('pricelist_id', '=', False)  ]   }"
                     />
                      <button string="Close" class="btn btn-secondary" special="cancel"/>
                 </footer>
