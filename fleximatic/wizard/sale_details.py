@@ -37,6 +37,7 @@ class ItemPricelist(models.TransientModel):
    """
     def apply(self):
         products = self.sale.order_line.filtered(lambda x: x.product_id == self.product_id.id)
+        _logger.info(str(products))
         for prod in products:
             prod.pricelist_id = self.pricelist_id.id
         return self.sale
