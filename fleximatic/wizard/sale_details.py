@@ -45,7 +45,7 @@ class ItemPricelist(models.TransientModel):
             self.pricelist_id = False 
             return {
                 'domain': { 'product_id': [('id', 'in', [-1] )],
-                            'pricelist_id': [('id', 'in', [-1]  )] , 
+                            'pricelist_id': [('id', 'in', [-1] )] , 
                         }                     
                 }
         self.pricelist_id = False
