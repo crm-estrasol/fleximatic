@@ -40,22 +40,6 @@ class ItemPricelist(models.TransientModel):
         return view 
     @api.onchange('sale','product_id')
     def on_change_sale(self):
-        self.update({
-            'pricelist_id': False,
-            'product_id': False,
-            'pricelist_avaible': [(5)] ,
-        })
-        if self.product_id == False:
-            self.pricelist_avaible = [(5)] 
-            self.pricelist_id = False 
-            setattr(self, 'pricelist_id', False )
-            
-            return {
-                'domain': { 'product_id': [('id', 'in', [1] )],
-                            'pricelist_id': [('id', 'in', [1] )] , 
-                        }                     
-                }
-        self.pricelist_id = False
         pricelist_avaible = self.env['product.pricelist.item'].search( [
              '&',
              '&',
