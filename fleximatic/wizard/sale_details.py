@@ -40,20 +40,24 @@ class ItemPricelist(models.TransientModel):
         return view 
     @api.onchange('sale','product_id')
     def on_change_sale(self):
-        self.pricelist_id = False
         pricelist_avaible = self.env['product.pricelist.item'].search( [
-        '|','&',('product_id','=',self.product_id.product_tmpl_id.id),('applied_on','=','1_product')
-            ,'&',('product_tmpl_id','=',self.product_id.id),('applied_on','=','0_product_variant'),
-            '|', ('date_start', '<=', self.date_order ), ('date_start', '=', False),
-            '|', ('date_end', '>=', self.date_order ), ('date_end', '=', False)  
+             '&',
+             '&',
+             '|',('product_id','=',self.product_id.product_tmpl_id.id), ('product_tmpl_id','=',self.product_id.id),
+             '|',('applied_on','=','1_product'),('applied_on','=','0_product_variant'),
+             '&',
+             '|', ('date_start', '<=', self.date_order ), ('date_start', '=', False),
+             '|', ('date_end', '>=', self.date_order ), ('date_end', '=', False)  
             ] )
+       
         if pricelist_avaible:
             self.pricelist_avaible = [ (6, 0, pricelist_avaible.ids ) ]
         else:
-             self.pricelist_avaible = False 
+             self.pricelist_avaible = [(5)]
         pricelist_domain = [item.pricelist_id.id for item in pricelist_avaible]   
         self.pricelist_id = pricelist_domain[0] if pricelist_domain else False
         #setattr(self, 'pricelist_avaible', [(6, 0, pricelist_avaible.ids ) ])  
+        
         return {
             'domain': { 'product_id': [('id', 'in', [item.product_id.id for item in self.sale.order_line] )] ,
                         'pricelist_id': [('id', 'in', pricelist_domain  )] , 
