@@ -50,10 +50,10 @@ class ItemPricelist(models.TransientModel):
              '|', ('date_end', '>=', self.date_order ), ('date_end', '=', False)  
             ] )
        
-        if pricelist_avaible:
-            self.pricelist_avaible = [ (6, 0, pricelist_avaible.ids ) ]
-        else:
-             self.pricelist_avaible = [(5)]
+        #if pricelist_avaible:
+        #    self.pricelist_avaible = [ (6, 0, pricelist_avaible.ids ) ]
+        #else:
+        #     self.pricelist_avaible = [(5)]
         pricelist_domain = [item.pricelist_id.id for item in pricelist_avaible]   
         self.pricelist_id = pricelist_domain[0] if pricelist_domain else False
         #setattr(self, 'pricelist_avaible', [(6, 0, pricelist_avaible.ids ) ])  
