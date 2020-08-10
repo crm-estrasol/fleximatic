@@ -28,7 +28,7 @@
         'views/pricelist/pricelist.xml',
         'views/product/product.xml',
     #Wizard        
-        #'wizard/promotional_products.xml',
+        'wizard/promotional_products.xml',
     ],  
      'qweb': [
         
