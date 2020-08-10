@@ -6,8 +6,7 @@ from odoo import api, fields, models, SUPERUSER_ID, _
 class fleximaticsale(models.Model):
     _inherit = 'sale.order'
 
-    x_approve = fields.Selection([
-        ('to_approve','To Approve'),
+    x_approve = fields.Selection([('to_approve','To Approve'),
         ('approved','Approved'),
         ('not_approve','Not Approve')],
         string='Approve')
@@ -21,7 +20,7 @@ class fleximaticsale(models.Model):
             puntos = 0.0
             if sale.order_line:
                 for line in sale.order_line:
-                    if line.product_id.is_promotional == '':
+                    if line.product_id.is_promotional == False:
                         puntos += line.price_subtotal *(line.product_id.puntos_genera/100)
             sale.points = puntos
 
