@@ -16,6 +16,7 @@
                                   attrs="{'invisible': [ ('product_id', '=', False)   ]   }"
                                  options="{'no_create_edit': True,'no_create': True}"  />    
                                  
+                                 
                                 
                         </group>
                     

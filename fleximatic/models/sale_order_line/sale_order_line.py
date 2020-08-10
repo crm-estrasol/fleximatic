@@ -9,3 +9,4 @@ class fleximaticsaleorderline(models.Model):
     pricelist_id = fields.Many2one('product.pricelist',string='Pricelist'
     #,domain="[('item_ids.product_tmpl_id', '=', product_id.product_tmpl_id)]"
     )
+    #s
