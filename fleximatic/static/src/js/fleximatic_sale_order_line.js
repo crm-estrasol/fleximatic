@@ -17,7 +17,7 @@ odoo.define('tomcat.tomcat_sale_order_line', function (require) {
              */
             _renderBodyCell: function (record, node, index, options) {
                 var $cell = this._super.apply(this, arguments);
-                console.log("asd")
+               
                 var isSection = record.data.display_type === 'line_section';
                 var isNote = record.data.display_type === 'line_note';
 
@@ -51,8 +51,10 @@ odoo.define('tomcat.tomcat_sale_order_line', function (require) {
 
                 if (record.data.display_type) {
                     $row.addClass('o_is_' + record.data.display_type);
+                    $($row).find('.o_list_record_remove').remove();
                 }
-
+                
+                $($row).find('.o_list_record_remove');
                 return $row;
             },
             /**
