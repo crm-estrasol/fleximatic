@@ -23,9 +23,12 @@
 
     # always loaded
     'data': [
+    #Views
         'views/sale/sale.xml',
         'views/pricelist/pricelist.xml',
         'views/product/product.xml',
+    #Wizard        
+        'wizard/promotional_products.xml',
     ],  
      'qweb': [
         
