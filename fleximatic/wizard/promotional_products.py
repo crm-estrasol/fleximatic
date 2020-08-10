@@ -11,9 +11,38 @@ class productPromotional(models.TransientModel):
 
     name = fields.Char('name')
     sale_id = fields.Many2one('sale.order',string='Sale')
-    points = fields.Float(string='Points')
-    points_to_sale = fields.Float(string='Points to sale')
+    points = fields.Float(string='Points',related='sale_id.points')
+    points_to_sale = fields.Float(string='Points to sale', compute = 'total_points_to_sale')
     promotional_line = fields.One2many('product.promotional.line','promotional_id')
+
+    @api.depends('promotional_line')
+    def total_points_to_sale(self):
+        for value in self:
+            total = 0.0
+            if value.promotional_line:
+                for line in value.promotional_line:
+                    total += line.total
+            value.points_to_sale = total
+
+    def agregar(self):
+        if self.points_to_sale > points:
+            raise ValidationError(('Error ! Insufficient points to add product(s)'))
+        else:
+            for line in promotional_line:
+                self.sale_id.order_line.write(0,0,{
+                    'product_id':line.product_template_id.product_variant_id.id,
+                    'product_template_id':line.product_template_id.id,
+                    'is_promotional':True,
+                    'product_uom_qty':line.qty,
+                    'product_uom':line.uom_id,
+                    'price_unit':0.01,
+                    'tax_id':False,
+                    'discount':0.00
+                })
+            return {'type': 'ir.actions.act_window_close'}
+
+    def cancelar(self):
+        return {'type': 'ir.actions.act_window_close'}
 
 
 class productPromotionalLine(models.TransientModel):
