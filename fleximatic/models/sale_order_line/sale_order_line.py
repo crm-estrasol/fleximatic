@@ -17,7 +17,7 @@ class fleximaticsaleorderline(models.Model):
     pricelist_id = fields.Many2one('product.pricelist',string='Pricelist',domain="[('item_ids.product_tmpl_id', '=', product_template_id)]")
 
 
-    @api.onchange('product_id', 'price_unit', 'product_uom', 'product_uom_qty', 'tax_id')
+    @api.onchange('product_id', 'price_unit', 'product_uom', 'product_uom_qty', 'tax_id','pricelist_id')
     def _onchange_discount(self):
         if not (self.product_id and self.product_uom and
                 self.order_id.partner_id and self.pricelist_id and
@@ -83,7 +83,7 @@ class fleximaticsaleorderline(models.Model):
         # negative discounts (= surcharge) are included in the display price
         return max(base_price, final_price)
 
-    @api.onchange('product_id')
+    @api.onchange('product_id','pricelist_id')
     def product_id_change(self):
         if not self.product_id:
             return
@@ -136,7 +136,7 @@ class fleximaticsaleorderline(models.Model):
         return result
 
 
-    @api.onchange('product_uom', 'product_uom_qty')
+    @api.onchange('product_uom', 'product_uom_qty','pricelist_id')
     def product_uom_change(self):
         if not self.product_uom or not self.product_id:
             self.price_unit = 0.0
