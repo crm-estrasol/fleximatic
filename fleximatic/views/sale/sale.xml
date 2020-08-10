@@ -6,8 +6,17 @@
                 <field name="model">sale.order</field>
                 <field name="inherit_id" ref="sale.view_order_form"/>
                 <field name="arch" type="xml">
+                    <xpath expr="//field[@name='pricelist_id']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='amount_total']" position="after">
+                        <field name="points"/>
+                    </xpath>
                     <xpath expr="//tree//field[@name='name']" position="after">
-                        <field name="pricelist_id"/>
+                        <field name="pricelist_id" options="{'no_create_edit': True}" context="{'form_view_ref':'fleximatic.product_pricelist_view_readonly'}"/>
+                    </xpath>
+                    <xpath expr="//tree//field[@name='price_unit']" position="attributes">
+                        <attribute name="readonly">1</attribute>
                     </xpath>
                     <xpath expr="//field[@name='payment_term_id']" position="after">       
                       <button name="show_pricelistAvaible" string="Pricelist" type="object" class="btn-primary" attrs="{'invisible': ['|',('state', '=', 'done'),'|',('state', '=', 'cancel'),'|',('state', '=', 'sale'),('order_line', '=', [] )]}"/>   

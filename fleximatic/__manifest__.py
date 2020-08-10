@@ -26,6 +26,8 @@
         'views/sale/sale.xml',
         #WIZARDS
         'wizard/sale_details.xml',
+        'views/pricelist/pricelist.xml',
+        'views/product/product.xml',
     ],  
      'qweb': [
         
