@@ -11,7 +11,7 @@ class fleximaticsale(models.Model):
         ('approved','Approved'),
         ('not_approve','Not Approve')],
         string='Approve')
-    x_credit = fields.Monetary('related=partner_id.x_credit','Available Credit')
+    x_credit = fields.Monetary(related='partner_id.x_credit',string='Available Credit')
     x_credit_after_sale = fields.Monetary('Credit After Sale',compute = 'compute_credit_after_sale')
     points = fields.Float('Points',digits=(32, 2),compute='_compute_total_points',store=True)
 
