@@ -28,4 +28,15 @@ class fleximaticsale(models.Model):
     @api.depends('x_credit_after_sale','x_credit','amount_total')
     def compute_credit_after_sale(self):
         for record in self:
-            record['x_credit_after_sale'] = record.x_credit - record.amount_total   
+            record['x_credit_after_sale'] = record.x_credit - record.amount_total
+
+    def open_wizard_promotional(self):
+        view_id = self.env.ref('fleximatic.view_sale_products_wizard').id
+        view = {
+            'name': ('Agregar productos promocionales'),
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'product.promotional',
+            'target':'new',
+            'context':{'default_sale_id':self.id}
+        }
