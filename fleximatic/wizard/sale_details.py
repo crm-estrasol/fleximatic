@@ -51,7 +51,8 @@ class ItemPricelist(models.TransientModel):
              '|', ('date_start', '<=', self.date_order ), ('date_start', '=', False),
              '|', ('date_end', '>=', self.date_order ), ('date_end', '=', False)  
             ] )
-       
+        
+        _logger.info(pricelist_avaible)
         if pricelist_avaible:
             self.pricelist_avaible = [ (6, 0, pricelist_avaible.ids ) ]
         else:
