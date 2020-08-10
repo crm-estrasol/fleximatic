@@ -33,8 +33,8 @@ odoo.define('tomcat.tomcat_sale_order_line', function (require) {
                             nbrColumns--;
                         }
                         $cell.attr('colspan', nbrColumns);
-                        $cell.removeClass('oe_edit_only');
-                        $cell.addClass('oe_read_only');
+                        //$cell.removeClass('oe_edit_only');
+                        //$cell.addClass('oe_read_only');
                     } else {
                         $cell.removeClass('o_invisible_modifier');
                         return $cell.addClass('o_hidden');
