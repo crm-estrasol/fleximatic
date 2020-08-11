@@ -23,14 +23,7 @@ odoo.define('tomcat.tomcat_sale_order_line', function (require) {
                     if (node.attrs.widget === "handle") {
                         return $cell;
                     } else if (node.attrs.name === "name" ||  node.attrs.name === "product_id" ||  node.attrs.name === "product_uom_qty" |  node.attrs.name === "price_subtotal") {
-                        var nbrColumns = this._getNumberOfCols();
-                        if (this.handleField) {
-                            nbrColumns--;
-                        }
-                        if (this.addTrashIcon) {
-                            nbrColumns--;
-                        }
-                        $cell.attr('colspan', nbrColumns);
+                        
                         
                     } else {
                         $cell.removeClass('o_invisible_modifier');
