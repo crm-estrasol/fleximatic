@@ -64,6 +64,6 @@ class productPromotionalLine(models.TransientModel):
     def _compute_total_points(self):
         for value in self:
             if value.product_template_id:
-                value.total = value.qty * price_points
+                value.total = value.qty * value.price_points
     
     
