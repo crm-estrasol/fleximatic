@@ -27,7 +27,7 @@ odoo.define('tomcat.tomcat_sale_order_line', function (require) {
                         
                     } else {
                         $cell.removeClass('o_invisible_modifier');
-                        return $cell.addClass('o_hidden');
+                        return $cell.addClass('invisible');
                     }   
 
                 }
