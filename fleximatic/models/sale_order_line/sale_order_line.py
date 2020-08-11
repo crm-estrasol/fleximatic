@@ -152,17 +152,7 @@ class fleximaticsaleorderline(models.Model):
                 fiscal_position=self.env.context.get('fiscal_position')
             )
             self.price_unit = self.env['account.tax']._fix_tax_included_price_company(self._get_display_price(product), product.taxes_id, self.tax_id, self.company_id)
-    def write(self,vals,promotional=False):
-        if promotional:
-            res = super(fleximaticsaleorderline, self).write(vals)
-            return res
-        else:
-            if 'order_line' in vals:
-                for value in vals['order_line']:
-                    if 'is_promotional' in value:
-                        raise ValidationError(('You cant upgrade promotional products'))
-            res = super(fleximaticsaleorderline, self).write(vals)    
-            return res    
+   
  
 
 

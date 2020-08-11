@@ -65,3 +65,14 @@ class fleximaticsale(models.Model):
             'context':{'default_sale_id':self.id,'default_points':self.points}
         }
         return view
+    def write(self,vals,promotional=False):
+        if promotional:
+            res = super(fleximaticsaleorderline, self).write(vals)
+            return res
+        else:
+            if 'order_line' in vals:
+                for value in vals['order_line']:
+                    if 'is_promotional' in value:
+                        raise ValidationError(('You cant upgrade promotional products'))
+            res = super(fleximaticsaleorderline, self).write(vals)    
+            return res  
