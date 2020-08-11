@@ -13,7 +13,6 @@
                             <field name="price_points"/>
                             <field name="uom_id"/>
                             <field name="total"/>
-                            <field name="promotional_id"/>
                         </tree>
                     </field>
                     <group>
@@ -26,8 +25,8 @@
                         </group>
                     </group>
                     <footer>
-                        <button name="add_promotional_products" string="Add products" type="object" class="btn_primary"/>
-                        <button name="cancel" string="Close" type="object" class="btn_primary"/>
+                        <button name="add_promotional_products" string="Add products" type="object" class="btn-primary"/>
+                        <button name="cancel" string="Close" type="object" class="btn-primary"/>
                     </footer>
                 </form>
             </field>
