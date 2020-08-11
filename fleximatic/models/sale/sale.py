@@ -32,7 +32,6 @@ class fleximaticsale(models.Model):
                 'type': 'ir.actions.act_window',
                 'target': 'new',
                 'context':{'default_sale':self.id,'default_date_order':self.date_order,'default_product_id':self.order_line[0].product_id.id},
-
                 }
         return view 
 
@@ -44,7 +43,10 @@ class fleximaticsale(models.Model):
                 for line in sale.order_line:
                     if line.is_promotional == False:
                         puntos += line.price_subtotal *(line.product_template_id.puntos_genera/100)
-            sale.points = puntos
+            if sale.state != 'done': 
+                sale.points = 0
+            else:
+                sale.points = puntos
 
     @api.depends('x_credit_after_sale','x_credit','amount_total')
     def compute_credit_after_sale(self):
