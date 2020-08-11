@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="fleximatic_product_product" model="ir.ui.view">
+            <field name="name">product.product.inherith.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_vieww" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='categ_id']" position="after">
+                    <field name="vender_puntos"/>
+                    <field name="puntos_venta" attrs="{'invisible':[('vender_puntos', '=', False)]}"/>
+                    <field name="puntos_genera"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

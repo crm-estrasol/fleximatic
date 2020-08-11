@@ -27,6 +27,7 @@
         'views/sale/sale.xml',
         'views/pricelist/pricelist.xml',
         'views/product/product.xml',
+        'views/product/product_product.xml',
         'views/templates/templates.xml',
         #WIZARDS
         'wizard/sale_details.xml',
