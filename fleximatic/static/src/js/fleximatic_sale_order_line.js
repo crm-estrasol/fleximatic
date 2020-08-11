@@ -18,7 +18,7 @@ odoo.define('tomcat.tomcat_sale_order_line', function (require) {
             _renderBodyCell: function (record, node, index, options) {
                 var $cell = this._super.apply(this, arguments);
                 var isPromotional = record.data.is_promotional === true;
-                console.log(isPromotional)
+               
                 if(isPromotional){
                     if (node.attrs.widget === "handle") {
                         return $cell;
@@ -43,9 +43,11 @@ odoo.define('tomcat.tomcat_sale_order_line', function (require) {
             _renderRow: function (record, index) {
                 var $row = this._super.apply(this, arguments);
 
-                if (record.data.is_promotional === true) {
-                    $($row).find('.o_list_record_remove').remove();
+                if (record.data.is_promotional) {
+                    console.log("entre xs")
+                   return  $row.find('.o_list_record_remove').remove();
                 }
+                
                 
                 return $row;
             },
