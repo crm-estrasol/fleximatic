@@ -18,7 +18,7 @@
                     </field>
                     <group>
                         <group class="text-right">
-                            <field name="points"/>
+                            <field name="points" readonly="1"/>
                             <field name="sale_id"/>
                         </group>
                         <group class="text-right">

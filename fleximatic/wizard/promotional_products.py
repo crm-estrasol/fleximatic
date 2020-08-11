@@ -11,7 +11,7 @@ class productPromotional(models.TransientModel):
 
     name = fields.Char('name')
     sale_id = fields.Many2one('sale.order',string='Sale')
-    points = fields.Float(string='Points',related='sale_id.points')
+    points = fields.Float(string='Points')
     points_to_sale = fields.Float(string='Points to sale', compute = 'total_points_to_sale')
     promotional_line = fields.One2many('product.promotional.line','promotional_id')
 

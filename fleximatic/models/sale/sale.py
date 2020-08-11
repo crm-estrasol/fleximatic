@@ -60,6 +60,6 @@ class fleximaticsale(models.Model):
             'res_model': 'product.promotional',
             'type': 'ir.actions.act_window',
             'target':'new',
-            'context':{'default_sale_id':self.id}
+            'context':{'default_sale_id':self.id,'default_points':self.points}
         }
         return view
