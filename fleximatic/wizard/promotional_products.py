@@ -40,7 +40,7 @@ class productPromotional(models.TransientModel):
                         'product_template_id':line.product_template_id.id,
                         'is_promotional':True,
                         'product_uom_qty':line.qty,
-                        'product_uom':line.uom_id,
+                        'product_uom':line.uom_id.id,
                         'price_unit':0.00,
                         'tax_id':False,
                         'discount':0.00
