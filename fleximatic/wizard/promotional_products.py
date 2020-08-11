@@ -25,7 +25,7 @@ class productPromotional(models.TransientModel):
             value.points_to_sale = total
 
     def add_promotional_products(self):
-        if self.points_to_sale > points:
+        if self.points_to_sale > self.points:
             raise ValidationError(('Error ! Insufficient points to add product(s)'))
         else:
             order_line = self.env['sale.order.line'].search([('order_id','=',self.sale_id.id)])
