@@ -14,7 +14,7 @@ class fleximaticsaleorderline(models.Model):
     _inherit = 'sale.order.line'
 
     
-    pricelist_id = fields.Many2one('product.pricelist',string='Pricelist',domain="['|',('item_ids.product_tmpl_id', '=', product_template_id),'|',('item_ids.product_id','=',product_id),'|']")
+    pricelist_id = fields.Many2one('product.pricelist',string='Pricelist',domain="[('item_ids.product_tmpl_id', '=', product_template_id),('item_ids.product_id','=',product_id)]")
     is_promotional = fields.Boolean('Promotional')
 
     @api.onchange('product_id', 'price_unit', 'product_uom', 'product_uom_qty', 'tax_id','pricelist_id')
