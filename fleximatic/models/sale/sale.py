@@ -35,7 +35,7 @@ class fleximaticsale(models.Model):
                 }
         return view 
 
-    @api.depends('order_line')
+    @api.depends('order_line','state')
     def _compute_total_points(self):
         for sale in self:
             puntos = 0.0
