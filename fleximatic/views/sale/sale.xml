@@ -17,7 +17,7 @@
                         <field name="is_promotional"/>
                     </xpath>
                     <xpath expr="//tree//field[@name='price_unit']" position="attributes">
-                        <attribute name="readonly">1</attribute>
+                        <attribute name="readonly">0</attribute>
                     </xpath>
                     <xpath expr="//field[@name='payment_term_id']" position="after">       
                       <button name="show_pricelistAvaible" string="Pricelist" type="object" class="btn-primary" attrs="{'invisible': ['|',('state', '=', 'done'),'|',('state', '=', 'cancel'),'|',('state', '=', 'sale'),('order_line', '=', [] )]}"/>   
