@@ -24,7 +24,7 @@
                         <attribute name="readonly">1</attribute>
                         <attribute name="force_save">1</attribute>
                     </xpath>
-                    <xpath expr="//tree//field[@name='product_uom_qty']" position="attributes" position="after">
+                    <xpath expr="//tree//field[@name='product_uom_qty']" position="attributes">
                         <attribute name="attrs">{'readonly':[('is_promotional', '=', True)]}</attribute>
                         <attribute name="force_save">1</attribute>
                     </xpath>
