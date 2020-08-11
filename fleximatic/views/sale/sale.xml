@@ -31,11 +31,11 @@
                     </xpath>
                      <xpath expr="//tree//field[@name='name']" position="attributes">
                         <attribute name="attrs">{                                                     
-                                            'readonly': [('is_promotional', '=', False) ] }</attribute>
+                                            'readonly': [('is_promotional', '=', True) ] }</attribute>
                     </xpath>
                      <xpath expr="//tree//field[@name='product_uom_qty']" position="attributes">
                         <attribute name="attrs">{                                                     
-                                            'readonly': [('is_promotional', '=', False) ] }</attribute>
+                                            'readonly': [('is_promotional', '=', True) ] }</attribute>
                     </xpath>
                 </field>
         </record>
