@@ -33,7 +33,7 @@ class productPromotional(models.TransientModel):
                 if line.qty > 0:
                     self.sale_id.write({
                         'order_line':[(0,0,{
-                            'product_id':line.product_template_id.product_variant_id.id,
+                            'product_id':line.product_id.id,
                             'product_template_id':line.product_template_id.id,
                             'is_promotional':True,
                             'product_uom_qty':line.qty,
@@ -64,13 +64,13 @@ class productPromotional(models.TransientModel):
 class productPromotionalLine(models.TransientModel):
     _name = 'product.promotional.line'
 
-    product_template_id = fields.Many2one('product.template', string='Product', domain=[('sale_ok', '=', True),('vender_puntos','=',True)])
+    product_template_id = fields.Many2one('product.template', string='Product template', domain=[('sale_ok', '=', True),('vender_puntos','=',True)])
     qty  = fields.Integer('Quantity',default=1)
     price_points = fields.Float('Points for sale',related='product_id.puntos_venta')
     uom_id =fields.Many2one('uom.uom',stirng='UoM',related='product_id.uom_id')
     total = fields.Float('Total',compute='_compute_total_points')
     promotional_id = fields.Char('Promotional')
-    product_id = fields.Many2one('product.product',string='Product')
+    product_id = fields.Many2one('product.product',string='Product',domain=[('sale_ok', '=', True),('vender_puntos','=',True)])
 
     @api.depends('product_template_id','qty','price_points')
     def _compute_total_points(self):
