@@ -28,6 +28,11 @@ class productPromotional(models.TransientModel):
         if self.points_to_sale > points:
             raise ValidationError(('Error ! Insufficient points to add product(s)'))
         else:
+            order_line = self.env['sale.order.line'].search([('order_id','=',self.sale_id.id)])
+            if order_line:
+                for products in order_line:
+                    if products.is_promotional == True:
+                        products.unlink()
             for line in promotional_line:
                 self.sale_id.order_line.write(0,0,{
                     'product_id':line.product_template_id.product_variant_id.id,
@@ -35,7 +40,7 @@ class productPromotional(models.TransientModel):
                     'is_promotional':True,
                     'product_uom_qty':line.qty,
                     'product_uom':line.uom_id,
-                    'price_unit':0.01,
+                    'price_unit':0.00,
                     'tax_id':False,
                     'discount':0.00
                 })

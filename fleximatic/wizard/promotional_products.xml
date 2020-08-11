@@ -5,9 +5,9 @@
             <field name="name">sale.promotional.wizard.form</field>
             <field name="model">product.promotional</field>
             <field name="arch" type="xml">
-                <form string="Promotional Products" context="{'default_promotional_id':active_id}">
+                <form string="Promotional Products">
                     <field name="promotional_line">
-                        <tree editable="bottom">
+                        <tree editable="bottom" class="text-center">
                             <field name="product_template_id"/>
                             <field name="qty"/>
                             <field name="price_points"/>
@@ -17,10 +17,11 @@
                         </tree>
                     </field>
                     <group>
-                        <group>
+                        <group class="text-right">
                             <field name="points"/>
+                            <field name="sale_id"/>
                         </group>
-                        <group>
+                        <group class="text-right">
                             <field name="points_to_sale"/>
                         </group>
                     </group>
