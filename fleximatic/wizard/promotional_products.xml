@@ -25,6 +25,10 @@
                             <field name="points_to_sale"/>
                         </group>
                     </group>
+                    <footer>
+                        <button name="add_promotional_products" string="Add products" type="object" class="btn_primary"/>
+                        <button name="cancel" string="Close" type="object" class="btn_primary"/>
+                    </footer>
                 </form>
             </field>
         </record>

@@ -24,7 +24,7 @@ class productPromotional(models.TransientModel):
                     total += line.total
             value.points_to_sale = total
 
-    def agregar(self):
+    def add_promotional_products(self):
         if self.points_to_sale > points:
             raise ValidationError(('Error ! Insufficient points to add product(s)'))
         else:
@@ -46,7 +46,7 @@ class productPromotional(models.TransientModel):
                 })
             return {'type': 'ir.actions.act_window_close'}
 
-    def cancelar(self):
+    def cancel(self):
         return {'type': 'ir.actions.act_window_close'}
 
 
