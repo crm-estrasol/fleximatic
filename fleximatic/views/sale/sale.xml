@@ -17,11 +17,7 @@
                         <field name="is_promotional" invisible="1"/>
                         <field name="puntos_venta" optional="hide"/>
                     </xpath>
-                     <xpath expr="//notebook//form//field[@name='name']" position="after">
-                        <field name="pricelist_id" options="{'no_create_edit': True}" context="{'form_view_ref':'fleximatic.product_pricelist_view_readonly'}"/>
-                        <field name="is_promotional" invisible="1"/>
-                        <field name="puntos_venta"/>
-                    </xpath>
+                    
                     <xpath expr="//tree//field[@name='price_unit']" position="attributes">
                         <attribute name="readonly">1</attribute>
                         <attribute name="force_save">1</attribute>
@@ -47,6 +43,10 @@
                         <attribute name="attrs">{                                                     
                                             'readonly': ['|',('product_updatable', '=', False),('is_promotional','=',True) ],                                                     
                                             'required': [('display_type', '=', False)]}</attribute>
+                    </xpath>
+                     <xpath expr="//notebook//form//field[@name='product_uom_qty']" position="attributes">
+                        <attribute name="attrs">{                                                     
+                                            'readonly': [('is_promotional', '=', True) ] }</attribute>
                     </xpath>
                 </field>
         </record>
