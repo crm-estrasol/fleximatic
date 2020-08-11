@@ -52,9 +52,10 @@ class productPromotional(models.TransientModel):
     def cancel(self):
         return {'type': 'ir.actions.act_window_close'}
     
-    @api.onchange('points_to_sale')
+    @api.onchange('points_to_sale','promotional_line')
     def change_points_left(self):
-        self.points = self.points - self.points_to_sale 
+        if self.sale_id:
+            self.points = self.sale_id.points - self.points_to_sale 
 
 
 
