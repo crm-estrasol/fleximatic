@@ -44,8 +44,8 @@ odoo.define('tomcat.tomcat_sale_order_line', function (require) {
                 var $row = this._super.apply(this, arguments);
 
                 if (record.data.is_promotional) {
-                    console.log("entre xs")
-                   return  $row.find('.o_list_record_remove').remove();
+                   $row.find('.o_list_record_remove').addClass('o_hidden');
+                   return  $row
                 }
                 
                 
