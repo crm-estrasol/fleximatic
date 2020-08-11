@@ -16,12 +16,26 @@
                         <field name="pricelist_id" options="{'no_create_edit': True}" context="{'form_view_ref':'fleximatic.product_pricelist_view_readonly'}"/>
                         <field name="is_promotional"/>
                     </xpath>
-                    <xpath expr="//tree//field[@name='price_unit']" position="attributes">
-                        <attribute name="readonly">1</attribute>
-                    </xpath>
+    
                     <xpath expr="//field[@name='payment_term_id']" position="after">       
                       <button name="show_pricelistAvaible" string="Pricelist" type="object" class="btn-primary" attrs="{'invisible': ['|',('state', '=', 'done'),'|',('state', '=', 'cancel'),'|',('state', '=', 'sale'),('order_line', '=', [] )]}"/>   
                       <button name="open_wizard_promotional" string="Promotional productos" type="object" class="btn-primary"/>
+                    </xpath>
+                    <xpath expr="//tree//field[@name='product_id']" position="attributes">
+                        <attribute name="readonly">1</attribute>
+                    </xpath>
+                     <xpath expr="//tree//field[@name='product_id']" position="attributes">
+                        <attribute name="attrs">{                                                     
+                                            'readonly': ['|',('product_updatable', '=', False),('is_promotional','=',True) ],                                                     
+                                            'required': [('display_type', '=', False)]}</attribute>
+                    </xpath>
+                     <xpath expr="//tree//field[@name='name']" position="attributes">
+                        <attribute name="attrs">{                                                     
+                                            'readonly': [('product_updatable', '=', False) ]}</attribute>
+                    </xpath>
+                     <xpath expr="//tree//field[@name='product_uom_qty']" position="attributes">
+                        <attribute name="attrs">{                                                     
+                                            'readonly': [('product_updatable', '=', False) ]}</attribute>
                     </xpath>
                 </field>
         </record>
