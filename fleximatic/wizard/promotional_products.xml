@@ -8,7 +8,7 @@
                 <form string="Promotional Products">
                     <field name="promotional_line">
                         <tree editable="bottom" class="text-center">
-                            <field name="product_id"/>
+                            <field name="product_id" options="{'no_open': True, 'no_create_edit': True}"/>
                             <field name="product_template_id" options="{'no_open': True, 'no_create_edit': True}"/>
                             <field name="qty"/>
                             <field name="price_points"/>
