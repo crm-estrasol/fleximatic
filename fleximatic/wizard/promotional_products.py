@@ -32,7 +32,7 @@ class productPromotional(models.TransientModel):
             if order_line:
                 for products in order_line:
                     if products.is_promotional == True:
-                        products.unlink()
+                        products.unlink(True)
             for line in self.promotional_line:
                 self.sale_id.write({
                     'order_line':[(0,0,{
