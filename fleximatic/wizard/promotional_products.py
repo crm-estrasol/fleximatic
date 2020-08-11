@@ -42,7 +42,6 @@ class productPromotional(models.TransientModel):
                     'product_uom':line.uom_id,
                     'price_unit':0.00,
                     'tax_id':False,
-                    'discount':0.00
                 })
             return {'type': 'ir.actions.act_window_close'}
 
@@ -54,7 +53,7 @@ class productPromotionalLine(models.TransientModel):
     _name = 'product.promotional.line'
 
     product_template_id = fields.Many2one('product.template', string='Product', domain=[('sale_ok', '=', True),('vender_puntos','=',True)])
-    qty  = fields.Integer('Quantity',default=1)
+    qty  = fields.Integer('Quantity')
     price_points = fields.Float('Points for sale',related='product_template_id.puntos_venta')
     uom_id =fields.Many2one('uom.uom',stirng='UoM',related='product_template_id.uom_id')
     total = fields.Float('Total',compute='_compute_total_points')
