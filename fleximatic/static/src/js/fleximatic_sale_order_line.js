@@ -22,7 +22,9 @@ odoo.define('tomcat.tomcat_sale_order_line', function (require) {
                 if(isPromotional){
                     if (node.attrs.widget === "handle") {
                         return $cell;
-                    } else if (node.attrs.name === "name" ||  node.attrs.name === "product_id" ||  node.attrs.name === "product_uom_qty" |  node.attrs.name === "price_subtotal") {
+                    } else if (node.attrs.name === "name" ||  node.attrs.name === "product_id" || 
+                     node.attrs.name === "product_uom_qty" |  node.attrs.name === "price_subtotal" ||
+                      node.attrs.name === "puntos_venta" || node.attrs.name === "qty_delivered" || node.attrs.name === "customer_lead") {
                         
                         
                     } else {
@@ -44,7 +46,12 @@ odoo.define('tomcat.tomcat_sale_order_line', function (require) {
                 var $row = this._super.apply(this, arguments);
 
                 if (record.data.is_promotional) {
-                   //$row.find('.o_list_record_remove').addClass('o_hidden');
+                   //$row.find('.o_list_record_remove').addClass('o_hidden')z;
+                   $row.append( $('<td/>',{
+                                            text: 'fill',
+                                            class: ''
+                                         })  
+                    )
                    $row.find('.o_list_record_remove').remove();
                    $row.css("background", "#f2f9ee")
                    return  $row
