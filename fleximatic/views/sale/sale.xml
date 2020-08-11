@@ -14,7 +14,8 @@
                     </xpath>
                     <xpath expr="//tree//field[@name='name']" position="after">
                         <field name="pricelist_id" options="{'no_create_edit': True}" context="{'form_view_ref':'fleximatic.product_pricelist_view_readonly'}"/>
-                        <field name="is_promotional"/>
+                        <field name="is_promotional" invisible="1"/>
+                        <field name="puntos_venta"/>
                     </xpath>
                     <xpath expr="//tree//field[@name='price_unit']" position="attributes">
                         <attribute name="readonly">1</attribute>
