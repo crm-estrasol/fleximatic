@@ -46,7 +46,7 @@ odoo.define('tomcat.tomcat_sale_order_line', function (require) {
                 if (record.data.is_promotional) {
                    //$row.find('.o_list_record_remove').addClass('o_hidden');
                    $row.find('.o_list_record_remove').remove();
-                   $row.css("background", "#c6e5b1")
+                   $row.css("background", "#e2f1d8")
                    return  $row
                 }
                 
@@ -57,4 +57,4 @@ odoo.define('tomcat.tomcat_sale_order_line', function (require) {
     
    
     });
-    
+   
