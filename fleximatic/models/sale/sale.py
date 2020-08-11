@@ -58,6 +58,7 @@ class fleximaticsale(models.Model):
             'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'product.promotional',
+            'type': 'ir.actions.act_window',
             'target':'new',
             'context':{'default_sale_id':self.id}
         }
