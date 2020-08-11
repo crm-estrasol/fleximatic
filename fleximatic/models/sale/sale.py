@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
-from odoo import api, fields, models, SUPERUSER_ID, _
 
+    # -*- coding: utf-8 -*-
+from odoo import api, fields, models, SUPERUSER_ID, _
 from datetime import datetime, timedelta
 from functools import partial
 from itertools import groupby
@@ -19,11 +19,7 @@ class fleximaticsale(models.Model):
         string='Approve')
     x_credit = fields.Monetary(related='partner_id.x_credit',string='Available Credit')
     x_credit_after_sale = fields.Monetary('Credit After Sale',compute = 'compute_credit_after_sale')
-<<<<<<< HEAD
-    points = fields.Float('Points',digits=(32, 2), compute='_compute_total_points',
-    store=True)
-=======
-    points = fields.Float('Points',digits=(32, 2),compute='_compute_total_points',store=True)
+    points = fields.Float('Points',digits=(32, 2), compute='_compute_total_points',store=True)
     def show_pricelistAvaible(self):
         if self.order_line:   
             view_id = self.env.ref('fleximatic.view_sale_pricelist_wizard').id
@@ -36,10 +32,10 @@ class fleximaticsale(models.Model):
                 'type': 'ir.actions.act_window',
                 'target': 'new',
                 'context':{'default_sale':self.id,'default_date_order':self.date_order,'default_product_id':self.order_line[0].product_id.id},
->>>>>>> a14e8e1e2ee09a1e3646ae785be6b36403098204
 
                 }
         return view 
+
     @api.depends('order_line')
     def _compute_total_points(self):
         for sale in self:
@@ -53,7 +49,6 @@ class fleximaticsale(models.Model):
     @api.depends('x_credit_after_sale','x_credit','amount_total')
     def compute_credit_after_sale(self):
         for record in self:
-<<<<<<< HEAD
             record['x_credit_after_sale'] = record.x_credit - record.amount_total
 
     def open_wizard_promotional(self):
@@ -66,10 +61,4 @@ class fleximaticsale(models.Model):
             'target':'new',
             'context':{'default_sale_id':self.id}
         }
-=======
-            record['x_credit_after_sale'] = record.x_credit - record.amount_total   
-
-    
-
-    
->>>>>>> a14e8e1e2ee09a1e3646ae785be6b36403098204
+        return view
