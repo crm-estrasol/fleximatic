@@ -25,7 +25,7 @@ class productPromotional(models.TransientModel):
             value.points_to_sale = total
 
     def add_promotional_products(self):
-        if self.points_to_sale > self.points:
+        if self.points < 0:
             raise ValidationError(('Error ! Insufficient points to add product(s)'))
         else:
             order_line = self.env['sale.order.line'].search([('order_id','=',self.sale_id.id),('is_promotional','=',True)])
@@ -34,29 +34,35 @@ class productPromotional(models.TransientModel):
                     if products.is_promotional == True:
                         products.unlink()
             for line in self.promotional_line:
-                self.sale_id.write({
-                    'order_line':[(0,0,{
-                        'product_id':line.product_template_id.product_variant_id.id,
-                        'product_template_id':line.product_template_id.id,
-                        'is_promotional':True,
-                        'product_uom_qty':line.qty,
-                        'product_uom':line.uom_id.id,
-                        'price_unit':0.00,
-                        'tax_id':False,
-                        'discount':0.00
-                    })]
-                })
+                if line.qty > 0:
+                    self.sale_id.write({
+                        'order_line':[(0,0,{
+                            'product_id':line.product_template_id.product_variant_id.id,
+                            'product_template_id':line.product_template_id.id,
+                            'is_promotional':True,
+                            'product_uom_qty':line.qty,
+                            'product_uom':line.uom_id.id,
+                            'price_unit':0.00,
+                            'tax_id':False,
+                            'discount':0.00
+                        })]
+                    })
             return {'type': 'ir.actions.act_window_close'}
 
     def cancel(self):
         return {'type': 'ir.actions.act_window_close'}
+    
+    @api.onchange('points_to_sale')
+    def change_points_left(self):
+        self.points = self.points - self.points_to_sale 
+
 
 
 class productPromotionalLine(models.TransientModel):
     _name = 'product.promotional.line'
 
     product_template_id = fields.Many2one('product.template', string='Product', domain=[('sale_ok', '=', True),('vender_puntos','=',True)])
-    qty  = fields.Integer('Quantity')
+    qty  = fields.Integer('Quantity',default=1)
     price_points = fields.Float('Points for sale',related='product_template_id.puntos_venta')
     uom_id =fields.Many2one('uom.uom',stirng='UoM',related='product_template_id.uom_id')
     total = fields.Float('Total',compute='_compute_total_points')
