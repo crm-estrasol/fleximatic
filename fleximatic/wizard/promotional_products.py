@@ -25,7 +25,7 @@ class productPromotional(models.TransientModel):
             value.points_to_sale = total
 
     def add_promotional_products(self):
-        if self.points < 0:
+        if self.points_to_sale > self.points:
             raise ValidationError(('Error ! Insufficient points to add product(s)'))
         else:
             order_line = self.env['sale.order.line'].search([('order_id','=',self.sale_id.id),('is_promotional','=',True)])
@@ -37,8 +37,8 @@ class productPromotional(models.TransientModel):
                 if line.qty > 0:
                     self.sale_id.write({
                         'order_line':[(0,0,{
-                            'product_id':line.product_id.id,
-                            'product_template_id':line.product_id.product_tmpl_id.id,
+                            'product_id':line.product_template_id.product_variant_id.id,
+                            'product_template_id':line.product_template_id.id,
                             'is_promotional':True,
                             'product_uom_qty':line.qty,
                             'product_uom':line.uom_id.id,
@@ -52,20 +52,20 @@ class productPromotional(models.TransientModel):
     def cancel(self):
         return {'type': 'ir.actions.act_window_close'}
     
-    @api.onchange('points_to_sale','promotional_line')
-    def change_points_left(self):
+    @api.onchange('points_to_sale')
+    def change_point(self):
         if self.sale_id:
-            self.points = self.sale_id.points - self.points_to_sale 
+            self.points = self.sale_id.points - self.points_to_sale
 
 
 
 class productPromotionalLine(models.TransientModel):
     _name = 'product.promotional.line'
 
-    product_id = fields.Many2one('product.product', string='Product', domain=[('sale_ok', '=', True),('vender_puntos','=',True)])
+    product_template_id = fields.Many2one('product.template', string='Product', domain=[('sale_ok', '=', True),('vender_puntos','=',True)])
     qty  = fields.Integer('Quantity',default=1)
-    price_points = fields.Float('Points for sale',related='product_id.puntos_venta')
-    uom_id =fields.Many2one('uom.uom',stirng='UoM',related='product_id.uom_id')
+    price_points = fields.Float('Points for sale',related='product_template_id.puntos_venta')
+    uom_id =fields.Many2one('uom.uom',stirng='UoM',related='product_template_id.uom_id')
     total = fields.Float('Total',compute='_compute_total_points')
     promotional_id = fields.Char('Promotional')
 
