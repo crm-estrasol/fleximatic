@@ -78,7 +78,7 @@ class fleximaticsale(models.Model):
             }
         }
         return view
-        price_points
+       
 
 
     @api.depends('points','order_line','state')    
