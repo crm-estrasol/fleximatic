@@ -13,8 +13,9 @@
                         <field name="points" invisible="1"/>
                         <field name="r_points"/>
                     </xpath>
-                    <xpath expr="//field[@name='payment_term_id']" position="after">       
+                    <xpath expr="//button[@name='action_cancel']" position="after">       
                       <button name="show_pricelistAvaible" string="Pricelist" type="object" class="btn-primary" attrs="{'invisible': ['|',('state', '=', 'done'),'|',('state', '=', 'cancel'),'|',('state', '=', 'sale'),('order_line', '=', [] )]}"/>   
+                      <button name="remove_promotional_products" string="Remove promotional products" type="object" class="btn-primary" attrs="{'invisible':[('state','in',['done','cancel'])]}"/>
                       <button name="open_wizard_promotional" string="Promotional products" type="object" class="btn-primary" attrs="{'invisible':[('state','in',['done','cancel'])]}"/>
                     </xpath>
                     <xpath expr="//tree//field[@name='name']" position="after">
