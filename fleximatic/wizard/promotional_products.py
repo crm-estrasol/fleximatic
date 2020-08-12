@@ -15,7 +15,7 @@ class productPromotional(models.TransientModel):
     points_to_sale = fields.Float(string='Points to sale', compute = 'total_points_to_sale')
     promotional_line = fields.One2many('product.promotional.line','promotional_id')
 
-    @api.depends('promotional_line')
+    @api.depends('promotional_line','sale_id')
     def total_points_to_sale(self):
         for value in self:
             total = 0.0
