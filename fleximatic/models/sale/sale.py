@@ -56,6 +56,10 @@ class fleximaticsale(models.Model):
 
     def open_wizard_promotional(self):
         view_id = self.env.ref('fleximatic.view_sale_products_wizard').id
+        promotionals = [ (0,0,{'product_id':item.product_id.id,
+                                'product_template_id':item.product_template_id.id,
+                                'qty':item.product_uom_qty,
+        } ) for item in self.order_line if item.is_promotional ]
         view = {
             'name': ('Agregar productos promocionales'),
             'view_type': 'form',
@@ -63,7 +67,10 @@ class fleximaticsale(models.Model):
             'res_model': 'product.promotional',
             'type': 'ir.actions.act_window',
             'target':'new',
-            'context':{'default_sale_id':self.id,'default_points':self.points}
+            'context':{'default_sale_id':self.id,
+            'default_points':self.points,
+            'default_promotional_line':promotionals
+            }
         }
         return view
 
