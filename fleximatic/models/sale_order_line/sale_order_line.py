@@ -154,6 +154,7 @@ class fleximaticsaleorderline(models.Model):
             )
             self.price_unit = self.env['account.tax']._fix_tax_included_price_company(self._get_display_price(product), product.taxes_id, self.tax_id, self.company_id)
    
+    """
     def _check_line_promotion(self):
       
         return self.filtered(lambda line: line.is_promotional )
@@ -163,5 +164,5 @@ class fleximaticsaleorderline(models.Model):
         if self._check_line_promotion() and not flag:
             raise UserError(_('You can not remove promotional products.'))
         super(fleximaticsaleorderline, self).unlink()
-
+   """
    
