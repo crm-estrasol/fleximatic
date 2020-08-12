@@ -30,8 +30,9 @@ class ItemPricelist(models.TransientModel):
         view_id = self.env.ref('fleximatic.view_sale_pricelist_wizard').id
         
         products = [ x  for x in self.sale.order_line]
+        orginal_product = self.sale.order_line.filtered(lambda x: self.product_id == x.product_id.id)
         products_len = len(products)
-        index_prod = products.index(self.product_id)
+        index_prod = products.index(orginal_product[0])
         new_elemnt = {}
         if index_prod == 0 and products_len == 1 or index_prod ==  products_len :
             new_elemnt = products[0]
