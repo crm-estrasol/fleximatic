@@ -42,7 +42,7 @@ class fleximaticsale(models.Model):
             if sale.order_line:
                 for line in sale.order_line:
                     if line.is_promotional == False:
-                        puntos += line.price_subtotal *(line.product_template_id.puntos_genera/100)
+                        puntos += line.price_subtotal *(line.product_id.puntos_genera/100)
             if sale.state in ['done','cancel']: 
                 sale.points = 0
             else:
