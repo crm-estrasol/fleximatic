@@ -59,7 +59,7 @@ class fleximaticsale(models.Model):
         promotionals = [ (0,0,{'product_id':item.product_id.id,
                                 'product_template_id':item.product_template_id.id,
                                 'qty':item.product_uom_qty,
-                                'uom_id':item.product_id.product_uom,
+                                'uom_id':item.product_uom.id,
                                 'price_points':item.product_id.puntos_venta,
         } ) for item in self.order_line if item.is_promotional  ]
         view = {
