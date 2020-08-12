@@ -11,7 +11,7 @@ class productPromotional(models.TransientModel):
 
     name = fields.Char('name')
     sale_id = fields.Many2one('sale.order',string='Sale')
-    points = fields.Float(string='Points')
+    points = fields.Float(string='Points',compute='change_point')
     points_to_sale = fields.Float(string='Points to sale', compute = 'total_points_to_sale')
     promotional_line = fields.One2many('product.promotional.line','promotional_id')
 
@@ -48,10 +48,13 @@ class productPromotional(models.TransientModel):
     def cancel(self):
         return {'type': 'ir.actions.act_window_close'}
     
-    @api.onchange('points_to_sale')
+    @api.depends('points_to_sale','sale_id','promotional_line')
     def change_point(self):
-        if self.sale_id:
-            self.points = self.sale_id.points - self.points_to_sale
+        for promo in self:
+            if promo.sale_id:
+                promo.points = promo.sale_id.points - promo.points_to_sale
+            else:
+                promo.points = 0
 
     def remove_promotional_products(self):
         order_line = self.env['sale.order.line'].search([('order_id','=',self.sale_id.id),('is_promotional','=',True)])
