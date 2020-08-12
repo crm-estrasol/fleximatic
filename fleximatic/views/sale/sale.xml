@@ -39,6 +39,7 @@
                         <attribute name="attrs">{                                                     
                                             'readonly': [('is_promotional', '=', True) ] }</attribute>
                     </xpath>
+                   <!--Responsive fix-->
                       <xpath expr="//notebook//form//field[@name='product_id']" position="attributes">
                         <attribute name="attrs">{                                                     
                                             'readonly': ['|',('product_updatable', '=', False),('is_promotional','=',True) ],                                                     
@@ -55,6 +56,14 @@
                      <xpath expr="//notebook//form//field[@name='name']" position="attributes">
                         <attribute name="attrs">{                                                     
                                             'readonly': [('is_promotional', '=', True) ] }</attribute>
+                    </xpath>
+                    <xpath expr="//notebook//form//field[@name='discount']" position="attributes">
+                        <attribute name="attrs">{                                                     
+                                            'readonly': [('is_promotional', '=', True) ] }</attribute>
+                    </xpath>
+                    <xpath expr="//notebook//form//field[@name='tax_id']" position="attributes">
+                        <attribute name="attrs">{                                                     
+                                            'readonly': ['|',('qty_invoiced', '&gt;', 0),('is_promotional', '=', True)]</attribute>
                     </xpath>
                 </field>
         </record>
