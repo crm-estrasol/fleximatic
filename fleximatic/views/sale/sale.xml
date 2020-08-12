@@ -63,8 +63,9 @@
                     </xpath>
                     <xpath expr="//notebook//form//field[@name='tax_id']" position="attributes">
                         <attribute name="attrs">{                                                     
-                                            'readonly': ['|',('qty_invoiced', '&gt;', 0),('is_promotional', '=', True)]</attribute>
+                                            'readonly': ['|',('qty_invoiced', '&gt;', 0),('is_promotional', '=', True)]}</attribute>
                     </xpath>
+                     <!--Responsive fix-->
                 </field>
         </record>
     </data>
