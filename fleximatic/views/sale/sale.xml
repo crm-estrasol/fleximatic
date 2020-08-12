@@ -48,6 +48,14 @@
                         <attribute name="attrs">{                                                     
                                             'readonly': [('is_promotional', '=', True) ] }</attribute>
                     </xpath>
+                    <xpath expr="//notebook//form//field[@name='price_unit']" position="attributes">
+                        <attribute name="attrs">{                                                     
+                                            'readonly': [('is_promotional', '=', True) ] }</attribute>
+                    </xpath>
+                     <xpath expr="//notebook//form//field[@name='name']" position="attributes">
+                        <attribute name="attrs">{                                                     
+                                            'readonly': [('is_promotional', '=', True) ] }</attribute>
+                    </xpath>
                 </field>
         </record>
     </data>
