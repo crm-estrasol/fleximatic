@@ -91,8 +91,19 @@
                          <field name="product_template_id" invisible="1"/>
                         
                     </xpath>
-                    
                 </field>
         </record>
+                      <record id="sale_margin_sale_order_line_flexi" model="ir.ui.view">
+                        <field name="name">sale.order.line.margin.view.form.flexi</field>
+                        <field name="model">sale.order</field>
+                        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line"/>
+                            <field name="arch" type="xml">
+                                      <xpath expr="//field[@name='purchase_price']" position="replace">
+                                       <field name="purchase_price" groups="base.group_user"  attrs ="{ 'readonly': [('is_promotional', '=', True) ] }"/>
+                                                
+                                                
+                                            </xpath>  
+                             </field>
+                     </record>
     </data>
 </odoo>
