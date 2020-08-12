@@ -61,7 +61,9 @@ class fleximaticsale(models.Model):
                                 'qty':item.product_uom_qty,
                                 'uom_id':item.product_uom.id,
                                 'price_points':item.product_id.puntos_venta,
+                                'total':item.product_uom_qty*item.product_id.puntos_venta
         } ) for item in self.order_line if item.is_promotional  ]
+
         view = {
             'name': ('Agregar productos promocionales'),
             'view_type': 'form',
@@ -71,7 +73,8 @@ class fleximaticsale(models.Model):
             'target':'new',
             'context':{'default_sale_id':self.id,
             'default_points':self.points,
-            'default_promotional_line':promotionals
+            'default_promotional_line':promotionals,
+            'default_points_to_sale':sum([x[2].total for x in promotionals])
             }
         }
         return view
