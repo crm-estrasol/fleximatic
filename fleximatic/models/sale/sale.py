@@ -74,7 +74,7 @@ class fleximaticsale(models.Model):
             'context':{'default_sale_id':self.id,
             'default_points':self.points,
             'default_promotional_line':promotionals,
-            'default_points_to_sale':sum([x[2].total for x in promotionals])
+            'default_points_to_sale':sum([x[2]['total'] for x in promotionals])
             }
         }
         return view
