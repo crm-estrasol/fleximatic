@@ -70,6 +70,8 @@
                         <field name="pricelist_id" options="{'no_create_edit': True}" context="{'form_view_ref':'fleximatic.product_pricelist_view_readonly'}"/>
                         <field name="is_promotional" invisible="1"/>
                         <field name="puntos_venta"/>
+                         <field name="product_template_id" invisible="1"/>
+                        
                     </xpath>
                 </field>
         </record>
