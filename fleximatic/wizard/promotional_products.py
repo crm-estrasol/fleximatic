@@ -26,7 +26,7 @@ class productPromotional(models.TransientModel):
 
     def add_promotional_products(self):
         if self.points_to_sale > self.points:
-            raise ValidationError(('Error ! Insufficient points to add product(s)'))
+            raise ValidationError(('Error ! Not enough points to add product(s)'))
         else:
             self.remove_promotional_products()
             for line in self.promotional_line:

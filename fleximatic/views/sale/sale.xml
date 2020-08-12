@@ -10,7 +10,8 @@
                         <attribute name="invisible">1</attribute>
                     </xpath>
                     <xpath expr="//field[@name='amount_total']" position="after">
-                        <field name="points"/>
+                        <field name="points" invisible="1"/>
+                        <field name="r_points"/>
                     </xpath>
                     <xpath expr="//field[@name='payment_term_id']" position="after">       
                       <button name="show_pricelistAvaible" string="Pricelist" type="object" class="btn-primary" attrs="{'invisible': ['|',('state', '=', 'done'),'|',('state', '=', 'cancel'),'|',('state', '=', 'sale'),('order_line', '=', [] )]}"/>   

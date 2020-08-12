@@ -20,6 +20,7 @@ class fleximaticsale(models.Model):
     x_credit = fields.Monetary(related='partner_id.x_credit',string='Available Credit')
     x_credit_after_sale = fields.Monetary('Credit After Sale',compute = 'compute_credit_after_sale')
     points = fields.Float('Points',digits=(32, 2), compute='_compute_total_points',store=True)
+    r_points = fields.Float('Remaining points',digits=(32,2), compute='_compute_total_remaining_points')
     def show_pricelistAvaible(self):
         if self.order_line:   
             view_id = self.env.ref('fleximatic.view_sale_pricelist_wizard').id
@@ -65,4 +66,24 @@ class fleximaticsale(models.Model):
             'context':{'default_sale_id':self.id,'default_points':self.points}
         }
         return view
-        
+
+    @api.depends('points','order_line','state')    
+    def _compute_total_remaining_points(self):
+        for sale in self:
+            puntos_gastados = 0
+            if sale.order_line and sale.state not in ['done','cancel']:
+                for line in sale.order_line:
+                    if line.is_promotional == True:
+                        puntos_gastados += line.puntos_venta * line.product_uom_qty
+                self.r_points = self.points - puntos_gastados
+            else:
+                self.r_points = self.points
+
+    
+    def write(self, vals):
+        res = super(fleximaticsale, self).write(vals)
+        if self.r_points < 0:
+            raise ValidationError(('Error! Not enough points to complete the sale'))
+        else:
+            return res
+    
