@@ -78,3 +78,12 @@ class fleximaticsale(models.Model):
                 self.r_points = self.points - puntos_gastados
             else:
                 self.r_points = self.points
+
+    
+    def write(self, vals):
+        res = super(fleximaticsale, self).write(vals)
+        if self.r_points < 0:
+            raise ValidationError(('Error! Not enough points to complete the sale'))
+        else:
+            return res
+    
