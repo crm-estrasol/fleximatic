@@ -87,3 +87,9 @@ class fleximaticsale(models.Model):
         else:
             return res
     
+
+    def remove_promotional_products(self):
+        if self.order_line:
+            for products in self.order_line:
+                if products.is_promotional == True:
+                    products.with_context(allow_delete=True).unlink()

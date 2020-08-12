@@ -27,7 +27,6 @@
                     </group>
                     <footer>
                         <button name="add_promotional_products" string="Add products" type="object" class="btn-primary"/>
-                        <button name="remove_promotional_products" string="Remove products" type="object" class="btn-primary"/>
                         <button name="cancel" string="Close" type="object" class="btn-primary"/>
                     </footer>
                 </form>
