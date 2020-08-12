@@ -29,7 +29,7 @@ class ItemPricelist(models.TransientModel):
             prod.product_uom_change()
         view_id = self.env.ref('fleximatic.view_sale_pricelist_wizard').id
         
-        products = [ x  for x in self.sale.order_line]
+        products = [ x  for x in self.sale.order_line.filtered( lambda x: x.is_promotional == False)]
         orginal_product = self.sale.order_line.filtered(lambda x: self.product_id.id == x.product_id.id)
         products_len = len(products)
         index_prod = products.index(orginal_product[0])
