@@ -34,7 +34,7 @@ class ItemPricelist(models.TransientModel):
         products_len = len(products)
         index_prod = products.index(orginal_product[0])
         new_elemnt = {}
-        if index_prod == 0 and products_len == 1 or index_prod ==  products_len :
+        if index_prod == 0 and products_len == 1 or index_prod ==  products_len-1 :
             new_elemnt = products[0]
         else:
              new_elemnt = products[index_prod+1]
