@@ -30,7 +30,7 @@ class ItemPricelist(models.TransientModel):
         view_id = self.env.ref('fleximatic.view_sale_pricelist_wizard').id
         
         products = [ x  for x in self.sale.order_line]
-        orginal_product = self.sale.order_line.filtered(lambda x: self.product_id == x.product_id.id)
+        orginal_product = self.sale.order_line.filtered(lambda x: self.product_id.id == x.product_id.id)
         products_len = len(products)
         index_prod = products.index(orginal_product[0])
         new_elemnt = {}
@@ -49,7 +49,7 @@ class ItemPricelist(models.TransientModel):
                 'target': 'new',
                 'context':{'default_sale':self.sale.id,
                 'default_date_order':self.date_order,
-                'default_product_id':new_elemnt.id  },
+                'default_product_id':new_elemnt.product_id.id  },
 
                 }
         return view 
