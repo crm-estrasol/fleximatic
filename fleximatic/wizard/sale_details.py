@@ -57,7 +57,7 @@ class ItemPricelist(models.TransientModel):
        
         if pricelist_avaible:
             #pricelist_avaible = pricelist_avaible.filtered(lambda x: x.is_promotional == False  )
-            self.pricelist_avaible = [ (6, 0, pricelist_avaible.ids ) ] if pricelist_avaible else False
+            self.pricelist_avaible = [ (6, 0, pricelist_avaible.ids ) ] 
         else:
              self.pricelist_avaible = False
         pricelist_domain = [item.pricelist_id.id for item in pricelist_avaible]   
