@@ -59,7 +59,9 @@ class fleximaticsale(models.Model):
         promotionals = [ (0,0,{'product_id':item.product_id.id,
                                 'product_template_id':item.product_template_id.id,
                                 'qty':item.product_uom_qty,
-        } ) for item in self.order_line if item.is_promotional ]
+                                'uom_id':item.product_id.product_uom,
+                                'price_points':item.product_id.puntos_venta,
+        } ) for item in self.order_line if item.is_promotional  ]
         view = {
             'name': ('Agregar productos promocionales'),
             'view_type': 'form',
@@ -73,6 +75,8 @@ class fleximaticsale(models.Model):
             }
         }
         return view
+        price_points
+
 
     @api.depends('points','order_line','state')    
     def _compute_total_remaining_points(self):
