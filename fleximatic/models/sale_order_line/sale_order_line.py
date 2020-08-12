@@ -12,11 +12,11 @@ from odoo.tools import float_is_zero, float_compare
 
 class fleximaticsaleorderline(models.Model):
     _inherit = 'sale.order.line'
-
     
     pricelist_id = fields.Many2one('product.pricelist',string='Pricelist',
         domain="['|',('item_ids.product_tmpl_id', '=', product_template_id),('item_ids.product_id', '=', product_id)]")
     is_promotional = fields.Boolean('Promotional')
+    puntos_venta =  fields.Float (related="product_id.puntos_venta",string="Point cost" )
 
     @api.onchange('product_id', 'price_unit', 'product_uom', 'product_uom_qty', 'tax_id','pricelist_id')
     def _onchange_discount(self):
@@ -153,3 +153,15 @@ class fleximaticsaleorderline(models.Model):
                 fiscal_position=self.env.context.get('fiscal_position')
             )
             self.price_unit = self.env['account.tax']._fix_tax_included_price_company(self._get_display_price(product), product.taxes_id, self.tax_id, self.company_id)
+   
+    def _check_line_promotion(self):
+      
+        return self.filtered(lambda line: line.is_promotional )
+
+    def unlink(self,flag=False):
+        if self._check_line_promotion() and not flag:
+            raise UserError(_('You can not remove promotional products.'))
+        return super(fleximaticsaleorderline, self).unlink()
+
+
+

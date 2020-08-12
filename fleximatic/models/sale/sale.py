@@ -65,3 +65,4 @@ class fleximaticsale(models.Model):
             'context':{'default_sale_id':self.id,'default_points':self.points}
         }
         return view
+        
