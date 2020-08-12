@@ -158,9 +158,7 @@ class fleximaticsaleorderline(models.Model):
       
         return self.filtered(lambda line: line.is_promotional )
 
-    def unlink(self,flag):
-        if not flag:
-            flag = False
+    def unlink(self,flag=False):
         if self._check_line_promotion() and flag == False :
             raise UserError(_('You can not remove promotional products.'))
         else:
