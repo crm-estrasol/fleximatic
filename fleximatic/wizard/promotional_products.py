@@ -58,7 +58,7 @@ class productPromotional(models.TransientModel):
         if order_line:
             for products in order_line:
                 if products.is_promotional == True:
-                    products.unlink(True)
+                    products.unlink()
 
 
 class productPromotionalLine(models.TransientModel):

@@ -164,4 +164,3 @@ class fleximaticsaleorderline(models.Model):
         return super(fleximaticsaleorderline, self).unlink()
 
 
-
