@@ -24,7 +24,9 @@ odoo.define('tomcat.tomcat_sale_order_line', function (require) {
                         return $cell;
                     } else if (node.attrs.name === "name" ||  node.attrs.name === "product_id" || 
                      node.attrs.name === "product_uom_qty" |  node.attrs.name === "price_subtotal" ||
-                      node.attrs.name === "puntos_venta" || node.attrs.name === "qty_delivered" || node.attrs.name === "customer_lead") {
+                      node.attrs.name === "puntos_venta" || node.attrs.name === "qty_delivered" || node.attrs.name === "customer_lead"
+                      || node.attrs.name === "product_uom"
+                      ) {
                         
                         
                     } else {

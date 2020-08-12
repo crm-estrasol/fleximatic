@@ -17,13 +17,13 @@ class ItemPricelist(models.TransientModel):
     date_order =  fields.Datetime(string='Date', readonly=True, default=fields.Datetime.now)
   
     def generate_apply(self):
-        products = self.sale.order_line.filtered(lambda x: x.product_id.id == self.product_id.id)
+        products = self.sale.order_line.filtered(lambda x: x.product_id.id == self.product_id.id and x.product_id.is_promotional == False)
         for prod in products:
             prod.pricelist_id = self.pricelist_id
             prod.product_uom_change()
         return self.sale
     def generate_apply_next(self):
-        products = self.sale.order_line.filtered(lambda x: x.product_id.id == self.product_id.id)
+        products = self.sale.order_line.filtered(lambda x: x.product_id.id == self.product_id.id and x.product_id.is_promotional == False )
         for prod in products:
             prod.pricelist_id = self.pricelist_id
             prod.product_uom_change()
@@ -44,8 +44,6 @@ class ItemPricelist(models.TransientModel):
     def on_change_sale(self):
         pricelist_avaible = self.env['product.pricelist.item'].search( [
              '&',
-             '&',
-
              '|',('product_id','=',self.product_id.product_tmpl_id.id), ('product_tmpl_id','=',self.product_id.id),
              '|',('applied_on','=','1_product'),('applied_on','=','0_product_variant'),
              '&',
@@ -56,8 +54,9 @@ class ItemPricelist(models.TransientModel):
         
        
         if pricelist_avaible:
-            #pricelist_avaible = pricelist_avaible.filtered(lambda x: x.is_promotional == False  )
-            self.pricelist_avaible = [ (6, 0, pricelist_avaible.ids ) ] 
+            pricelist_avaible = pricelist_avaible.filtered(lambda x: x.product_id.is_promotional == False  )
+            self.pricelist_avaible = [ (6, 0, pricelist_avaible.ids ) ]  if pricelist_avaible else False
+            #
         else:
              self.pricelist_avaible = False
         pricelist_domain = [item.pricelist_id.id for item in pricelist_avaible]   

@@ -44,6 +44,12 @@
                         <attribute name="attrs">{                                                     
                                             'readonly': [('is_promotional', '=', True) ] }</attribute>
                     </xpath>
+                    <xpath expr="//tree//field[@name='product_uom']" position="attributes">
+                        <attribute name="attrs">
+                         {'readonly': ['|',('state', 'in', ('sale','done', 'cancel')),('is_promotional', '=', True) ], 'required': [('display_type', '=', False)],}
+                        </attribute>
+                    </xpath>
+                    
                    <!--Responsive fix-->
                       <xpath expr="//notebook//form//field[@name='product_id']" position="attributes">
                         <attribute name="attrs">{                                                     
@@ -70,9 +76,17 @@
                         <attribute name="attrs">{                                                     
                                             'readonly': ['|',('qty_invoiced', '&gt;', 0),('is_promotional', '=', True)]}</attribute>
                     </xpath>
+                     <xpath expr="//notebook//form//field[@name='product_uom']" position="attributes">
+                        <attribute name="attrs">
+                         {'readonly': ['|',('state', 'in', ('sale','done', 'cancel')),('is_promotional', '=', True) ], 'required': [('display_type', '=', False)],}
+                        </attribute>
+                    </xpath>
+                    
                      <!--Responsive fix-->
                       <xpath expr="//notebook//form//field[@name='product_id']" position="after">
-                        <field name="pricelist_id" options="{'no_create_edit': True}" context="{'form_view_ref':'fleximatic.product_pricelist_view_readonly'}"/>
+                        <field name="pricelist_id" 
+                        attrs ="{ 'readonly': [('is_promotional', '=', True) ] }"
+                        options="{'no_create_edit': True}" context="{'form_view_ref':'fleximatic.product_pricelist_view_readonly'}"/>
                         <field name="is_promotional" invisible="1"/>
                         <field name="puntos_venta"/>
                          <field name="product_template_id" invisible="1"/>
@@ -80,5 +94,17 @@
                     </xpath>
                 </field>
         </record>
+                      <record id="sale_margin_sale_order_line_flexi" model="ir.ui.view">
+                        <field name="name">sale.order.line.margin.view.form.flexi</field>
+                        <field name="model">sale.order</field>
+                        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line"/>
+                            <field name="arch" type="xml">
+                                      <xpath expr="//field[@name='purchase_price']" position="replace">
+                                       <field name="purchase_price" groups="base.group_user"  attrs ="{ 'readonly': [('is_promotional', '=', True) ] }"/>
+                                                
+                                                
+                                            </xpath>  
+                             </field>
+                     </record>
     </data>
 </odoo>
