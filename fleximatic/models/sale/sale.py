@@ -13,10 +13,10 @@ from odoo.tools import float_is_zero, float_compare
 class fleximaticsale(models.Model):
     _inherit = 'sale.order'
 
-    x_approve = fields.Selection([('to_approve','To Approve'),
-        ('approved','Approved'),
-        ('not_approve','Not Approve')],
-        string='Approve')
+    #x_approve = fields.Selection([('to_approve','To Approve'),
+    #    ('approved','Approved'),
+    #    ('not_approve','Not Approve')],
+    #    string='Approve')
     x_credit = fields.Monetary(related='partner_id.x_credit',string='Available Credit')
     x_credit_after_sale = fields.Monetary('Credit After Sale',compute = 'compute_credit_after_sale')
     points = fields.Float('Points',digits=(32, 2), compute='_compute_total_points',store=True)
