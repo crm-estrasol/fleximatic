@@ -19,5 +19,5 @@ class fleximaticcontact(models.Model):
     def _onchange_tag(self):
         if self.category_id:
             if len(self.category_id ) > 1:
-                last = int(self.category_id[-1].id)
+                last = self.category_id[-1].id
                 self.category_id = [ (6, 0, [last] ) ] 
