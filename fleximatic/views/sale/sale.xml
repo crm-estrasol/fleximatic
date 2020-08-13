@@ -23,14 +23,14 @@
                     </xpath>
                     -->
                      <xpath expr="//field[@name='order_line']" position="before">    
-                        <div class="row">
-                            <div class="col-4">
+                        <div class="row mb-2">
+                            <div class="col-4 text-center">
                                 <button name="show_pricelistAvaible" string="Pricelist products" type="object" class="btn-primary" attrs="{'invisible': ['|',('state', '=', 'done'),'|',('state', '=', 'cancel'),'|',('state', '=', 'sale'),('order_line', '=', [] )]}"/>
                             </div>
-                            <div class="col-4">
+                            <div class="col-4 text-center">
                                 <button name="open_wizard_promotional" string="Promotional products" type="object" class="btn-primary" attrs="{'invisible':[('state','in',['done','cancel'])]}"/>
                             </div>
-                            <div class="col-4">
+                            <div class="col-4 text-center">
                                 <button name="remove_promotional_products" string="Remove promotionals" type="object" class="btn-primary" attrs="{'invisible':[('state','in',['done','cancel'])]}"/>
                             </div>
                         </div>   
