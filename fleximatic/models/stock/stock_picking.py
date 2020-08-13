@@ -16,7 +16,7 @@ class fleximaticstock(models,Model):
         ],string='Approve freight')
     #x_currency_id = fields.Many2one('res.currency',string='Currency',related='sale_id.currency_id')
     #x_freight = fields.Float('freight %', digits=(32, 2), compute='compute_total_porcent', store = True,)
-    #x_freight_cost = fields.Monetary('Freight cost',related='x_logistics.amount_total')
+    x_freight_cost = fields.Monetary('Freight cost',related='x_logistics.amount_total')
     x_logistics = fields.Many2one('purchase.order',string='Logistics purchase')
     x_total = fields.Monetary('Sale amount',related='sale_id.amount_total')
 
