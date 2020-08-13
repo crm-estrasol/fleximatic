@@ -10,9 +10,9 @@ class fleximaticstock(models,Model):
     _inherit = 'stock.picking'
     
     x_approve_freight = fields.Selection([
-        ('Por aprobar','To Approve'),
-        ('Aprobado','Approved'),
-        ('No aprobado','Not approved')
+        ('por aprobar','To Approve'),
+        ('aprobado','Approved'),
+        ('no aprobado','Not approved')
         ],string='Approve freight')
     #x_currency_id = fields.Many2one('res.currency',string='Currency',related='sale_id.currency_id')
     #x_freight = fields.Float('freight %', digits=(32, 2), compute='compute_total_porcent', store=True,)
