@@ -15,3 +15,9 @@ class fleximaticcontact(models.Model):
             reg =  record.x_sale.filtered( lambda x : (x.state == 'sale' and x.invoice_status != 'invoiced' ))
             sum_total = sum(reg.mapped('amount_total'))
             record['x_credit'] = record.credit_limit - record.credit - sum_total
+    @api.onchange('category_id')
+    def _onchange_tag(self):
+        if self.category_id:
+            if len(self.category_id ) > 1:
+                last = int(self.category_id[-1].id)
+                self.category_id = [ (6, 0, [last] ) ] 
