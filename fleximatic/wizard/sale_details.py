@@ -28,6 +28,17 @@ class ItemPricelist(models.TransientModel):
             prod.pricelist_id = self.pricelist_id
             prod.product_uom_change()
         view_id = self.env.ref('fleximatic.view_sale_pricelist_wizard').id
+        
+        products = [ x  for x in self.sale.order_line.filtered( lambda x: x.is_promotional == False)]
+        orginal_product = self.sale.order_line.filtered(lambda x: self.product_id.id == x.product_id.id)
+        products_len = len(products)
+        index_prod = products.index(orginal_product[0])
+        new_elemnt = {}
+        if index_prod == 0 and products_len == 1 or index_prod ==  products_len-1 :
+            new_elemnt = products[0]
+        else:
+             new_elemnt = products[index_prod+1]
+
         view = {
                 'name': ('Descuento'),
                 'view_type': 'form',
@@ -36,7 +47,9 @@ class ItemPricelist(models.TransientModel):
                 'views':  [(view_id,'form')],
                 'type': 'ir.actions.act_window',
                 'target': 'new',
-                'context':{'default_sale':self.sale.id,'default_date_order':self.date_order},
+                'context':{'default_sale':self.sale.id,
+                'default_date_order':self.date_order,
+                'default_product_id':new_elemnt.product_id.id  },
 
                 }
         return view 
