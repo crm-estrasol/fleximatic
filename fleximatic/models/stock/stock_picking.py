@@ -5,7 +5,7 @@ from odoo.exceptions import AccessError, UserError, RedirectWarning, ValidationE
 import logging
 _logger = logging.getLogger(__name__)
 
-class fleximaticstock(models,Model):
+class fleximaticstock(models.Model):
     
     _inherit = 'stock.picking'
     
