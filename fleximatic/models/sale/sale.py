@@ -14,9 +14,9 @@ class fleximaticsale(models.Model):
     _inherit = 'sale.order'
 
     x_approve = fields.Selection([
-        ('por aprobar','To Approve'),
+        ('por_aprobar','To Approve'),
         ('aprobado','Approved'),
-        ('no aprobado','Not Approve')],
+        ('no_aprobado','Not Approve')],
         string='Approve')
     x_credit = fields.Monetary(related='partner_id.x_credit',string='Available Credit')
     x_credit_after_sale = fields.Monetary('Credit After Sale',compute = 'compute_credit_after_sale')
