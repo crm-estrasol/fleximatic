@@ -6,6 +6,9 @@
             <field name="model">product.promotional</field>
             <field name="arch" type="xml">
                 <form string="Promotional Products">
+                    <h2 class="text-center" style="background-color:red; color:white;" attrs="{'invisible':[('points', '>=', 0)]}">
+                        Not enough points to add product(s)
+                    </h2>
                     <field name="promotional_line">
                         <tree editable="bottom" class="text-center">
                             <field name="product_id" required="1" options="{'no_open': True, 'no_create_edit': True}"/>
