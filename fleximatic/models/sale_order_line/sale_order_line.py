@@ -166,7 +166,7 @@ class fleximaticsaleorderline(models.Model):
         super(fleximaticsaleorderline, self).unlink()
    """
    
-    @api.onchange('pricelist_id')
+    @api.onchange('product_id')
     def set_price_unit_product(self):
         if not self.pricelist_id:
             self.price_unit = self.product_id.lst_price
