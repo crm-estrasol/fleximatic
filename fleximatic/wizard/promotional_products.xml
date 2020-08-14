@@ -6,6 +6,9 @@
             <field name="model">product.promotional</field>
             <field name="arch" type="xml">
                 <form string="Promotional Products">
+                    <h2 class="text-center" style="background-color:red; color:white;" attrs="{'invisible':[('points', '>=', 0)]}">
+                        Not enough points to add product(s)
+                    </h2>
                     <field name="promotional_line">
                         <tree editable="bottom" class="text-center">
                             <field name="product_id" required="1" options="{'no_open': True, 'no_create_edit': True}"/>
@@ -16,6 +19,7 @@
                             <field name="total"/>
                         </tree>
                     </field>
+                    
                     <group>
                         <group class="text-right">
                             <field name="points" readonly="1"/>
@@ -26,7 +30,7 @@
                         </group>
                     </group>
                     <footer>
-                        <button name="add_promotional_products" string="Add products" type="object" class="btn-primary"/>
+                        <button name="add_promotional_products" string="Add products" type="object" class="btn-primary" attrs="{'invisible':[('points', '&lt;', 0)]}"/>
                         <button name="cancel" string="Close" type="object" class="btn-primary"/>
                     </footer>
                 </form>
