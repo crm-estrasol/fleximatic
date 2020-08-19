@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="inherit_sale_order" model="ir.ui.view">
+                <field name="name">sale.order.inherit.form</field>
+                <field name="model">sale.order</field>
+                <field name="inherit_id" ref="sale.view_order_form"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name='pricelist_id']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='amount_total']" position="after">
+                        <field name="points" invisible="1"/>
+                        <field name="r_points"/>
+                    </xpath>
+                    <!--
+                    <xpath expr="//field[@name='payment_term_id']" position="after">       
+                      <button name="show_pricelistAvaible" string="Pricelist" type="object" class="btn-primary" attrs="{'invisible': ['|',('state', '=', 'done'),'|',('state', '=', 'cancel'),'|',('state', '=', 'sale'),('order_line', '=', [] )]}"/>   
+                      <button name="open_wizard_promotional" string="Promotional products" type="object" class="btn-primary" attrs="{'invisible':[('state','in',['done','cancel'])]}"/>
+                    </xpath>
+                    <xpath expr="//field[@name='sale_order_template_id']" position="after">       
+                      <button name="remove_promotional_products" string="Remove promotional products" type="object" class="btn-primary" attrs="{'invisible':[('state','in',['done','cancel'])]}"/>
+                    </xpath>
+                    -->
+                     <xpath expr="//field[@name='order_line']" position="before">    
+                        <div class="row mb-2">
+                            <div class="col-4 text-center">
+                                <button name="show_pricelistAvaible" string="Pricelist products" type="object" class="btn-primary" attrs="{'invisible': ['|',('state', '=', 'done'),'|',('state', '=', 'cancel'),'|',('state', '=', 'sale'),('order_line', '=', [] )]}"/>
+                            </div>
+                            <div class="col-4 text-center">
+                                <button name="open_wizard_promotional" string="Promotional products" type="object" class="btn-primary" attrs="{'invisible':[('state','in',['done','cancel','sale'])]}"/>
+                            </div>
+                            <div class="col-4 text-center">
+                                <button name="remove_promotional_products" string="Remove promotionals" type="object" class="btn-primary" attrs="{'invisible':[('state','in',['done','cancel','sale'])]}"/>
+                            </div>
+                        </div>   
+                        
+                     
+                       
+                    </xpath>
+
+                    <xpath expr="//tree//field[@name='name']" position="after">
+                        <field name="pricelist_id" options="{'no_create_edit': True}" context="{'form_view_ref':'fleximatic.product_pricelist_view_readonly'}"/>
+                        <field name="is_promotional" invisible="1"/>
+                        <field name="puntos_venta" optional="hide"/>
+                    </xpath>
+                    
+                    <xpath expr="//tree//field[@name='price_unit']" position="attributes">
+                        <attribute name="readonly">1</attribute>
+                        <attribute name="force_save">1</attribute>
+                    </xpath>
+                    <xpath expr="//tree//field[@name='product_uom_qty']" position="attributes">
+                        <attribute name="attrs">{'readonly':[('is_promotional', '=', True)]}</attribute>
+                        <attribute name="force_save">1</attribute>
+                    </xpath>
+                     <xpath expr="//tree//field[@name='product_id']" position="attributes">
+                        <attribute name="attrs">{                                                     
+                                            'readonly': ['|',('product_updatable', '=', False),('is_promotional','=',True) ],                                                     
+                                            'required': [('display_type', '=', False)]}</attribute>
+                    </xpath>
+                     <xpath expr="//tree//field[@name='name']" position="attributes">
+                        <attribute name="attrs">{                                                     
+                                            'readonly': [('is_promotional', '=', True) ] }</attribute>
+                    </xpath>
+                     <xpath expr="//tree//field[@name='product_uom_qty']" position="attributes">
+                        <attribute name="attrs">{                                                     
+                                            'readonly': [('is_promotional', '=', True) ] }</attribute>
+                    </xpath>
+                    <xpath expr="//tree//field[@name='product_uom']" position="attributes">
+                        <attribute name="attrs">
+                         {'readonly': ['|',('state', 'in', ('sale','done', 'cancel')),('is_promotional', '=', True) ], 'required': [('display_type', '=', False)],}
+                        </attribute>
+                    </xpath>
+                    
+                   <!--Responsive fix-->
+                      <xpath expr="//notebook//form//field[@name='product_id']" position="attributes">
+                        <attribute name="attrs">{                                                     
+                                            'readonly': ['|',('product_updatable', '=', False),('is_promotional','=',True) ],                                                     
+                                            'required': [('display_type', '=', False)]}</attribute>
+                    </xpath>
+                     <xpath expr="//notebook//form//field[@name='product_uom_qty']" position="attributes">
+                        <attribute name="attrs">{                                                     
+                                            'readonly': [('is_promotional', '=', True) ] }</attribute>
+                    </xpath>
+                    <xpath expr="//notebook//form//field[@name='price_unit']" position="attributes">
+                        <attribute name="attrs">{                                                     
+                                            'readonly': [('is_promotional', '=', True) ] }</attribute>
+                    </xpath>
+                     <xpath expr="//notebook//form//field[@name='name']" position="attributes">
+                        <attribute name="attrs">{                                                     
+                                            'readonly': [('is_promotional', '=', True) ] }</attribute>
+                    </xpath>
+                    <xpath expr="//notebook//form//field[@name='discount']" position="attributes">
+                        <attribute name="attrs">{                                                     
+                                            'readonly': [('is_promotional', '=', True) ] }</attribute>
+                    </xpath>
+                    <xpath expr="//notebook//form//field[@name='tax_id']" position="attributes">
+                        <attribute name="attrs">{                                                     
+                                            'readonly': ['|',('qty_invoiced', '&gt;', 0),('is_promotional', '=', True)]}</attribute>
+                    </xpath>
+                     <xpath expr="//notebook//form//field[@name='product_uom']" position="attributes">
+                        <attribute name="attrs">
+                         {'readonly': ['|',('state', 'in', ('sale','done', 'cancel')),('is_promotional', '=', True) ], 'required': [('display_type', '=', False)],}
+                        </attribute>
+                    </xpath>
+                    
+                     <!--Responsive fix-->
+                      <xpath expr="//notebook//form//field[@name='product_id']" position="after">
+                        <field name="pricelist_id" 
+                        attrs ="{ 'readonly': [('is_promotional', '=', True) ] }"
+                        options="{'no_create_edit': True}" context="{'form_view_ref':'fleximatic.product_pricelist_view_readonly'}"/>
+                        <field name="is_promotional" invisible="1"/>
+                        <field name="puntos_venta"/>
+                         <field name="product_template_id" invisible="1"/>
+                        
+                    </xpath>
+                </field>
+        </record>
+                      <record id="sale_margin_sale_order_line_flexi" model="ir.ui.view">
+                        <field name="name">sale.order.line.margin.view.form.flexi</field>
+                        <field name="model">sale.order</field>
+                        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line"/>
+                            <field name="arch" type="xml">
+                                      <xpath expr="//field[@name='purchase_price']" position="replace">
+                                       <field name="purchase_price" groups="base.group_user"  attrs ="{ 'readonly': [('is_promotional', '=', True) ] }"/>
+                                                
+                                                
+                                            </xpath>  
+                             </field>
+                     </record>
+    </data>
+</odoo>
