@@ -19,7 +19,7 @@ class fleximaticstock(models.Model):
     
     x_logistics = fields.Many2one('purchase.order',string='Logistics purchase')
     x_total = fields.Monetary('Sale amount')
-    x_freight_cost = fields.Monetary('Freight cost')
+    x_freight_cost = fields.Monetary(stirng='Freight cost')
 
     @api.depends('x_freight','x_total','x_freight_cost')
     def compute_total_porcent(self):
