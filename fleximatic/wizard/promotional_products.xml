@@ -32,7 +32,7 @@
                         </group>
                     </group>
                     <footer>
-                        <button name="add_promotional_products" string="Add products" type="object" class="btn-primary" attrs="{'invisible':[('points', '<', 0)]}"/>
+                        <button name="add_promotional_products" string="Add products" type="object" class="btn-primary" attrs="{'invisible':[('points', '&lt;', 0)]}"/>
                         <button name="cancel" string="Close" type="object" class="btn-primary"/>
                     </footer>
                 </form>
