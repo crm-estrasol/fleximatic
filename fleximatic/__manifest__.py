@@ -31,6 +31,8 @@
         'views/product/product_product.xml',
         'views/templates/templates.xml',
         'views/stock/stock_batch_picking.xml',
+        'views/purchase/purchase.xml',
+        'views/stock/stock_picking.xml',
         #WIZARDS
         'wizard/sale_details.xml',
         'wizard/promotional_products.xml',
