@@ -5,3 +5,4 @@ from .contact import contact
 from .product import product
 from .sale import sale
 from .stock import stock_picking
+from .stock import stock_picking_batch
