@@ -19,7 +19,8 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','product','sale','stock','sale_margin','sale_management','purchase'],
+    'depends': ['base','product','sale','stock','sale_margin','sale_management','purchase'
+    ,'stock_picking_batch'],
 
     # always loaded
     'data': [
@@ -29,6 +30,7 @@
         'views/product/product.xml',
         'views/product/product_product.xml',
         'views/templates/templates.xml',
+        'views/stock/stock_batch_picking.xml',
         #WIZARDS
         'wizard/sale_details.xml',
         'wizard/promotional_products.xml',
