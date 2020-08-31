@@ -22,7 +22,7 @@ class fleximaticstockbatch(models.Model):
         self.picking_ids = False
         if self.x_purchase :
             return {
-            'domain': { 'picking_ids':  [('x_logistics', '=', self.x_purchase)] ,
+            'domain': { 'picking_ids':  [('x_logistics', '=', self.x_purchase.id)] ,
                         
                       }                   }
         else:
