@@ -24,3 +24,9 @@ class fleximaticstock(models.Model):
     def compute_total_porcent(self):
         for record in self:
             record['x_freight'] = record.x_freight_cost / (record.x_total and record.x_total or 1)
+    @api.onchange('x_logistics')  
+    def _onchange_purchase(self):
+        items = self.env['stock.picking.batch'].search([('picking_ids','=',self.id)])
+        for item in items:
+            if self.x_logistics != item.x_purchase:
+                raise UserError(_("No puedes modificar una transfererenica ."))  
