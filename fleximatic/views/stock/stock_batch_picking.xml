@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="inherit_stock_picking_batch_form_flexi" model="ir.ui.view">
+                <field name="name">sale.order.inherit.form.flexi</field>
+                <field name="model">stock.picking.batch</field>
+                <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_form"/>
+                <field name="arch" type="xml">
+                    
+                     <xpath expr="//sheet//field[@name='picking_ids']" position="attributes">
+                        <!--
+                        <attribute name="attrs">
+                         {'readonly': ['|',('state', 'in', ('sale','done', 'cancel')),('is_promotional', '=', True) ], 'required': [('display_type', '=', False)],}
+                        </attribute>
+                        -->
+                        <attribute name="domain">
+                         [('x_logistics', '=', False)]
+                        </attribute>
+                    </xpath>
+                    <xpath expr="//tree//button[@name='action_assign']" position="before">
+                       <field name="x_freight_cost"/>
+                    </xpath>
+                    
+                     <!--Responsive fix-->
+                     
+                </field>
+        </record>
+                     
+    </data>
+</odoo>
