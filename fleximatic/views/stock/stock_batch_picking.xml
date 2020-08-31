@@ -18,13 +18,13 @@
                         </attribute>
                         
                          <attribute name="options">
-                            {'no_create_edit': True}
+                            {'no_open':True,'no_create':1,'no_create_edit':1}
                         </attribute>
                     </xpath>
                     <xpath expr="//tree//button[@name='action_assign']" position="before">
                        <field name="x_freight_cost" invisible="1"/>
                     </xpath>
-                    <xpath expr="//field[@name='user_id']" position="before">
+                    <xpath expr="//field[@name='x_purchase']" position="before">
                        <field name="total_sales" />
                     </xpath>
                     
