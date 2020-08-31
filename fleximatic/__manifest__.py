@@ -19,12 +19,8 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-<<<<<<< HEAD
-    'depends': ['base','product','sale','stock','sale_margin','sale_management','purchase'],
-=======
     'depends': ['base','product','sale','stock','sale_margin','sale_management','purchase'
     ,'stock_picking_batch'],
->>>>>>> d17710afe969e850ca472112fec4c170aa232bca
 
     # always loaded
     'data': [
