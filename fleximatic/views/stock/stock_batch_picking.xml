@@ -27,6 +27,11 @@
                     <xpath expr="//field[@name='x_purchase']" position="before">
                        <field name="total_sales" />
                     </xpath>
+                    <xpath expr="//field[@name='x_purchase']" position="attributes">
+                        <attribute name="domain">
+                            [('is_freight', '=', True)]
+                        </attribute>
+                    </xpath>
                     
                      <!--Responsive fix-->
                      
