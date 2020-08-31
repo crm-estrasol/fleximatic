@@ -14,7 +14,7 @@
                         </attribute>
                         -->
                         <attribute name="domain">
-                         ['&amp;',('x_logistics', '!=', False),('x_logistics', '!=', x_purchase)]
+                         [('x_logistics', '=', False)]
                         </attribute>
                     </xpath>
                     <xpath expr="//tree//button[@name='action_assign']" position="before">

@@ -19,5 +19,14 @@ class fleximaticstockbatch(models.Model):
     """  
     @api.onchange('x_purchase')  
     def _onchange_purchase(self):    
-        pass
-            
+        self.picking_ids = False
+        if self.x_purchase :
+            return {
+            'domain': { 'picking_ids':  [('x_logistics', '=', self.x_purchase)] ,
+                        
+                      }                   }
+        else:
+            return {
+            'domain': { 'picking_ids':  [('x_logistics', '=', False)] ,
+                        
+                      }  
