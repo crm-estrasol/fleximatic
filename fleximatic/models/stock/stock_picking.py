@@ -4,7 +4,7 @@ from odoo import api, fields, models, _
 from odoo.exceptions import AccessError, UserError, RedirectWarning, ValidationError, Warning
 import logging
 _logger = logging.getLogger(__name__)
-
+from odoo.exceptions import UserError
 class fleximaticstock(models.Model):
     
     _inherit = 'stock.picking'
@@ -28,5 +28,5 @@ class fleximaticstock(models.Model):
     def _onchange_purchase(self):
         items = self.env['stock.picking.batch'].search([('picking_ids','=',self.id)])
         for item in items:
-            if self.x_logistics != item.x_purchase:
+            if self.x_logistics.id != item.x_purchase.id:
                 raise UserError(_("No puedes modificar una transfererenica ."))  
