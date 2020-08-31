@@ -24,6 +24,9 @@
                     <xpath expr="//tree//button[@name='action_assign']" position="before">
                        <field name="x_freight_cost" invisible="1"/>
                     </xpath>
+                    <xpath expr="//field[@name='user_id']" position="before">
+                       <field name="total_sales" />
+                    </xpath>
                     
                      <!--Responsive fix-->
                      

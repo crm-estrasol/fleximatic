@@ -31,3 +31,10 @@ class fleximaticstockbatch(models.Model):
                         
                       }  
             }
+    @api.depends('picking_ids','picking_ids.x_total')    
+    def _compute_total_sales(self):
+        for pick in self:
+            if pick.picking_ids:
+               pick.total_sales = sum(pick.picking_id.mapped('x_total'))
+            else:
+               pick.total_sales = 0 
