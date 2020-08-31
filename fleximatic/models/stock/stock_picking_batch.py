@@ -27,6 +27,7 @@ class fleximaticstockbatch(models.Model):
                       }                   }
         else:
             return {
-            'domain': { 'picking_ids':  [('x_logistics', '=', False)] ,
+            'domain': { 'picking_ids':  [('x_logistics', '=', False)] 
                         
                       }  
+            }
