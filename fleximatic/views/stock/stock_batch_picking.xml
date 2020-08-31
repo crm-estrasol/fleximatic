@@ -24,13 +24,17 @@
                     <xpath expr="//tree//button[@name='action_assign']" position="before">
                        <field name="x_freight_cost" invisible="1"/>
                     </xpath>
-                    <xpath expr="//field[@name='x_purchase']" position="before">
+                    <xpath expr="//field[@name='x_purchase']" position="after">
                        <field name="total_sales" />
                     </xpath>
                     <xpath expr="//field[@name='x_purchase']" position="attributes">
                         <attribute name="domain">
                             [('is_freight', '=', True)]
                         </attribute>
+                        <attribute name="context">
+                            {'default_is_freight':True}
+                        </attribute>
+                        
                     </xpath>
                     
                      <!--Responsive fix-->
