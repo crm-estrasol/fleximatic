@@ -26,8 +26,8 @@ class fleximaticstock(models.Model):
             record['x_freight'] = record.x_freight_cost / (record.x_total and record.x_total or 1)
     @api.onchange('x_logistics')  
     def _onchange_purchase(self):
-        id = int(self.id)
-        items = self.env['stock.picking.batch'].search([('picking_ids','=',id )])
+        
+        items = self.env['stock.picking.batch'].search([('picking_ids','=',self.active_id )])
         for item in items:
             if self.x_logistics.id != item.x_purchase.id:
                 raise UserError(_("No puedes modificar una transfererenica ."))  
