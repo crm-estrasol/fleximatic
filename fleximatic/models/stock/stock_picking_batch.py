@@ -4,12 +4,16 @@ import logging
 _logger = logging.getLogger(__name__)
 from odoo.tools.misc import clean_context
 from odoo.exceptions import UserError
+from odoo.exceptions import ValidationError
 import sys
 class fleximaticstockbatch(models.Model):
     _inherit = 'stock.picking.batch'
     x_purchase = fields.Many2one('purchase.order',string='Logistics purchase')
     total_sales = fields.Float('Total ventas', compute='_compute_total_sales')
-
+    @api.constrains('x_purchase')
+    def _check_purchase(self):
+        if len(self.env['stock.picking.batch'].search([('x_purchase','=',self.x_purchase.id)])) > 1 and self.x_purchase:
+            raise ValidationError(_('Ya un batch con esta compra.'))
     @api.onchange('picking_ids')
     def _onchange_pickings(self):
       
