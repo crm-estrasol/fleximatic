@@ -9,14 +9,14 @@ class fleximaticstockbatch(models.Model):
     _inherit = 'stock.picking.batch'
     x_purchase = fields.Many2one('purchase.order',string='Logistics purchase')
     total_sales = fields.Float('Total ventas', compute='_compute_total_sales')
-    """
+
     @api.onchange('picking_ids')
     def _onchange_pickings(self):
-        if len(self.picking_ids) == len(self.picking_ids.filtered(lambda x:self.x_purchase == x.x_logistics ) ) :
+        if len(self.picking_ids) == len(self.picking_ids.filtered(lambda x:self.x_purchase == x.x_logistics ) ) and self.x_purchase:
             pass
         else:
-            raise UserError(_("Exediste el tamaño permitido (1mb/10000) para la imagen ."))
-    """  
+            raise UserError(_("No puedes añadir una transferencia con diferente compra relacionada ."))
+      
     @api.onchange('x_purchase')  
     def _onchange_purchase(self):    
         self.picking_ids = False
@@ -36,7 +36,7 @@ class fleximaticstockbatch(models.Model):
         for pick in self:
             if pick.picking_ids:
                if len(set( pick.picking_ids.mapped('x_logistics') )) != 1 or  len(pick.picking_ids) == 1 and pick.picking_ids[0].x_logistics.id != pick.x_purchase.id :
-                  raise UserError(_("No puedes modificar una transfererenica ."))  
+                  raise UserError(_("No puedes modificar una transfererenica que ya esta asociada a un albaran con compra asociada."))  
                pick.total_sales = sum(pick.picking_ids.mapped('x_total'))
             else:
                pick.total_sales = 0 

@@ -28,5 +28,5 @@ class fleximaticstock(models.Model):
         items = self.env['stock.picking.batch'].search([('picking_ids','=',self.id )])
         for item in items:
             if self.x_logistics.id != item.x_purchase.id:
-                raise UserError(_("No puedes modificar una transfererenica ."))  
+                raise UserError(_("No puedes cambiar la compra en una transferencia asociada a un batch ."))  
         res = super(fleximaticstock, self).write(vals)
