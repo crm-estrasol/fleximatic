@@ -21,7 +21,7 @@ class fleximaticstockbatch(models.Model):
             ids = self.picking_ids.filtered(lambda x:self.x_purchase == x.x_logistics ).mapped('id')
             self.picking_ids = [( 6, 0, [x for x in ids] ) ]
         else: 
-            ids = self.picking_ids.filtered(lambda x:self.x_purchase == False ).mapped('id')
+            ids = self.picking_ids.filtered(lambda x: x.x_logistics == False ).mapped('id')
             self.picking_ids = [( 6, 0, [x for x in ids] ) ]
                 
     @api.onchange('x_purchase')  
