@@ -25,9 +25,9 @@ class fleximaticstock(models.Model):
         for record in self:
             record['x_freight'] = record.x_freight_cost / (record.x_total and record.x_total or 1)
     def write(self, vals): 
-        self.ensure_one()
-        items = self.env['stock.picking.batch'].search([('picking_ids','=',self.id )])
-        for item in items:
-            if self.x_logistics.id != item.x_purchase.id:
-                raise UserError(_("No puedes cambiar la compra en una transferencia asociada a un batch ."))  
-        res = super(fleximaticstock, self).write(vals)
+        for mov in self:
+            items = self.env['stock.picking.batch'].search([('picking_ids','=',mov.id )])
+            for item in items:
+                if mov.x_logistics.id != item.x_purchase.id:
+                    raise UserError(_("No puedes cambiar la compra en una transferencia asociada a un batch ."))  
+            res = super(fleximaticstock, self).write(vals)
