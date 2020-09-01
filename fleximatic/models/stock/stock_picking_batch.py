@@ -10,13 +10,14 @@ class fleximaticstockbatch(models.Model):
     x_purchase = fields.Many2one('purchase.order',string='Logistics purchase')
     total_sales = fields.Float('Total ventas', compute='_compute_total_sales')
 
-    #@api.onchange('picking_ids')
-    #def _onchange_pickings(self):
-    #    if len(self.picking_ids) == len(self.picking_ids.filtered(lambda x:self.x_purchase == x.x_logistics ) ) and self.x_purchase:
-    #       pass
-    #    elif self.x_purchase:
-    #        raise UserError(_("No puedes añadir una transferencia con diferente compra relacionada ."))
-      
+    @api.onchange('picking_ids')
+    def _onchange_pickings(self):
+        if self.x_purchase:
+            ids = self.picking_ids.filtered(lambda x:self.x_purchase == x.x_logistics ).mapped('id')
+            self.picking_ids = [(6, 0, [x.id for x in ids]) ]
+        else: 
+            return 
+                
     @api.onchange('x_purchase')  
     def _onchange_purchase(self):    
         self.picking_ids = False
