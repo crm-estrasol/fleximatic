@@ -40,7 +40,9 @@ class fleximaticstockbatch(models.Model):
     @api.depends('picking_ids','picking_ids.x_total','picking_ids.x_logistics')    
     def _compute_total_sales(self):
         for pick in self:
-            if pick.picking_ids:
+            if self.x_purchase:
+                pass
+            elif pick.picking_ids:
                if len(set( pick.picking_ids.mapped('x_logistics') )) != 1 or  len(pick.picking_ids) == 1 and pick.picking_ids[0].x_logistics.id != pick.x_purchase.id :
                   raise UserError(_("No puedes modificar una transfererenica que ya esta asociada a un albaran con compra asociada."))  
                pick.total_sales = sum(pick.picking_ids.mapped('x_total'))
