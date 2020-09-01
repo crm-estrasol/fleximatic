@@ -13,7 +13,7 @@ class fleximaticstockbatch(models.Model):
     @api.constrains('x_purchase')
     def _check_purchase(self):
         if len(self.env['stock.picking.batch'].search([('x_purchase','=',self.x_purchase.id)])) > 1 and self.x_purchase:
-            raise ValidationError(_('Ya un batch con esta compra.'))
+            raise ValidationError(_('Ya existe un albaran con la misma compra.'))
     @api.onchange('picking_ids')
     def _onchange_pickings(self):
       
