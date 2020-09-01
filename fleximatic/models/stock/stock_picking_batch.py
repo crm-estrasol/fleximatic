@@ -12,9 +12,10 @@ class fleximaticstockbatch(models.Model):
 
     @api.onchange('picking_ids')
     def _onchange_pickings(self):
+      
         if self.x_purchase:
             ids = self.picking_ids.filtered(lambda x:self.x_purchase == x.x_logistics ).mapped('id')
-            self.picking_ids = [(6, 0, [x.id for x in ids]) ]
+            self.picking_ids = [( 6, 0, [x for x in ids] ) ]
         else: 
             return 
                 
