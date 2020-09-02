@@ -10,6 +10,13 @@ class fleximaticstockbatch(models.Model):
     _inherit = 'stock.picking.batch'
     x_purchase = fields.Many2one('purchase.order',string='Logistics purchase')
     total_sales = fields.Float('Total ventas', compute='_compute_total_sales')
+    x_freight = fields.Float('freight %', digits=(32, 2), compute='compute_total_porcent', store=True,)
+    x_freight_cost = fields.Monetary('Freight cost',related='x_purchase.amount_total')
+    x_total = fields.Monetary('Sale amount',related='total_sales')
+    @api.depends('x_freight','x_total','x_freight_cost')
+    def compute_total_porcent(self):
+        for record in self:
+            record['x_freight'] = record.x_freight_cost / (record.x_total and record.x_total or 1)
     @api.constrains('x_purchase')
     def _check_purchase(self):
         if len(self.env['stock.picking.batch'].search([('x_purchase','=',self.x_purchase.id)])) > 1 and self.x_purchase:
