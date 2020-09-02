@@ -56,3 +56,4 @@ class fleximaticstockbatch(models.Model):
                pick.total_sales = sum(pick.picking_ids.mapped('x_total'))
             else:
                pick.total_sales = 0 
+#aaa
