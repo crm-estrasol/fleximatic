@@ -20,7 +20,7 @@
 
     # any module necessary for this one to work correctly
     'depends': ['base','product','sale','stock','sale_margin','sale_management','purchase'
-    ,'stock_picking_batch','stock_enterprise'],
+    ,'stock_picking_batch'],
 
     # always loaded
     'data': [

@@ -7,4 +7,3 @@ from .sale import sale
 from .stock import stock_picking
 from .purchase import purchase
 from .stock import stock_picking_batch
-from ..reports import stock_report
