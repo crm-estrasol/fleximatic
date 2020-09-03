@@ -7,7 +7,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, models
-from odoo.osv.orm import browse_record, browse_null
+from odoo.osv import browse_record, browse_null
 from odoo.tools import float_is_zero
 
 
