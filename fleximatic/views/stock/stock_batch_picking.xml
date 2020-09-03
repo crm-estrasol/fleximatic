@@ -26,6 +26,9 @@
                     </xpath>
                     <xpath expr="//field[@name='x_purchase']" position="after">
                        <field name="total_sales" />
+                         <field name="x_freight_cost" />
+                      <field name="x_freight" />
+                       
                     </xpath>
                     <xpath expr="//field[@name='x_purchase']" position="attributes">
                         <attribute name="domain">
