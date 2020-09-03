@@ -19,7 +19,7 @@ class fleximaticstockbatch(models.Model):
         ('no aprobado','Not approved')
         ],string='Approve freight')
     #123s
-    @api.depends('x_freight','x_freight_cost')
+    @api.depends('total_sales')
     def compute_total_porcent(self):
         for record in self:
             record['x_freight'] = record.x_freight_cost / (record.total_sales and record.total_sales or 1)
