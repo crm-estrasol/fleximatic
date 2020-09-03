@@ -30,7 +30,8 @@
                       <field name="x_freight" />
                         <field name="x_approve_freight" 
                         
-                        attrs="{'invisible': ['|',['x_freight','&lt;=',0.06],['x_freight','&gt;=',0.1]], 'required': ['&amp;',['x_freight','&gt;',0.06],['x_purchase','!=',False]]}" />
+                        attrs="{ 'invisible': ['|',['x_freight','&lt;=',0.06],['x_freight','&gt;=',0.1]], 
+                                 'required': ['&amp;',['x_freight','&gt;',0.06],['x_purchase','!=',False]]}" />
                        
                     </xpath>
                     <xpath expr="//field[@name='x_purchase']" position="attributes">
@@ -41,6 +42,18 @@
                             {'default_is_freight':True}
                         </attribute>
                         
+                    </xpath>
+                    <xpath expr="//button[@name='confirm_picking']" position="attributes">
+                        <attribute name="attrs">
+                        { 'invisible': [
+                        
+                        '|',['state','not in',['draft'] ],
+                        '&amp;', ['x_approve_freight','!=','aprobado']],
+                        '&amp;', ['x_purchase','!=',False]],
+                        '|',     ['x_freight','&lt;=',0.06],['x_freight','&gt;=',0.1]  ],
+                        }
+                        </attribute>
+                      
                     </xpath>
                     
                      <!--Responsive fixx-->
