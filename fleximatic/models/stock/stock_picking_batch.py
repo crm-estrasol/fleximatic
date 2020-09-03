@@ -14,7 +14,7 @@ class fleximaticstockbatch(models.Model):
     x_freight = fields.Float('freight %', digits=(32, 2), compute='compute_total_porcent', store=True,)
     x_freight_cost = fields.Monetary('Freight cost',related='x_purchase.amount_total')
     
-    #123
+    #123s
     @api.depends('x_freight','x_total','x_freight_cost')
     def compute_total_porcent(self):
         for record in self:
