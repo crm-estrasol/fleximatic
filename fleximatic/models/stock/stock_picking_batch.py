@@ -10,6 +10,7 @@ class fleximaticstockbatch(models.Model):
     _inherit = 'stock.picking.batch'
     x_purchase = fields.Many2one('purchase.order',string='Logistics purchase')
     total_sales = fields.Float('Total ventas', compute='_compute_total_sales')
+    x_currency_id = fields.Many2one('res.currency',string='Currency')
     x_freight = fields.Float('freight %', digits=(32, 2), compute='compute_total_porcent', store=True,)
     x_freight_cost = fields.Monetary('Freight cost',related='x_purchase.amount_total')
     x_total = fields.Monetary('Sale amount',related='total_sales')
