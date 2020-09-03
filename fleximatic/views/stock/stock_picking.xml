@@ -10,7 +10,7 @@
                     <field name="x_logistics" context="{'default_is_freight':True}"/>
                      <field name="x_freight_cost" />
                       <field name="x_freight" />
-                       <field name="x_total" />
+                      
                    
                 </xpath>
             </field>
