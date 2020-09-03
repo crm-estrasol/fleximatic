@@ -18,7 +18,7 @@ class fleximaticstockbatch(models.Model):
     @api.depends('x_freight','x_total','x_freight_cost')
     def compute_total_porcent(self):
         for record in self:
-            record['x_freight'] = record.x_freight_cost / (record.x_total and record.x_total or 1)
+            record['x_freight'] = record.x_freight_cost / (record.total_sales and record.total_sales or 1)
     @api.constrains('x_purchase')
     def _check_purchase(self):
         if len(self.env['stock.picking.batch'].search([('x_purchase','=',self.x_purchase.id)])) > 1 and self.x_purchase:
