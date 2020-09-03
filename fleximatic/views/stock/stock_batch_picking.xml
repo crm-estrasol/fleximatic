@@ -29,8 +29,7 @@
                          <field name="x_freight_cost" />
                       <field name="x_freight" />
                         <field name="x_approve_freight" 
-                        
-                        /> <field name="x_Approve_freight" attrs="{'invisible': ['|',['x_freight','&lt;=',0.06],['x_freight','&gt;=',0.1]], 'required': ['&amp;',['x_freight','&gt;',0.06],['x_logistics','!=',False]]}" />
+                          attrs="{'invisible': ['|',['x_freight','&lt;=',0.06],['x_freight','&gt;=',0.1]], 'required': ['&amp;',['x_freight','&gt;',0.06],['x_logistics','!=',False]]}" />
                        
                     </xpath>
                     <xpath expr="//field[@name='x_purchase']" position="attributes">
