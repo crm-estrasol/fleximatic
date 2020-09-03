@@ -108,3 +108,20 @@ class fleximaticsale(models.Model):
             for products in self.order_line:
                 if products.is_promotional == True:
                     products.with_context(allow_delete=True).unlink()
+
+    @api.onchange('x_credit_after_sale')
+    def warning_client_onchange(self):
+        if self.x_credit_after_sale < 0:
+            self.no_sale_notification()
+        
+    def no_sale_notification(self):
+        notification = {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': _('Warning'),
+                'message': 'The client does not have enough credit',
+                'sticky': False,
+            }
+        }
+        return notification
