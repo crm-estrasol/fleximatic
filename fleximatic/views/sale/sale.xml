@@ -115,11 +115,9 @@
                         
                     </xpath>
                     <xpath expr="//notebook" position="before">
-                        <div>
-                            <h3 class="text-center" style="color:red;" attrs="{'invisible':[('x_credit_after_sale', '&gt;', 0)]}">
-                                The client does not have enough credit
-                            </h3>
-                        <div>
+                        <h3 class="text-center" style="color:red;" attrs="{'invisible':[('x_credit_after_sale', '&gt;', 0)]}">
+                            The client does not have enough credit
+                        </h3>
                     </xpath>
                 </field>
         </record>
