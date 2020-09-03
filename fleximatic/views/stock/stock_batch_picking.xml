@@ -18,7 +18,7 @@
                         </attribute>
                         
                          <attribute name="options">
-                            {'no_open':True,'no_create':1}
+                            {'no_open':True,'no_create':1x_logistics}
                         </attribute>
                     </xpath>
                     <xpath expr="//tree//button[@name='action_assign']" position="before">
@@ -28,7 +28,9 @@
                        <field name="total_sales" />
                          <field name="x_freight_cost" />
                       <field name="x_freight" />
-                        <field name="x_approve_freight" />
+                        <field name="x_approve_freight" 
+                        
+                        /> <field name="x_Approve_freight" attrs="{'invisible': ['|',['x_freight','<=',0.06],['x_freight','>=',0.1]], 'required': ['&amp;',['x_freight','>',0.06],['x_logistics','!=',False]]}" />
                        
                     </xpath>
                     <xpath expr="//field[@name='x_purchase']" position="attributes">
