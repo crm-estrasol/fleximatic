@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="wizard_cliente_warning" model="ir.ui.view">
+        <field name="name">sale.warning.wizard.form</field>
+        <field name="model">warning.client</field>
+        <field name="arch" type="xml">
+            <form string="Warning">
+                <h2 class="text-center" style="color:red;">
+                    The client does not have enought credit to complete the sale
+                </h2>
+            </form>
+        </field>
+    </record>
+   
+</odoo>
