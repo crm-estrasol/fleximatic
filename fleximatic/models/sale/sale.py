@@ -124,5 +124,3 @@ class fleximaticsale(models.Model):
                 return view
             else:
                 raise ValidationError('Not enter')
-        else:
-            raise ValidationError('Not enter')
