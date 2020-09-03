@@ -114,6 +114,12 @@
                          <field name="product_template_id" invisible="1"/>
                         
                     </xpath>
+
+                     <xpath expr="//notebook" position="before">
+                        <h3 class="text-center" style="color:red;" attrs="{'invisible':[('x_credit_after_sale', '&lt;', 0)]}">
+                            The client does not have enought credit to complete the sale
+                        </h3>   
+                    </xpath>
                 </field>
         </record>
                       <record id="sale_margin_sale_order_line_flexi" model="ir.ui.view">
