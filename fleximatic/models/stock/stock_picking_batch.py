@@ -13,7 +13,11 @@ class fleximaticstockbatch(models.Model):
     x_currency_id = fields.Many2one('res.currency',string='Currency')
     x_freight = fields.Float('freight %', digits=(32, 2), compute='compute_total_porcent', store=True,)
     x_freight_cost = fields.Monetary('Freight cost',related='x_purchase.amount_total')
-    
+    x_approve_freight = fields.Selection([
+        ('por aprobar','To Approve'),
+        ('aprobado','Approved'),
+        ('no aprobado','Not approved')
+        ],string='Approve freight')
     #123s
     @api.depends('x_freight','x_freight_cost')
     def compute_total_porcent(self):
