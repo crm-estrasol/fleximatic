@@ -53,12 +53,12 @@ class AccountInvoice(models.Model):
             'partner_bank_id': invoice.partner_bank_id.id,
         }
 
-    @api.multi
+    
     def _get_draft_invoices(self):
         """Overridable function to return draft invoices to merge"""
         return self.filtered(lambda x: x.state == 'draft')
 
-    @api.multi
+    
     def do_merge(self, keep_references=True, date_invoice=False,
                  remove_empty_invoice_lines=True):
         """

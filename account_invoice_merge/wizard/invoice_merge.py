@@ -66,7 +66,7 @@ class InvoiceMerge(models.TransientModel):
         self._dirty_check()
         return res
 
-    @api.multi
+    
     def merge_invoices(self):
         """To merge similar type of account invoices.
 
