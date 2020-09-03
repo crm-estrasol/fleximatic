@@ -37,7 +37,7 @@
         'wizard/sale_details.xml',
         'wizard/promotional_products.xml',
         'wizard/warning_client.xml',
-        
+
 
     ],  
      'qweb': [
