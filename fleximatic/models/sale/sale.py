@@ -109,18 +109,15 @@ class fleximaticsale(models.Model):
                 if products.is_promotional == True:
                     products.with_context(allow_delete=True).unlink()
 
-    @api.onchange('x_credit_after_sale')
+    @api.onchange('x_credit_after_sale','amount_total','payment_term_id')
     def warning_client_onchange(self):
-        if self.x_credit_after_sale < 0:
-            notification = {
-                'type': 'ir.actions.client',
-                'tag': 'display_notification',
-                'params': {
-                    'title': _('Warning!'),
-                    'message': 'The client does not have enough credit',
-                    'sticky': True,
-                }
+        if self.x_credit_after_sale < 0 and self.amount_total > 0 and self.payment_term_id.name not in ['Pago inmediato','Immediate Payment']:
+            view = {
+                'name': ('Agregar productos promocionales'),
+                'view_type': 'form',
+                'view_mode': 'form',
+                'res_model': 'warning.client',
+                'type': 'ir.actions.act_window',
+                'target':'new',
             }
-            return notification
-        else:
-            pass
+            return view

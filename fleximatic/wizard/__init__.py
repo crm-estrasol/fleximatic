@@ -4,3 +4,4 @@
 
 from . import sale_details
 from . import promotional_products
+from . import warning_client
