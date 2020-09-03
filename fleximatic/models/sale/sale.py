@@ -116,9 +116,11 @@ class fleximaticsale(models.Model):
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
                 'params': {
-                    'title': _('Warning'),
+                    'title': _('Warning!'),
                     'message': 'The client does not have enough credit',
-                    'sticky': False,
+                    'sticky': True,
                 }
             }
             return notification
+        else:
+            pass
