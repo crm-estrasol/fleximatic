@@ -50,7 +50,7 @@
                                                '&amp;',
                                                 ['x_approve_freight','!=','aprobado' ],
                                                '|',['x_freight','&lt;=',0.06],['x_freight','&gt;=',0.1]
-                                               ,['x_purcase','!=',False],
+                                               ,['x_purchase','!=',False],
                                                                
                                         ]
 
