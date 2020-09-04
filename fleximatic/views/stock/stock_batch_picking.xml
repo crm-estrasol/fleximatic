@@ -41,25 +41,6 @@
                         </attribute>
                         
                     </xpath>
-                    <xpath expr="//button[@name='confirm_picking']" position="attributes">
-                        <attribute name="attrs">
-                        { 'invisible': [
-                        
-                                       
-                                        '&amp;',
-                                               '&amp;',
-                                                ['x_approve_freight','!=','aprobado' ],
-                                               '|',['x_freight','&lt;=',0.06],['x_freight','&gt;=',0.1]
-                                               ,['x_purchase','!=',False],
-                                                               
-                                        ]
-
-                                   
-
-                        }
-                        </attribute>
-                      
-                    </xpath>
                     
                     
                 </field>
