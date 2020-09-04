@@ -47,7 +47,7 @@
                         <attribute name="attrs">
                         { 'invisible': [
                         
-                                        '|',['state','not in',['draft'] ],
+                                        '|',['state','not in',['draft'] ,
                                         '&amp;', ['x_approve_freight','!=','aprobado'],
                                         '&amp;', ['x_purchase','!=',False],
                                         '|',     ['x_freight','&lt;=',0.06],
