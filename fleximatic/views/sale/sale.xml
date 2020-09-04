@@ -119,7 +119,7 @@
                         <group attrs="{'invisible':[
                                                     '|',
                                                     ('state', 'not in ', ['draft','sent']
-                                                    )
+                                                    ),
                                                     '&amp;',
                                                     ('x_credit_after_sale', '&gt;', 0 ),
                                                     ('payment_term_id', 'not in', ['1',False] ) ,
