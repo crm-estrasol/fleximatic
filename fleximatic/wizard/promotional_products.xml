@@ -19,7 +19,9 @@
                             <field name="total"/>
                         </tree>
                     </field>
-                    
+                    <h2 attrs="{'invisible':[('points', '>=', 0)]}">
+                        Not enough points to add product(s)
+                    </h2>
                     <group>
                         <group class="text-right">
                             <field name="points" readonly="1"/>

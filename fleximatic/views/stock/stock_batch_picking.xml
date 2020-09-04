@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
+    <!--<data>
         <record id="inherit_stock_picking_batch_form_flexi" model="ir.ui.view">
                 <field name="name">sale.order.inherit.form.flexi</field>
                 <field name="model">stock.picking.batch</field>
@@ -8,11 +8,11 @@
                 <field name="arch" type="xml">
                     
                      <xpath expr="//sheet//field[@name='picking_ids']" position="attributes">
-                        <!--
+                        
                         <attribute name="attrs">
                          {'readonly': ['|',('state', 'in', ('sale','done', 'cancel')),('is_promotional', '=', True) ], 'required': [('display_type', '=', False)],}
                         </attribute>
-                        -->
+                        
                         <attribute name="domain">
                          [('x_logistics', '=', False)]
                         </attribute>
@@ -64,10 +64,9 @@
                       
                     </xpath>
                     
-                     <!--Responsive fixx-->
-                     
+                    
                 </field>
         </record>
                      
-    </data>
+    </data>-->
 </odoo>

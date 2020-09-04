@@ -13,12 +13,12 @@
                         <field name="points" invisible="1"/>
                         <field name="r_points"/>
                     </xpath>
-                    <!--
+                    
                     <xpath expr="//field[@name='payment_term_id']" position="after">       
-                      <button name="show_pricelistAvaible" string="Pricelist" type="object" class="btn-primary" attrs="{'invisible': ['|',('state', '=', 'done'),'|',('state', '=', 'cancel'),'|',('state', '=', 'sale'),('order_line', '=', [] )]}"/>   
-                      <button name="open_wizard_promotional" string="Promotional products" type="object" class="btn-primary" attrs="{'invisible':[('state','in',['done','cancel'])]}"/>
+                        <field name="x_credit"/>
+                        <field name="x_credit_after_sale"/>
                     </xpath>
-                    <xpath expr="//field[@name='sale_order_template_id']" position="after">       
+                    <!--<xpath expr="//field[@name='sale_order_template_id']" position="after">       
                       <button name="remove_promotional_products" string="Remove promotional products" type="object" class="btn-primary" attrs="{'invisible':[('state','in',['done','cancel'])]}"/>
                     </xpath>
                     -->
@@ -113,6 +113,15 @@
                         <field name="puntos_venta"/>
                          <field name="product_template_id" invisible="1"/>
                         
+                    </xpath>
+
+                     <xpath expr="//notebook" position="before">
+                        <group attrs="{'invisible':[('x_credit_after_sale', '>=', 0)]}">
+                             <h3 class="text-center" style="color:red;" >
+                                The client does not have enought credit to complete the sale
+                            </h3>   
+                        </group>
+                       
                     </xpath>
                 </field>
         </record>
