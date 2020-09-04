@@ -24,6 +24,10 @@
                        '|',['state','not in',('draft','sent','aprobado')],
                        '&amp;','&amp;',['x_credit_after_sale','&lt;',0],['state','!=','aprobado'],['payment_term_id','!=',1]]}"/>
                     </xpath>
+                    <xpath expr="//button[@name='action_cancel']" position="replace">       
+                        <button name="action_cancel" states="draft,sent,sale,por aprobar,aprobado,no aprobado" type="object" string="Cancel"/>
+                    </xpath>
+                   
                     
                      <xpath expr="//field[@name='order_line']" position="before">    
                         <div class="row mb-2">
