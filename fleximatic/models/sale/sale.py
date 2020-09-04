@@ -20,7 +20,7 @@ class fleximaticsale(models.Model):
         string='Approve')
     state = fields.Selection(selection_add=[('por aprobar','To Approve'),
         ('aprobado','Approved'),
-        ('no aprobado','Not approved')])
+        ('no aprobado','Not approved')],readonly=True, copy=False, index=True, tracking=3, default='draft')
     x_credit = fields.Monetary(related='partner_id.x_credit',string='Available Credit')
     x_credit_after_sale = fields.Monetary('Credit After Sale',compute = 'compute_credit_after_sale')
     points = fields.Float('Points',digits=(32, 2), compute='_compute_total_points',store=True)
