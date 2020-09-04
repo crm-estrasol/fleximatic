@@ -129,7 +129,7 @@
                                                          '&amp;',
 
                                                                 ('x_credit_after_sale', '&gt;=', 0),
-                                                                ('payment_term_id', 'not in', ['1',False]) , True 
+                                                                ('payment_term_id', 'not in', [1,False]) , True 
    
                                                         
 
