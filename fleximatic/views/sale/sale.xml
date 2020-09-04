@@ -119,11 +119,17 @@
                         <group attrs="{'invisible':     [
                                                          
                                                          '|',  
+                                                         '|',
+                                                                ('state', '=', 'done'),
+                                                          '|',   
+                                                                ('state', '=', 'cancel'),
+                                                           
                                                                 ('payment_term_id', 'in', ['1',False]) ,
-
+                                                                
                                                          '&amp;',
+
                                                                 ('x_credit_after_sale', '&gt;=', 0),
-                                                                ('payment_term_id', 'not in', ['1',False]) ,
+                                                                ('payment_term_id', 'not in', ['1',False]) , True 
    
                                                         
 
