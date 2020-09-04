@@ -29,7 +29,8 @@ class fleximaticsale(models.Model):
     def _onchange_approve(self):
         status = ['draft','sent','por aprobar','aprobado','no aprobado']
         if self.state in status and self.x_credit_after_sale < 0 and self.payment_term_id != 1  :
-            self.state = self.x_approve 
+            self.update({
+                'state': self.x_approve}) 
     def show_pricelistAvaible(self):
         if self.order_line:   
             view_id = self.env.ref('fleximatic.view_sale_pricelist_wizard').id
