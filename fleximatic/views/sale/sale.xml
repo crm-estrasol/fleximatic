@@ -124,7 +124,7 @@
                                                           '|',   
                                                                 ('state', '=', 'cancel'),
                                                            
-                                                                ('payment_term_id', 'in', ['1',False]) ,
+                                                                ('payment_term_id', 'in', [1,False]) ,
                                                                 
                                                          '&amp;',
 
