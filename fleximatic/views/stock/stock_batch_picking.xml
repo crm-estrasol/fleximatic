@@ -27,7 +27,7 @@
                          <field name="x_freight_cost" />
                       <field name="x_freight" />
                         <field name="x_approve_freight" 
-                        
+                         groups="sales_team.group_sale_manager"
                         attrs="{ 'invisible': ['|',['x_freight','&lt;=',0.06],['x_freight','&gt;=',0.1]], 
                                  'required': ['&amp;',['x_freight','&gt;',0.06],['x_purchase','!=',False]]}" />
                        
