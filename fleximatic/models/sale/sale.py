@@ -25,12 +25,7 @@ class fleximaticsale(models.Model):
     x_credit_after_sale = fields.Monetary('Credit After Sale',compute = 'compute_credit_after_sale')
     points = fields.Float('Points',digits=(32, 2), compute='_compute_total_points',store=True)
     r_points = fields.Float('Remaining points',digits=(32,2), compute='_compute_total_remaining_points')
-    @api.onchange('x_approve')
-    def _onchange_approve(self):
-        status = ['draft','sent','por aprobar','aprobado','no aprobado']
-        if self.state in status and self.x_credit_after_sale < 0 and self.payment_term_id != 1  :
-            self.update({
-                'state': self.x_approve}) 
+        
     def show_pricelistAvaible(self):
         if self.order_line:   
             view_id = self.env.ref('fleximatic.view_sale_pricelist_wizard').id
@@ -105,6 +100,9 @@ class fleximaticsale(models.Model):
 
     
     def write(self, vals):
+        status = ['draft','sent','por aprobar','aprobado','no aprobado']
+        if  'x_approve' in vals and self.state in status and self.x_credit_after_sale < 0 and self.payment_term_id != 1  :
+                vals['state'] = vals['x_approve'] 
         res = super(fleximaticsale, self).write(vals)
         if self.r_points < 0:
             raise ValidationError(('Error! Not enough points to complete the sale'))
