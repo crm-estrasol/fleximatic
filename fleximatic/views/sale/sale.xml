@@ -117,10 +117,16 @@
 
                      <xpath expr="//notebook" position="before">
                         <group attrs="{'invisible':     [
-                                        
+                                                         
+                                                         '|',  
+                                                                ('payment_term_id', 'in', ['1',False]) ,
+
                                                          '&amp;',
-                                                                ('x_credit_after_sale', '&gt;', 0),
+                                                                ('x_credit_after_sale', '&gt;=', 0),
                                                                 ('payment_term_id', 'not in', ['1',False]) ,
+   
+                                                        
+
                                                                 
                                                                 ]
                                                         
