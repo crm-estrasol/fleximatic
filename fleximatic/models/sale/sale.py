@@ -27,7 +27,8 @@ class fleximaticsale(models.Model):
     r_points = fields.Float('Remaining points',digits=(32,2), compute='_compute_total_remaining_points')
     @api.onchange('x_approve')
     def _onchange_approve(self):
-        if self.state in ['draft','sent','por aprobar','aprobado','no aprobado'] and self.x_approve  :
+        status = ['draft','sent','por aprobar','aprobado','no aprobado']
+        if self.state in status and self.x_credit_after_sale < 0 and self.payment_term_id != 1  :
             self.state = self.x_approve 
     def show_pricelistAvaible(self):
         if self.order_line:   
