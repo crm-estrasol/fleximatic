@@ -116,7 +116,7 @@
                     </xpath>
 
                      <xpath expr="//notebook" position="before">
-                        <group attrs="{'invisible':['&amp;',('x_credit_after_sale', '&gt;', 0),'|',('payment_term_id', '=', 1),'|',('payment_term_id', '=', False),('state', 'not in ', ['draft','sent'])]}">
+                        <group attrs="{'invisible':['&amp;',('x_credit_after_sale', '&gt;', 0),'&amp;',('payment_term_id', '=', 1),'|',('payment_term_id', '=', False),('state', 'not in ', ['draft','sent'])]}">
                              <h3 class="text-center" style="color:red;" >
                                 The client does not have enought credit to complete the sale
                             </h3>   
