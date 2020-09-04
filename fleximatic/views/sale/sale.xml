@@ -119,7 +119,9 @@
                         <group attrs="{'invisible':[
                                                     '|','&amp;',('x_credit_after_sale', '&gt;', 0),
                                                     ('payment_term_id', 'not in', ['1',False]) ,
-                                                    ('state', 'not in ', ['draft','sent'])]
+                                                    ('state', 'not in ', ['draft','sent'])
+                                                    
+                                                    ]
                                                     
                                                     }">
                              <h3 class="text-center" style="color:red;" >
