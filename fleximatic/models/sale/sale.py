@@ -25,7 +25,15 @@ class fleximaticsale(models.Model):
     x_credit_after_sale = fields.Monetary('Credit After Sale',compute = 'compute_credit_after_sale')
     points = fields.Float('Points',digits=(32, 2), compute='_compute_total_points',store=True)
     r_points = fields.Float('Remaining points',digits=(32,2), compute='_compute_total_remaining_points')
-        
+    def action_draft(self):
+        orders = self.filtered(lambda s: s.state in ['cancel', 'sent'])
+        return orders.write({
+            'x_approve': False,
+            'state': 'draft',
+            'signature': False,
+            'signed_by': False,
+            'signed_on': False,
+        })    
     def show_pricelistAvaible(self):
         if self.order_line:   
             view_id = self.env.ref('fleximatic.view_sale_pricelist_wizard').id
@@ -111,6 +119,7 @@ class fleximaticsale(models.Model):
     
 #x
     def remove_promotional_products(self):
+
         if self.order_line:
             for products in self.order_line:
                 if products.is_promotional == True:
