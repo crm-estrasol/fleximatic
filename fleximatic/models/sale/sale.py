@@ -18,10 +18,17 @@ class fleximaticsale(models.Model):
         ('aprobado','Approved'),
         ('no aprobado','Not approved')],
         string='Approve')
+    state = fields.Selection(selection_add=[('por aprobar','To Approve'),
+        ('aprobado','Approved'),
+        ('no aprobado','Not approved')])
     x_credit = fields.Monetary(related='partner_id.x_credit',string='Available Credit')
     x_credit_after_sale = fields.Monetary('Credit After Sale',compute = 'compute_credit_after_sale')
     points = fields.Float('Points',digits=(32, 2), compute='_compute_total_points',store=True)
     r_points = fields.Float('Remaining points',digits=(32,2), compute='_compute_total_remaining_points')
+    @api.onchange('x_approve')
+    def _onchange_approve(self):
+        if self.state in ['draft','sent']:
+            self.state = self.x_approve 
     def show_pricelistAvaible(self):
         if self.order_line:   
             view_id = self.env.ref('fleximatic.view_sale_pricelist_wizard').id
