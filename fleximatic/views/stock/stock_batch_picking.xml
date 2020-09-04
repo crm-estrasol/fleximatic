@@ -47,10 +47,18 @@
                         <attribute name="attrs">
                         { 'invisible': [
                         
-                        '|',['state','not in',['draft'] ],
-                        '&amp;', ['x_approve_freight','!=','aprobado'],
-                        '&amp;', ['x_purchase','!=',False],
-                        '|',     ['x_freight','&lt;=',0.06],['x_freight','&gt;=',0.1]  ],
+                                        '|',['state','not in',['draft'] ],
+                                        '&amp;', ['x_approve_freight','!=','aprobado'],
+                                        '&amp;', ['x_purchase','!=',False],
+                                        '|',     ['x_freight','&lt;=',0.06],
+                                                 ['x_freight','&gt;=',0.1]                          
+                                        ]
+
+                                    [ '&amp;', ['x_purchase','!=',False],['x_approve_freight','!=','aprobado'] ],
+                                    '&amp;',
+                                                '|',['x_freight','&lt;=',0.06],
+                                                 ['x_freight','&gt;=',0.1]   
+
                         }
                         </attribute>
                       
