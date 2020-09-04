@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!--<data>
+    <data>
         <record id="fleximatic_stock_picking" model="ir.ui.view">
             <field name="name">stock.picking.inherith.form</field>
             <field name="model">stock.picking</field>
@@ -11,5 +11,5 @@
                 </xpath>
             </field>
         </record>
-    </data>-->
+    </data>
 </odoo>
