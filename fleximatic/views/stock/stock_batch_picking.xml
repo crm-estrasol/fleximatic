@@ -47,7 +47,7 @@
 
                                   
                                   '&amp;',
-                                    ('x_logistics', '!=', False), 
+                                    ('x_purchase', '!=', False), 
                                   '&amp;',  
                                     ('x_approve_freight', '!=', 'aprobado'),
                                   '|',['x_freight','&gt;',0.06],['x_freight','&lt;',0.1]
