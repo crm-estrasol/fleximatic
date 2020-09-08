@@ -12,7 +12,7 @@
                         
                         
                         <attribute name="domain">
-                         [('x_logistics', '=', False)]
+                         [('x_logistics', '=', x_purchase)]
                         </attribute>
                         
                          <attribute name="options">
@@ -43,14 +43,14 @@
                     </xpath>
                      <xpath expr="//button[@name='confirm_picking']" position="attributes">
                         <attribute name="attrs">
-                        { 'invisible': [
+                       { 'invisible': [
 
                                   
                                   '&amp;',
                                     ('x_purchase', '!=', False), 
                                   '&amp;',  
                                     ('x_approve_freight', '!=', 'aprobado'),
-                                  '&amp;',['x_freight','&lt;',0.06],['x_freight','&gt;',0.1]
+                                  '&amp;',['x_freight','&gt;',0.06],['x_freight','&lt;',0.1]
                         
                                  ],
                         }
