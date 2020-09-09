@@ -26,7 +26,8 @@ class ConfirmSales(models.TransientModel):
     
 
     def action_confirm(self):
-        for sale in self.sales_ids:
+        
+        for sale in self.env['sale.order'].browse(self.sales_ids.ids):
             sale.action_confirm()
         
 
