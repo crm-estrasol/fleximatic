@@ -174,10 +174,11 @@
             <field name="state">code</field>
             
             <field name="code">
-                    for record in records:
-                            record.action_multi_confirm()
-                            
+                if records:
+                    records.action_bom_cost()
          </field>
         </record>
+
+       
     </data>
 </odoo>
