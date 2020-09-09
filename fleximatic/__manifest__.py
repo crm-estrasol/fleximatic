@@ -37,6 +37,7 @@
         'wizard/sale_details.xml',
         'wizard/promotional_products.xml',
         'wizard/warning_client.xml',
+        'wizard/fleximatic_multi_confirm_sale.xml',
 
 
     ],  

@@ -5,3 +5,4 @@
 from . import sale_details
 from . import promotional_products
 from . import warning_client
+from . import fleximatic_multi_confirm_sale
