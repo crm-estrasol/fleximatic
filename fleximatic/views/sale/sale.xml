@@ -175,7 +175,7 @@
             
             <field name="code">
                 if records:
-                    records.action_bom_cost()
+                    records.action_multi_confirm()
          </field>
         </record>
 
