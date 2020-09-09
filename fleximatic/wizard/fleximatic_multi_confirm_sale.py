@@ -26,7 +26,6 @@ class ConfirmSales(models.TransientModel):
     
 
     def action_confirm(self):
-        self.ensure_one()
         for sale in self.sales_ids:
             sale.action_confirm()
         
