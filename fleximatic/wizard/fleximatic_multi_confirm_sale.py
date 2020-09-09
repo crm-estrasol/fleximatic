@@ -18,7 +18,7 @@ class ConfirmSales(models.TransientModel):
         if record_ids:
             if 'sales_ids' in fields:
                 sales_ids = self.env['sale.order'].browse(record_ids)
-                result['sales_ids'] = sales_ids
+                result['sales_ids'] = [ (6, 0, sales_ids.ids ) ]
 
         return result
 
