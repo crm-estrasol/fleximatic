@@ -8,7 +8,7 @@ class ConfirmSales(models.TransientModel):
 
     _name = 'fleximatic.multi.confirm.sale'
     _description = 'Confirmar masivo'
-"
+
     @api.model
     def default_get(self, fields):
     
