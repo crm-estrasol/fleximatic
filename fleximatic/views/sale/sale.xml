@@ -172,7 +172,12 @@
             <field name="binding_model_id" ref="sale.model_sale_order"/>
             <field name="binding_view_types">list</field>
             <field name="state">code</field>
-            <field name="code">action = model.action_multi_confirm()</field>
+            
+            <field name="code">
+                    for record in records:
+                            record.action_multi_confirm()
+                            
+         </field>
         </record>
     </data>
 </odoo>
