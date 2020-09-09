@@ -105,9 +105,9 @@ class fleximaticsale(models.Model):
                 for line in sale.order_line:
                     if line.is_promotional == True:
                         puntos_gastados += line.puntos_venta * line.product_uom_qty
-                self.r_points = self.points - puntos_gastados
+                sale.r_points = sale.points - puntos_gastados
             else:
-                self.r_points = self.points
+                sale.r_points = sale.points
 
     
     def write(self, vals):
