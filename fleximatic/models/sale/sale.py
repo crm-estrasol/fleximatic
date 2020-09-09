@@ -26,7 +26,8 @@ class fleximaticsale(models.Model):
     points = fields.Float('Points',digits=(32, 2), compute='_compute_total_points',store=True)
     r_points = fields.Float('Remaining points',digits=(32,2), compute='_compute_total_remaining_points')
     def action_multi_confirm(self):
-        self.action_confirm()
+        for sale in self.browse(self.env.context['active_ids']):
+            sale.action_confirm()
     def action_draft(self):
         orders = self.filtered(lambda s: s.state in ['cancel', 'sent'])
         return orders.write({
