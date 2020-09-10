@@ -2,7 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import api, fields, models
-
+from odoo.exceptions import AccessError, UserError, ValidationError
 
 class ConfirmSales(models.TransientModel):
 
@@ -11,13 +11,17 @@ class ConfirmSales(models.TransientModel):
 
     @api.model
     def default_get(self, fields):
-    
+        raise ValidationError(('Error! Not enough points to complete the sale'))
         record_ids = self._context.get('active_ids')
         result = super(ConfirmSales, self).default_get(fields)
 
         if record_ids:
             if 'sales_ids' in fields:
+
                 sales_ids = self.env['sale.order'].browse(record_ids)
+                for sale in sales_ids:
+                    if sale.state not in ['draft','sent']:
+                        raise ValidationError(("""This sale status is not draft or sent  """ % (sale.name)))
                 result['sales_ids'] = [ (6, 0, sales_ids.ids ) ]
 
         return result
