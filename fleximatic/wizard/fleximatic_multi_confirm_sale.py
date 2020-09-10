@@ -19,7 +19,7 @@ class ConfirmSales(models.TransientModel):
             if 'sales_ids' in fields:
                 sales_ids = self.env['sale.order'].browse(record_ids)
                 for sale in sales_ids:
-                    if sale.state not in ['draft','sent']:
+                    if sale.state not in ['draft','sent','aprobado']:
                         raise ValidationError(("""Sale (%s) status is not draft or sent  """ % (sale.name)))
                     if sale.payment_term_id not in [1,False]:
                         if sale.x_credit < 0: 
