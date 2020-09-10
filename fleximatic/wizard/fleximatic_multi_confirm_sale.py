@@ -11,7 +11,7 @@ class ConfirmSales(models.TransientModel):
 
     @api.model
     def default_get(self, fields):
-        raise ValidationError(('Error! Not enough points to complete the sale'))
+       
         record_ids = self._context.get('active_ids')
         result = super(ConfirmSales, self).default_get(fields)
 
