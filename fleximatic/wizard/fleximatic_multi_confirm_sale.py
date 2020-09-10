@@ -22,6 +22,7 @@ class ConfirmSales(models.TransientModel):
                     if sale.state not in ['draft','sent']:
                         raise ValidationError(("""Sale (%s) status is not draft or sent  """ % (sale.name)))
                     if sale.payment_term_id.id not in [1,False]:
+                        raise ValidationError(("""Sale (%s) requiere to be approved  """ % (sale.name)))
                         if sale.x_credit < 0: 
                             if sale.state != 'aprobado':
                                 raise ValidationError(("""Sale (%s) requiere to be approved  """ % (sale.name)))
