@@ -7,9 +7,12 @@
             <field name="arch" type="xml">
                 <form string="Multi confirm sales">
             
-                   
                     <group string="Sale orders">
                         <h2>Selected sales</h2>
+                        
+                    </group>
+                    <group string="Sale orders">
+                       
                         <field name="sales_ids" nolabel="1" readonly="1">
                             <tree>
                                 <field name="name"/>
