@@ -30,7 +30,7 @@
 
         <act_window
             id="action_merge_opportunities"
-            name="Confirm multi"
+            name="Confirm multi sales"
             res_model="fleximatic.multi.confirm.sale"
             binding_model="sale.order"
             binding_views="list"
