@@ -21,7 +21,7 @@ class ConfirmSales(models.TransientModel):
                 sales_ids = self.env['sale.order'].browse(record_ids)
                 for sale in sales_ids:
                     if sale.state not in ['draft','sent']:
-                        raise ValidationError(("""This sale status is not draft or sent  """ % (sale.name)))
+                        raise ValidationError(("""Sale (%s) status is not draft or sent  """ % (sale.name)))
                 result['sales_ids'] = [ (6, 0, sales_ids.ids ) ]
 
         return result
