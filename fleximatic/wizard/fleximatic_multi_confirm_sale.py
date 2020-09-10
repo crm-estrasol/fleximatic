@@ -25,7 +25,7 @@ class ConfirmSales(models.TransientModel):
                     if sale.payment_term_id not in [1,False]:
                         if sale.x_credit < 0: 
                             if sale.state != 'aprobado':
-                                raise ValidationError(("""Sale (%s) requiere to be validated  """ % (sale.name)))
+                                raise ValidationError(("""Sale (%s) requiere to be approved  """ % (sale.name)))
                 result['sales_ids'] = [ (6, 0, sales_ids.ids ) ]
 
         return result
