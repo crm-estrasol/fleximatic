@@ -6,7 +6,7 @@ class fleximaticcontact(models.Model):
     
     _inherit = 'res.partner'
 
-    x_credit = fields.Monetary('Available Credit',compute = 'compute_total_credit')
+    x_credit = fields.Monetary('Available Credit',compute = 'compute_total_credit',store=True)
     x_sale = fields.One2many('sale.order','partner_id',string='Orders to invoiced',domain=[('state','=','sale'),('invoice_status','!=','invoiced')])
 
     @api.depends('x_credit','credit_limit','credit','x_sale','x_sale.invoice_status')
