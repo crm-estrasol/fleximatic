@@ -36,6 +36,7 @@ class ConfirmSales(models.TransientModel):
         
         for sale in self.env['sale.order'].browse(self.sales_ids.ids):
             sale.action_confirm()
-        
+    def cancel(self):
+        return {'type': 'ir.actions.act_window_close'}
 
    

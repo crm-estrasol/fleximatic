@@ -122,7 +122,6 @@ class fleximaticsale(models.Model):
     
 #x
     def remove_promotional_products(self):
-
         if self.order_line:
             for products in self.order_line:
                 if products.is_promotional == True:

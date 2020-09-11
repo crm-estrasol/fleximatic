@@ -19,9 +19,9 @@
                         </field>
                     </group>
                
-                    <footer>
-                        <button name="action_confirm" type="object" string="Confirm all" class="btn-primary"/>
-                        
+                      <footer>
+                        <button name="action_confirm" string="Generate purchase" type="object" class="btn-primary"/>
+                        <button name="cancel" string="Cancel" type="object" class="btn-primary"/>
                     </footer>
                 
                 </form>
