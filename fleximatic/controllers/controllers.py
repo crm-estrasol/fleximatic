@@ -14,7 +14,7 @@ import copy
 _logger = logging.getLogger(__name__)
 import pytz
 
- class Flexomatic(http.Controller):
+class Flexomatic(http.Controller):
      @http.route('/flexi/find_of/', auth='public')
      def index(self, **kw):
          return "Hello, world"
