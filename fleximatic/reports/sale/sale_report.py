@@ -9,7 +9,7 @@ class SaleReportFlexi(models.Model):
     acount_move = fields.Char(string='Facturas')
     invoice_date = fields.Date(string="Fecha factura")
     def _query(self, with_clause='', fields={}, groupby='', from_clause=''):
-        #fields['invoice_line_id'] = ', soli.invoice_line_id as invoice_line_id'
+        #fields['invoice_line_id'] = ', soli.invoice_line_id as invoice_line_id's
         fields['acount_move'] = ', aci.name as acount_move'
         fields['invoice_date'] = ', aci.invoice_date as invoice_date'
         groupby += ', aci.name , aci.invoice_date'
