@@ -13,5 +13,17 @@
                 </xpath>
             </field>
         </record>
+        <record id="fleximatic_product_template" model="ir.ui.view">
+            <field name="name">product.template.inherith.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='categ_id']" position="after">
+                    <field name="upc_13"/>
+                    <field name="dun_14"/>
+                    <field name="item"/>
+                </xpath>
+            </field>
+        </record>
     </data>
 </odoo>
