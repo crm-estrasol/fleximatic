@@ -13,9 +13,10 @@ import logging
 import copy
 _logger = logging.getLogger(__name__)
 import pytz
-
+import json
 class Flexomatic(http.Controller):
-     @http.route('/flexi/find_of/',  type='http', auth='none')
+     @http.route('/flexi/items/',  type='http', auth='none')
      def index(self, **kw):
-         return "Hello, world"
+         data = json.loads(kw['json'])
+         return str(data)
 
