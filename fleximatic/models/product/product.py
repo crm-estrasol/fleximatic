@@ -12,3 +12,6 @@ class fleximaticproduct(models.Model):
     upc_13 = fields.Char('UPC 13')
     dun_14 = fields.Char('DUN14')
     item = fields.Char('ITEM')
+
+    def find_products(self,args):
+        return {'Hola':args}
