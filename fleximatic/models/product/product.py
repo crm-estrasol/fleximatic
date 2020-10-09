@@ -14,4 +14,26 @@ class fleximaticproduct(models.Model):
     item = fields.Char('ITEM')
 
     def find_products(self,args):
-        return {'Hola':args}
+        try:
+            products = self.env['product.templte'].search([('item','in',args)])
+            data = [{
+                    '%s' % (x['item']) : {
+                                    'dun14':x["dun_14"],
+                                    'codigo':x["barcode"],
+                                    'descripcion':x["description_sale"]
+                                    }
+                    } for x in products ]
+        except:  
+            return {
+                    
+                            'success':204,
+                            'data':[],
+                            'message':"Something went wrong check the params."
+                    }
+        
+        return  {
+                        
+                            'success': 200 if products else 204,
+                            'data':data  if products else [],
+                            'message': "Succces" if products else "There is not records.",
+                    }
