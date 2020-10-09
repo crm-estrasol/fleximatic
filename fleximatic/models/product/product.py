@@ -15,7 +15,7 @@ class fleximaticproduct(models.Model):
 
     def find_products(self,args):
         try:
-            products = self.env['product.templte'].search([('item','in',args)])
+            products = self.env['product.template'].search([('item','in',args)])
             data = [{
                     '%s' % (x['item']) : {
                                     'dun14':x["dun_14"],
