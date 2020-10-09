@@ -15,8 +15,8 @@ _logger = logging.getLogger(__name__)
 import pytz
 import json
 class Flexomatic(http.Controller):
-     @http.route('/flexi/items/',  type='http', auth='none')
-     def index(self, **kw):
-         data = json.loads(kw['json'])
-         return str(data)
-
+     @http.route('/flexi/items/', methods=['POST'], auth="user", csrf=False)
+     def index(self, **kw): 
+         _logger.info("heeeeeeeeeeee"+str(json.loads( list(kw.keys())[0] ) ) )
+         return "{'hola':5}"
+    
