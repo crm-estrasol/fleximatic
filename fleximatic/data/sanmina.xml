@@ -5,7 +5,7 @@
     <template id="sanmina" name="Sanmina [auto]">
         <t t-set="cfdi_values" t-value="record._l10n_mx_edi_create_cfdi_values()"/>
         <Documento>
-                    <t t-esc="record.name"/>
+                    <t t-esc="record.adenda_walmart()"/>
         </Documento>
     </template>
 
