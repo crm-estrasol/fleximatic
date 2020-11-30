@@ -38,6 +38,7 @@
         'wizard/promotional_products.xml',
         'wizard/warning_client.xml',
         'wizard/fleximatic_multi_confirm_sale.xml',
+        'data/sanmina.xml',
 
 
     ],  
