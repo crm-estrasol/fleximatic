@@ -39,6 +39,7 @@
         'wizard/warning_client.xml',
         'wizard/fleximatic_multi_confirm_sale.xml',
         'data/sanmina.xml',
+        'data/airbus.xml',
 
 
     ],  
