@@ -5,6 +5,8 @@ from odoo import api, fields, models, SUPERUSER_ID, _
 class fleximatiAccountMove(models.Model):
     
     _inherit = 'account.move'
+    num_order = fields.Char('Numero de orden de compra')
+    addenda_verify = fields.Char(related="partner_id.l10n_mx_edi_addenda.name")
     def adenda_walmart(self,actual_inv):
         actual_inv = actual_inv
         #Vars needed
