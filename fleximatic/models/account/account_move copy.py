@@ -17,6 +17,8 @@ class fleximatiAccountMove(models.Model):
         letterTot_s5 = "Pendiente "
         purchaseOrderId_s6 = "Pendiente"
         invoiceSerie_s7 = "pendiente"
+        buyEanCode_s
+        creditDays
         #----------Segments
         segments.append("""UNB+UNOA:2+MXG1390:ZZ+925485MX00:8+%s:%s+%s'""" % (date_s1,hour_s1,control))
         #pendiente
@@ -45,4 +47,6 @@ class fleximatiAccountMove(models.Model):
         segments.append("""NAD+SU+7504023427002::9++FLEXIMATIC SA DE CV+CAMINO REAL DE COLIMA:901 14+SANTA ANITA+JALISCO+45645'""")
         #RFC fleximatic  
         segments.append("""RFF+GN:FLE980113E95'""")
+        #RFC fleximatic  
+        segments.append("""RFF+IA:%s'""")
         return "".join(segments)
