@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--This is the addenda-->
+    <template id="walmart" name="Walmart [auto]">
+        <t t-set="cfdi_values" t-value="record._l10n_mx_edi_create_cfdi_values()"/>
+        <Documento><t t-esc="record.adenda_walmart(record)"/></Documento>
+    </template>
+
+    <record id="walmart" model="ir.ui.view">
+        <field name="l10n_mx_edi_addenda_flag">True</field>
+    </record>
+
+</odoo>

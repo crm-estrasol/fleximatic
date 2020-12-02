@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="fleximatic_account_move" model="ir.ui.view">
+            <field name="name">account.move.inherith.form.flexi</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//page[@id='other_tab_entry']" position="before">
+                    <page id="addenda_walmart" string="Addenda walmart" name="addenda_walmart" attrs="{'invisible': [('state', '!=', 'draft')]}">
+                               
+                                <group id="addenda_group">
+                                    <group >
+                                        <field name="addenda_verify" />
+                                        <field name="num_order"/>
+                                        
+                                    </group>
+                                    <group>
+                                        
+                                    </group>
+                                </group>
+                               
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</odoo>
