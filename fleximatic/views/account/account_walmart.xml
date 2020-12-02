@@ -12,8 +12,12 @@
                                 <group id="addenda_group">
                                     <group >
                                         <field name="addenda_verify" invisible="1"  />
-                                        <field name="num_order" attrs="{'readonly':[('state','!=','draft')],'required': [('addenda_verify', '=', 'Walmart [auto]') ]}" />
-                                        
+        
+                                        <field name=" total_letter" attrs="{'readonly':[('state','!=','draft')],'required': [('addenda_verify', '=', 'Walmart [auto]') ]}" />
+                                        <field name=" num_order" attrs="{'readonly':[('state','!=','draft')],'required': [('addenda_verify', '=', 'Walmart [auto]') ]}" />
+                                        <field name=" date_order" attrs="{'readonly':[('state','!=','draft')],'required': [('addenda_verify', '=', 'Walmart [auto]') ]}" />
+                                        <field name=" buyEan_code" attrs="{'readonly':[('state','!=','draft')],'required': [('addenda_verify', '=', 'Walmart [auto]') ]}" />
+                                        <field name=" number_supplier" attrs="{'readonly':[('state','!=','draft')],'required': [('addenda_verify', '=', 'Walmart [auto]') ]}" />
                                     </group>
                                     <group>
                                         
