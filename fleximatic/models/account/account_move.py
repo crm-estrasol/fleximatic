@@ -33,7 +33,7 @@ class fleximatiAccountMove(models.Model):
         """FTX+ZZZ+++%s+ES'""" % (totalLetter_s5),
         """RFF+ON:%s'""" % (orderBuy_s5), 
         """DTM+171:%s:102'""" % (orderDate_s6), 
-        """RFF+BT:%s'""" & (invoiceSerie_s7) ,
+        """RFF+BT:%s'""" % (invoiceSerie_s7) ,
         """RFF+ATZ:0'""",
         """NAD+BY+%s::9++NUEVA WAL MART DE MEXICO S DE RL DE:CV+NEXTENGO # 78:COL SANTA CRUZ ACAYUCAN+CIUDAD DE MEXICO+DF+02770'""" % (buyEanCode_s9),
         """RFF+GN:NWM9709244W4'""",
