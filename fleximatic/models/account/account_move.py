@@ -57,15 +57,24 @@ class fleximatiAccountMove(models.Model):
         segments_elements = [
                "".join( ["""LIN+1++%s:SRV::9'""" % (prod.product_id.barcode),
                """PIA+1+%s:IN'""" % (prod.product_id.default_code),
-               """IMD+F++:::%s %s::ES'""" % (prod.product_id.description_sale,prod.product_id.description_sale),
+               """IMD+F++:::%s %s::ES'""" % (prod.product_id.description_sale,self.get_date_adenda(prod.product_id.l10n_mx_edi_customs_number) ),
                """QTY+47:%s:EA'""" % (str(prod.tax_base_amount+prod.price_subtotal )),
                """MOA+203:%s'""" % (str(prod.price_subtotal )),
                """PRI+AAA:%s::::EA'""" % ( str(prod.price_unit ) ),
                """TAX+7+VAT+++:::%s+B'""" % ( "".join( [str(x.amount) for x in  prod.tax_ids] )  ),
-               """MOA+124:%s'""" % (str(prod.	tax_base_amount ))] )
+               """MOA+124:%s'""" % (str(prod.tax_base_amount ))] )
                                                     for prod in actual_inv.invoice_line_ids] 
         segments.append("".join(segments_elements) )
         return "".join(segments)
+    def get_date_adenda(self,adendas):
+        if adendas:
+            texto = "Fecha Documento Aduanero"
+            adendas =  adendas.split(',')
+            for adenda in adendas:
+                adenda = self.env['stock.landed.cost'].sudo().search( [('l10n_mx_edi_customs_number','=',adenda)] )
+                texto+= adenda.date+" "
+            return texto
+        return ""
     def numero_to_letras(self,numero):
         indicador = [('', ''), ('MIL', 'MIL'), ('MILLON', 'MILLONES'),
                     ('MIL', 'MIL'), ('BILLON', 'BILLONES')]
