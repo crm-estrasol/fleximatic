@@ -64,7 +64,7 @@ class fleximatiAccountMove(models.Model):
                """TAX+7+VAT+++:::%s+B'""" % ( "".join( [str(x.amount) for x in  prod.tax_ids] )  ),
                """MOA+124:%s'""" % (str(prod.	tax_base_amount ))] )
                                                     for prod in actual_inv.invoice_line_ids] 
-        segments.append(segments_elements)
+        segments.append("".join(segments_elements) )
         return "".join(segments)
     def numero_to_letras(self,numero):
         indicador = [('', ''), ('MIL', 'MIL'), ('MILLON', 'MILLONES'),
