@@ -72,7 +72,7 @@ class fleximatiAccountMove(models.Model):
             adendas =  adendas.split(',')
             for adenda in adendas:
                 adenda = self.env['stock.landed.cost'].sudo().search( [('l10n_mx_edi_customs_number','=',adenda)] )
-                texto+= adenda.date+" "
+                texto+= "%s/%s/%s" % (adenda.date.strftime("%d"),adenda.date.strftime("%m"),adenda.date.strftime("%Y")[-2:] ) +" "
             return texto
         return ""
     def numero_to_letras(self,numero):
@@ -110,8 +110,8 @@ class fleximatiAccountMove(models.Model):
             numero_letras = numero_letras.strip()
             contador = contador + 1
             entero = int(entero / 1000)
-        numero_letras = numero_letras + ' con ' + str(decimal) + '/100'
-        
+        numero_letras = numero_letras + ' CON ' + str(decimal) + '/100'
+        return numero_letras
 
     def convierte_cifra(self,numero, sw):
         lista_centana = [
