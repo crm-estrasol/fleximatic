@@ -21,7 +21,7 @@ class fleximatiAccountMove(models.Model):
         hour_s1 = fields.Datetime.today().strftime("%H%S")
         invoiceId_s3 = str(actual_inv.id)
         date_s4 = actual_inv.invoice_date.strftime("%Y")+actual_inv.invoice_date.strftime("%m")+actual_inv.invoice_date.strftime("%d")
-        totalLetter_s5 = str(self.numero_to_letras(actual_inv.amount_total) )
+        totalLetter_s5 = self.numero_to_letras(actual_inv.amount_total) 
         orderBuy_s6 = "Manual"
         orderDate_s7 = "Manual"
         invoiceSerie_s8  = actual_inv.name
@@ -111,9 +111,7 @@ class fleximatiAccountMove(models.Model):
             contador = contador + 1
             entero = int(entero / 1000)
         numero_letras = numero_letras + ' con ' + str(decimal) + '/100'
-        print( numero )
-        print( numero_letras)
-
+        
 
     def convierte_cifra(self,numero, sw):
         lista_centana = [
