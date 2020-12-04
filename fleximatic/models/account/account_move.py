@@ -58,11 +58,11 @@ class fleximatiAccountMove(models.Model):
                "".join( ["""LIN+1++%s:SRV::9'""" % (prod.product_id.barcode),
                """PIA+1+%s:IN'""" % (prod.product_id.default_code),
                """IMD+F++:::%s %s::ES'""" % (prod.product_id.description_sale,prod.product_id.description_sale),
-               """QTY+47:%s:EA'""" % (str(prod.price_tax+prod.price_subtotal )),
+               """QTY+47:%s:EA'""" % (str(prod.tax_base_amount+prod.price_subtotal )),
                """MOA+203:%s'""" % (str(prod.price_subtotal )),
                """PRI+AAA:%s::::EA'""" % ( str(prod.price_unit ) ),
                """TAX+7+VAT+++:::%s+B'""" % ( "".join( [x.ammount for x in  prod.tax_ids] )  ),
-               """MOA+124:%s'""" % (str(prod.price_tax ))] )
+               """MOA+124:%s'""" % (str(prod.	tax_base_amount ))] )
                                                     for prod in actual_inv.invoice_line_ids] 
         segments.append(segments_elements)
         return "".join(segments)
