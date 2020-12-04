@@ -61,7 +61,7 @@ class fleximatiAccountMove(models.Model):
                """QTY+47:%s:EA'""" % (str(prod.tax_base_amount+prod.price_subtotal )),
                """MOA+203:%s'""" % (str(prod.price_subtotal )),
                """PRI+AAA:%s::::EA'""" % ( str(prod.price_unit ) ),
-               """TAX+7+VAT+++:::%s+B'""" % ( "".join( [x.amount for x in  prod.tax_ids] )  ),
+               """TAX+7+VAT+++:::%s+B'""" % ( "".join( [str(x.amount) for x in  prod.tax_ids] )  ),
                """MOA+124:%s'""" % (str(prod.	tax_base_amount ))] )
                                                     for prod in actual_inv.invoice_line_ids] 
         segments.append(segments_elements)
