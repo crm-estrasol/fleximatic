@@ -21,7 +21,10 @@ class fleximatiAccountMove(models.Model):
         hour_s1 = fields.Datetime.today().strftime("%H%S")
         invoiceId_s3 = str(actual_inv.id)
         date_s4 = actual_inv.invoice_date.strftime("%Y")+actual_inv.invoice_date.strftime("%m")+actual_inv.invoice_date.strftime("%d")
-        totalLetter_s5 = self.numero_to_letras(actual_inv.amount_total) 
+        total = actual_inv.amount_total
+        total_untx = actual_inv.amount_untaxed
+        amount_tax = actual_inv.amount_tax
+        totalLetter_s5 = self.numero_to_letras(total) 
         orderBuy_s6 = "Manual"
         orderDate_s7 = "Manual"
         invoiceSerie_s8  = actual_inv.name
@@ -54,6 +57,7 @@ class fleximatiAccountMove(models.Model):
         """CUX+2:MXN:4'""",
         """PAT+1++5:3:D:%s'""" % (creditDays_s17),
         ]
+        total_segments = len(segments)
         segments_elements = [
                "".join( ["""LIN+1++%s:SRV::9'""" % (prod.product_id.barcode),
                """PIA+1+%s:IN'""" % (prod.product_id.default_code),
@@ -65,10 +69,24 @@ class fleximatiAccountMove(models.Model):
                """MOA+124:%s'""" % (str(prod.tax_base_amount ))] )
                                                     for prod in actual_inv.invoice_line_ids] 
         segments.append("".join(segments_elements) )
+        line_ammount = len(segments_elements)
+        total_segments += 7 + (line_ammount * 8) 
+        last_segment = [ 
+                """UNS+S'""",
+                """CNT+2:%s'"""  % ( str(line_ammount) ),
+                """MOA+9:%s'"""  % (str(total)),
+                """MOA+79:%s'"""  % (str(total_untx)),
+                """MOA+125:%s'"""  % (str(	total_untx )),
+                """TAX+7+VAT+++:::16.00+B'""",#Pendiente 
+                """MOA+124:%s'"""  % (str(amount_tax)),
+                """UNT+%s+1'"""  % (str(total_segments)),
+                """UNZ+1+<NO_CONTROL>'"""
+        ]
+        segments.append("".join(last_segment) )
         return "".join(segments)
     def get_date_adenda(self,adendas):
         if adendas:
-            texto = "Fecha Documento Aduanero"
+            texto = "Fecha Documento Aduanero "
             adendas =  adendas.split(',')
             for adenda in adendas:
                 adenda = self.env['stock.landed.cost'].sudo().search( [('l10n_mx_edi_customs_number','=',adenda)] )
