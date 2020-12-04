@@ -57,7 +57,7 @@ class fleximatiAccountMove(models.Model):
         segments_elements = [
                "".join( ["""LIN+1++%s:SRV::9'""" % (prod.product_id.barcode),
                """PIA+1+%s:IN'""" % (prod.product_id.default_code),
-               """IMD+F++:::%s %s::ES'""" % (prod.product_id.description_sale,self.get_date_adenda(prod.product_id.l10n_mx_edi_customs_number) ),
+               """IMD+F++:::%s %s::ES'""" % (prod.product_id.description_sale,self.get_date_adenda(prod.l10n_mx_edi_customs_number) ),
                """QTY+47:%s:EA'""" % (str(prod.tax_base_amount+prod.price_subtotal )),
                """MOA+203:%s'""" % (str(prod.price_subtotal )),
                """PRI+AAA:%s::::EA'""" % ( str(prod.price_unit ) ),
