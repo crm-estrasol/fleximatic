@@ -80,7 +80,7 @@ class fleximatiAccountMove(models.Model):
                """QTY+47:%s:EA'""" % ("{:.2f}".format(prod.tax_base_amount+prod.price_subtotal )),
                """MOA+203:%s'""" % ("{:.2f}".format(prod.price_subtotal )),
                """PRI+AAA:%s::::EA'""" % ( "{:.2f}".format(prod.price_unit ) ),
-               """TAX+7+VAT+++:::%s+B'""" % ( self.get_taxes_adenda_line(prod)   ),
+               """TAX+7+VAT+++:::%s+B'""" % ( self.get_taxes_adenda_line(prod) )  ,
                """MOA+124:%s'""" % ("{:.2f}".format(prod.tax_base_amount ))] )
                                                     for prod in actual_inv.invoice_line_ids] 
         segments.append("".join(segments_elements) )
@@ -101,7 +101,7 @@ class fleximatiAccountMove(models.Model):
         return "".join(segments)
     def get_taxes_adenda_line(self,actual_line):
         if actual_line.tax_ids:
-            return "".join( ["{:.2f}".format(x.amount) for x in  actual_line.tax_ids]
+            return "".join( ["{:.2f}".format(x.amount) for x in  actual_line.tax_ids] )
         else:
             return "0.00"
     def get_taxes_adenda(self,actual_inv):
