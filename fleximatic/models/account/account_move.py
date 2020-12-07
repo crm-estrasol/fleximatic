@@ -26,12 +26,11 @@ class fleximatiAccountMove(models.Model):
         amount_tax = actual_inv.amount_tax
         totalLetter_s5 = self.numero_to_letras(total) 
         orderBuy_s6 = actual_inv.num_order
-        #PENDIENTE FORMATO
         orderDate_s7 = actual_inv.date_order.strftime("%Y")+actual_inv.date_order.strftime("%m")+actual_inv.date_order.strftime("%d")
         invoiceSerie_s8  = actual_inv.name
         buyEanCode_s10 = actual_inv.buyEan_code
-        #Global pendiente
-        sellEanCode_s12 ="7504023427002" 
+     
+        sellEanCode_s12 = self.env['ir.config_parameter'].sudo().get_param('fleximatic.ean_code') 
         numberSupplier9s_s14 = actual_inv.number_supplier
         if actual_inv.invoice_payment_term_id:
             days = sum([ line.days for line in  actual_inv.invoice_payment_term_id.line_ids]) 
