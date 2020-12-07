@@ -18,14 +18,14 @@ class fleximatiAccountMove(models.Model):
     def create(self,vals):
           if 'number_supplier' in vals:
               if len(vals['number_supplier']) < 9:
-               raise UserError(_("Ingresa 9 numero proveedor 9 digitos."))
+               raise UserError(_("Ingresa 9 digitos en el campo 'numero proveedor 9 digitos'."))
           res = super(fleximatiAccountMove, self).create(vals)
          
           return res
     def write(self,vals):
         if 'number_supplier' in vals:
               if len(vals['number_supplier']) < 9:
-               raise UserError(_("Ingresa 9 numero proveedor 9 digitos."))
+               raise UserError(_("Ingresa 9 digitos en el campo 'numero proveedor 9 digitos'."))
         res = super(fleximatiAccountMove, self).write(vals)
         
     def adenda_walmart(self,actual_inv):
@@ -80,7 +80,7 @@ class fleximatiAccountMove(models.Model):
                """QTY+47:%s:EA'""" % ("{:.2f}".format(prod.tax_base_amount+prod.price_subtotal )),
                """MOA+203:%s'""" % ("{:.2f}".format(prod.price_subtotal )),
                """PRI+AAA:%s::::EA'""" % ( "{:.2f}".format(prod.price_unit ) ),
-               """TAX+7+VAT+++:::%s+B'""" % ( "".join( ["{:.2f}".format(x.amount) for x in  prod.tax_ids] )  ),
+               """TAX+7+VAT+++:::%s+B'""" % ( self.get_taxes_adenda_line(prod) )  ),
                """MOA+124:%s'""" % ("{:.2f}".format(prod.tax_base_amount ))] )
                                                     for prod in actual_inv.invoice_line_ids] 
         segments.append("".join(segments_elements) )
@@ -92,13 +92,30 @@ class fleximatiAccountMove(models.Model):
                 """MOA+9:%s'"""  % (total),
                 """MOA+79:%s'"""  % (total_untx),
                 """MOA+125:%s'"""  % (	total_untx ),
-                """TAX+7+VAT+++:::16.00+B'""",#Pendiente 
+                """TAX+7+VAT+++:::%s+B'""" % ( self.get_taxes_adenda(actual_inv)),#Pendiente 
                 """MOA+124:%s'"""  % (str(amount_tax)),
                 """UNT+%s+1'"""  % (str(total_segments)),
                 """UNZ+1+%s'""" % ( control ),
         ]
         segments.append("".join(last_segment) )
         return "".join(segments)
+    def get_taxes_adenda_line(self,actual_line):
+        if actual_line.tax_ids:
+            return "".join( ["{:.2f}".format(x.amount) for x in  actual_line.tax_ids]
+        else:
+            return "0.00"
+    def get_taxes_adenda(self,actual_inv):
+        invoice_lines = actual_inv.invoice_line_ids
+        taxes = []
+        for tax in invoice_lines:
+            taxes.append(tax.tax_ids)
+        taxes = list(set(taxes))
+        if len(taxes) >1:
+            final_taxes = "".join( [ "{:.2f}".format(t.amount) for t in taxes] )
+            return final_taxes
+        else:
+            return "0.00"
+        
     def get_date_adenda(self,adendas):
         if adendas:
             texto = "Fecha Documento Aduanero "
