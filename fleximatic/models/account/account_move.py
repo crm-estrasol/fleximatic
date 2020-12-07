@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models, SUPERUSER_ID, _
 
+from odoo.exceptions import UserError
 
 class fleximatiAccountMove(models.Model):
     
@@ -12,7 +13,21 @@ class fleximatiAccountMove(models.Model):
     date_order = fields.Date('Fecha orden')
     buyEan_code = fields.Char('Código EAN comprador')
     number_supplier = fields.Char('Numero proveedor 9 digitos',size=9)
-
+    
+    @api.model
+    def create(self,vals):
+          if 'number_supplier' in vals:
+              if len(vals['number_supplier']) < 9:
+               raise UserError(_("Ingresa 9 numero proveedor 9 digitos."))
+          res = super(fleximatiAccountMove, self).create(vals)
+         
+          return res
+    def write(self,vals):
+        if 'number_supplier' in vals:
+              if len(vals['number_supplier']) < 9:
+               raise UserError(_("Ingresa 9 numero proveedor 9 digitos."))
+        res = super(fleximatiAccountMove, self).write(vals)
+        
     def adenda_walmart(self,actual_inv):
         actual_inv = actual_inv
         #Vars needed
