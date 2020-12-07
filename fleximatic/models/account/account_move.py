@@ -21,10 +21,10 @@ class fleximatiAccountMove(models.Model):
         hour_s1 = fields.Datetime.today().strftime("%H%S")
         invoiceId_s3 = str(actual_inv.id)
         date_s4 = actual_inv.invoice_date.strftime("%Y")+actual_inv.invoice_date.strftime("%m")+actual_inv.invoice_date.strftime("%d")
-        total = "{:,.2f}".format(actual_inv.amount_total)
-        total_untx = "{:,.2f}".format(actual_inv.amount_untaxed)
-        amount_tax = "{:,.2f}".format(actual_inv.amount_tax)
-        totalLetter_s5 = self.numero_to_letras(total) 
+        total = "{:.2f}".format(actual_inv.amount_total)
+        total_untx = "{:.2f}".format(actual_inv.amount_untaxed)
+        amount_tax = "{:.2f}".format(actual_inv.amount_tax)
+        totalLetter_s5 = self.numero_to_letras(actual_inv.amount_total) 
         orderBuy_s6 = actual_inv.num_order
         orderDate_s7 = actual_inv.date_order.strftime("%Y")+actual_inv.date_order.strftime("%m")+actual_inv.date_order.strftime("%d")
         invoiceSerie_s8  = actual_inv.name
@@ -62,11 +62,11 @@ class fleximatiAccountMove(models.Model):
                "".join( ["""LIN+1++%s:SRV::9'""" % (prod.product_id.barcode),
                """PIA+1+%s:IN'""" % (prod.product_id.default_code),
                """IMD+F++:::%s %s::ES'""" % (prod.product_id.description_sale,self.get_date_adenda(prod.l10n_mx_edi_customs_number) ),
-               """QTY+47:%s:EA'""" % ("{:,.2f}".format(prod.tax_base_amount+prod.price_subtotal )),
-               """MOA+203:%s'""" % ("{:,.2f}".format(prod.price_subtotal )),
-               """PRI+AAA:%s::::EA'""" % ( "{:,.2f}".format(prod.price_unit ) ),
-               """TAX+7+VAT+++:::%s+B'""" % ( "".join( ["{:,.2f}".format(x.amount) for x in  prod.tax_ids] )  ),
-               """MOA+124:%s'""" % ("{:,.2f}".format(prod.tax_base_amount ))] )
+               """QTY+47:%s:EA'""" % ("{:.2f}".format(prod.tax_base_amount+prod.price_subtotal )),
+               """MOA+203:%s'""" % ("{:.2f}".format(prod.price_subtotal )),
+               """PRI+AAA:%s::::EA'""" % ( "{:.2f}".format(prod.price_unit ) ),
+               """TAX+7+VAT+++:::%s+B'""" % ( "".join( ["{:.2f}".format(x.amount) for x in  prod.tax_ids] )  ),
+               """MOA+124:%s'""" % ("{:.2f}".format(prod.tax_base_amount ))] )
                                                     for prod in actual_inv.invoice_line_ids] 
         segments.append("".join(segments_elements) )
         line_ammount = len(segments_elements)
