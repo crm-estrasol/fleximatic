@@ -8,4 +8,5 @@ from .stock import stock_picking
 from .purchase import purchase
 from .stock import stock_picking_batch
 from .account import account_move
+from . import res_config_settings
 #

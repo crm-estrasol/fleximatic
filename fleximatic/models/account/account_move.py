@@ -27,7 +27,7 @@ class fleximatiAccountMove(models.Model):
         totalLetter_s5 = self.numero_to_letras(total) 
         orderBuy_s6 = actual_inv.num_order
         #PENDIENTE FORMATO
-        orderDate_s7 = actual_inv.date_order.strftime("%Y")
+        orderDate_s7 = actual_inv.date_order.strftime("%Y")+actual_inv.date_order.strftime("%m")+actual_inv.date_order.strftime("%d")
         invoiceSerie_s8  = actual_inv.name
         buyEanCode_s10 = actual_inv.buyEan_code
         #Global pendiente
