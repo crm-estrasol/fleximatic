@@ -25,13 +25,14 @@ class fleximatiAccountMove(models.Model):
         total_untx = actual_inv.amount_untaxed
         amount_tax = actual_inv.amount_tax
         totalLetter_s5 = self.numero_to_letras(total) 
-        orderBuy_s6 = "Manual"
-        orderDate_s7 = "Manual"
+        orderBuy_s6 = actual_inv.num_order
+        #PENDIENTE FORMATO
+        orderDate_s7 = actual_inv.date_order.strftime("%Y")
         invoiceSerie_s8  = actual_inv.name
-        buyEanCode_s10 = "Manual"
-        #Global
+        buyEanCode_s10 = actual_inv.buyEan_code
+        #Global pendiente
         sellEanCode_s12 ="7504023427002" 
-        numberSupplier9s_s14 = "Manual"
+        numberSupplier9s_s14 = actual_inv.number_supplier
         if actual_inv.invoice_payment_term_id:
             days = sum([ line.days for line in  actual_inv.invoice_payment_term_id.line_ids]) 
         else:
