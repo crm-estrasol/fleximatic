@@ -34,13 +34,15 @@
         'views/purchase/purchase.xml',
         'views/stock/stock_picking.xml',
         'views/account/account_walmart.xml',
+        
         #WIZARDS
         'wizard/sale_details.xml',
         'wizard/promotional_products.xml',
         'wizard/warning_client.xml',
         'wizard/fleximatic_multi_confirm_sale.xml',
+        #DATA
         'data/walmart.xml',
-       
+        'data/sequence_adenda.xml',
 
 
     ],  

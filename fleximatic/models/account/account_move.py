@@ -16,7 +16,7 @@ class fleximatiAccountMove(models.Model):
     def adenda_walmart(self,actual_inv):
         actual_inv = actual_inv
         #Vars needed
-        control=str(0000)
+        control = self.env['ir.sequence'].next_by_code('fleximatic.adenda.walmart.sequence')
         date_s1 = fields.Datetime.today().strftime("%Y")[-2:]+fields.Datetime.today().strftime("%m")+fields.Datetime.today().strftime("%d")
         hour_s1 = fields.Datetime.today().strftime("%H%S")
         invoiceId_s3 = str(actual_inv.id)
@@ -81,7 +81,7 @@ class fleximatiAccountMove(models.Model):
                 """TAX+7+VAT+++:::16.00+B'""",#Pendiente 
                 """MOA+124:%s'"""  % (str(amount_tax)),
                 """UNT+%s+1'"""  % (str(total_segments)),
-                """UNZ+1+<NO_CONTROL>'"""
+                """UNZ+1+%s'""" % ( control ),
         ]
         segments.append("".join(last_segment) )
         return "".join(segments)
