@@ -110,7 +110,7 @@ class fleximatiAccountMove(models.Model):
         for tax in invoice_lines:
             taxes.append(tax.tax_ids)
         taxes = list(set(taxes))
-        if len(taxes) >1:
+        if len(taxes) >= 1:
             final_taxes = "".join( [ "{:.2f}".format(t.amount) for t in taxes] )
             return final_taxes
         else:
