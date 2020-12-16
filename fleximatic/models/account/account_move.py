@@ -76,12 +76,12 @@ class fleximatiAccountMove(models.Model):
         segments_elements = [
                "".join( ["""LIN+1++%s:SRV::9'""" % (prod.product_id.barcode),
                """PIA+1+%s:IN'""" % (prod.product_id.default_code),
-               """IMD+F++:::%s %s::ES'""" % (prod.product_id.description_sale,self.get_date_adenda(prod.l10n_mx_edi_customs_number) ),
-               """QTY+47:%s:EA'""" % ("{:.2f}".format(prod.tax_base_amount+prod.price_subtotal )),
+               """IMD+F++:::%s %s::ES'""" % (prod.product_id.name+" "+prod.product_id.description_sale,self.get_date_adenda(prod.l10n_mx_edi_customs_number) ),
+               """QTY+47:%s:EA'""" % ("{:.2f}".format(prod.quantity )),
                """MOA+203:%s'""" % ("{:.2f}".format(prod.price_subtotal )),
                """PRI+AAA:%s::::EA'""" % ( "{:.2f}".format(prod.price_unit ) ),
                """TAX+7+VAT+++:::%s+B'""" % ( self.get_taxes_adenda_line(prod) )  ,
-               """MOA+124:%s'""" % ("{:.2f}".format(prod.tax_base_amount ))] )
+               """MOA+124:%s'""" % ("{:.2f}".format(prod.price_total - prod.price_subtotal ))] )
                                                     for prod in actual_inv.invoice_line_ids] 
         segments.append("".join(segments_elements) )
         line_ammount = len(segments_elements)
