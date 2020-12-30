@@ -8,8 +8,10 @@ class fleximatiAccountMove(models.Model):
     _inherit = 'account.move'
     @api.model
     def _default_eancode(self):
-        if self.type == 'out_invoice' and self.partner_id.l10n_mx_edi_addenda.name == 'Walmart [auto]':
-            return self.env['ir.config_parameter'].sudo().get_param('fleximatic.ean_code')
+        partner = self.env['res.partner'].browse(self._context.get('partner_id', False))   
+        if partner:
+            if self._context.get('type', False) == 'out_invoice' and partner.l10n_mx_edi_addenda.name == 'Walmart [auto]':
+                return self.env['ir.config_parameter'].sudo().get_param('fleximatic.ean_code')
         return ""
     addenda_verify = fields.Char(related="partner_id.l10n_mx_edi_addenda.name")
     total_letter =  fields.Char('Total en numero')
