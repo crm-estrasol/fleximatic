@@ -27,7 +27,7 @@ class fleximatiAccountMove(models.Model):
     def create(self,vals):  
         partner = self.env['res.partner'].browse(vals['partner_id'])   
         if partner:
-            if vals['type'] == 'out_invoice' and  partner.l10n_mx_edi_addenda.name == 'Walmart [auto]' and len(vals['number_supplier']) < 9:
+            if self.type == 'out_invoice' and  partner.l10n_mx_edi_addenda.name == 'Walmart [auto]' and len(vals['number_supplier']) < 9:
                 raise UserError(_("Ingresa 9 digitos en el campo 'numero proveedor 9 digitos'."))
         res = super(fleximatiAccountMove, self).create(vals)
         return res
