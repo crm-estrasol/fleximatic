@@ -25,7 +25,7 @@ class fleximatiAccountMove(models.Model):
             self.ean_code =  self.env['ir.config_parameter'].sudo().get_param('fleximatic.ean_code')
     @api.model
     def create(self,vals):  
-        partner = self.env['res.parter'].browse(vals['partner_id'])   
+        partner = self.env['res.partner'].browse(vals['partner_id'])   
         if partner:
             if vals['type'] == 'out_invoice' and  partner.l10n_mx_edi_addenda.name == 'Walmart [auto]' and len(vals['number_supplier']) < 9:
                 raise UserError(_("Ingresa 9 digitos en el campo 'numero proveedor 9 digitos'."))
