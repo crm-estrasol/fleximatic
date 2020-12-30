@@ -26,14 +26,15 @@ class fleximatiAccountMove(models.Model):
     @api.model
     def create(self,vals):  
         partner = self.env['res.partner'].browse(vals['partner_id'])   
-        if partner:
+        if partner and 'number_supplier' in vals :
             if self.type == 'out_invoice' and  partner.l10n_mx_edi_addenda.name == 'Walmart [auto]' and len(vals['number_supplier']) < 9:
                 raise UserError(_("Ingresa 9 digitos en el campo 'numero proveedor 9 digitos'."))
         res = super(fleximatiAccountMove, self).create(vals)
         return res
     def write(self,vals): 
-        if  self.type == 'out_invoice' and self.partner_id.l10n_mx_edi_addenda.name == 'Walmart [auto]' and   len(vals['number_supplier']) < 9:
-            raise UserError(_("Ingresa 9 digitos en el campo 'numero proveedor 9 digitos'."))
+        if 'number_supplier' in vals:
+            if  self.type == 'out_invoice' and self.partner_id.l10n_mx_edi_addenda.name == 'Walmart [auto]' and   len(vals['number_supplier']) < 9:
+                raise UserError(_("Ingresa 9 digitos en el campo 'numero proveedor 9 digitos'."))
         res = super(fleximatiAccountMove, self).write(vals)
         
     def adenda_walmart(self,actual_inv):
