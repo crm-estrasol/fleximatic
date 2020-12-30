@@ -6,14 +6,23 @@ from odoo.exceptions import UserError
 class fleximatiAccountMove(models.Model):
     
     _inherit = 'account.move'
-   
+    @api.model
+    def _default_eancode(self):
+        if self.type == 'out_invoice' and self.partner_id.l10n_mx_edi_addenda == 'Walmart [auto]':
+            return self.env['ir.config_parameter'].sudo().get_param('fleximatic.ean_code')
+        return ""
     addenda_verify = fields.Char(related="partner_id.l10n_mx_edi_addenda.name")
     total_letter =  fields.Char('Total en numero')
     num_order = fields.Char('Numero de orden de compra')
     date_order = fields.Date('Fecha orden')
     buyEan_code = fields.Char('Código EAN comprador')
     number_supplier = fields.Char('Numero proveedor 9 digitos',size=9)
-    
+    ean_code = fields.Char("Código EAN (Walmart)",default=_default_eancode)
+    #self.env['ir.config_parameter'].sudo().get_param('fleximatic.ean_code')
+    @api.onchange('partner_id')
+    def onchange_ean_code(self):
+        if self.ean_code == "" and self.type == 'out_invoice' and self.partner_id.l10n_mx_edi_addenda == 'Walmart [auto]':
+            self.ean_code =  self.env['ir.config_parameter'].sudo().get_param('fleximatic.ean_code')
     @api.model
     def create(self,vals):
           if 'number_supplier' in vals:
@@ -44,8 +53,7 @@ class fleximatiAccountMove(models.Model):
         orderDate_s7 = actual_inv.date_order.strftime("%Y")+actual_inv.date_order.strftime("%m")+actual_inv.date_order.strftime("%d")
         invoiceSerie_s8  = actual_inv.name
         buyEanCode_s10 = actual_inv.buyEan_code
-     
-        sellEanCode_s12 = self.env['ir.config_parameter'].sudo().get_param('fleximatic.ean_code') 
+        sellEanCode_s12 = self.ean_code 
         numberSupplier9s_s14 = actual_inv.number_supplier
         if actual_inv.invoice_payment_term_id:
             days = sum([ line.days for line in  actual_inv.invoice_payment_term_id.line_ids]) 
