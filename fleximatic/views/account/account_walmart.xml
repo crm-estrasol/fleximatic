@@ -7,17 +7,17 @@
             <field name="inherit_id" ref="account.view_move_form" />
             <field name="arch" type="xml">
                 <xpath expr="//page[@id='other_tab_entry']" position="before">
-                    <page id="addenda_walmart" string="Addenda walmart" name="addenda_walmart" attrs="{'invisible': [('addenda_verify', '!=', 'Walmart [auto]') ]}">
+                    <page id="addenda_walmart" string="Addenda walmart" name="addenda_walmart" attrs="{'invisible': ['&amp;',('type','!=','out_invoice'),('addenda_verify', '!=', 'Walmart [auto]') ]}">
                                
                                 <group id="addenda_group">
                                     <group >
                                         <field name="addenda_verify" invisible="1"  />
         
-                                        <field name="ean_code" attrs="{'readonly':[('state','!=','draft')],'required': [('addenda_verify', '=', 'Walmart [auto]') ]}" />
-                                        <field name="num_order" attrs="{'readonly':[('state','!=','draft')],'required': [('addenda_verify', '=', 'Walmart [auto]') ]}" />
-                                        <field name="date_order" attrs="{'readonly':[('state','!=','draft')],'required': [('addenda_verify', '=', 'Walmart [auto]') ]}" />
-                                        <field name="buyEan_code" attrs="{'readonly':[('state','!=','draft')],'required': [('addenda_verify', '=', 'Walmart [auto]') ]}" />
-                                        <field name="number_supplier" attrs="{'readonly':[('state','!=','draft')],'required': [('addenda_verify', '=', 'Walmart [auto]') ]}" />
+                                        <field name="ean_code" attrs="{'readonly':[('state','!=','draft')],'required': ['&amp;',('type','=','out_invoice'),('addenda_verify', '=', 'Walmart [auto]') ]}" />
+                                        <field name="num_order" attrs="{'readonly':[('state','!=','draft')],'required': ['&amp;',('type','=','out_invoice'),('addenda_verify', '=', 'Walmart [auto]') ]}" />
+                                        <field name="date_order" attrs="{'readonly':[('state','!=','draft')],'required': ['&amp;',('type','=','out_invoice'),('addenda_verify', '=', 'Walmart [auto]') ]}" />
+                                        <field name="buyEan_code" attrs="{'readonly':[('state','!=','draft')],'required': ['&amp;',('type','=','out_invoice'),('addenda_verify', '=', 'Walmart [auto]') ]}" />
+                                        <field name="number_supplier" attrs="{'readonly':[('state','!=','draft')],'required': ['&amp;',('type','=','out_invoice'),('addenda_verify', '=', 'Walmart [auto]') ]}" />
                                     </group>
                                     <group>
                                         
