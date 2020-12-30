@@ -7,7 +7,8 @@
             <field name="inherit_id" ref="account.view_move_form" />
             <field name="arch" type="xml">
                 <xpath expr="//page[@id='other_tab_entry']" position="before">
-                    <page id="addenda_walmart" string="Addenda walmart" name="addenda_walmart" attrs="{'invisible': ['&amp;',('type','!=','out_invoice'),('addenda_verify', '!=', 'Walmart [auto]') ]}">
+                    <page id="addenda_walmart" string="Addenda walmart" name="addenda_walmart" attrs="{'invisible': [ '|',('type','!=','out_invoice'),'&amp;',('type','=','out_invoice'),
+                                                                                                                                ('addenda_verify', '!=', 'Walmart [auto]')          ]}">
                                
                                 <group id="addenda_group">
                                     <group >
