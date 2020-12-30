@@ -101,7 +101,8 @@ class fleximatiAccountMove(models.Model):
         return "".join(segments)
     def get_taxes_adenda_line(self,actual_line):
         if actual_line.tax_ids:
-            return "".join( ["{:.2f}".format(x.amount) for x in  actual_line.tax_ids] )
+            final_tax = "".join( ["{:.2f}".format(x.amount) for x in  actual_line.tax_ids] )
+            return "16.00" if "16" in final_tax else "0.00"
         else:
             return "0.00"
     def get_taxes_adenda(self,actual_inv):
@@ -111,8 +112,9 @@ class fleximatiAccountMove(models.Model):
             taxes.append(tax.tax_ids)
         taxes = list(set(taxes))
         if len(taxes) >= 1:
+            #Adjust for more taxex
             final_taxes = "".join( [ "{:.2f}".format(t.amount) for t in taxes] )
-            return final_taxes
+            return "16.00" if "16" in final_taxes else "0.00"
         else:
             return "0.00"
         
